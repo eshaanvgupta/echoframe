@@ -1,11 +1,8 @@
 {
   "version": "1.1.0",
   "packageCount": 9,
-  "staticFiles": 47,
-  "publication": {
-    "npm": false,
-    "website": false
-  },
+  "staticFiles": 73,
+  "artifactScope": "Prepared immutable release assets; publication is confirmed separately by GitHub and the public URL.",
   "assets": [
     {
       "name": "echoframe-core-1.1.0.tgz",
@@ -19,8 +16,8 @@
     },
     {
       "name": "echoframe-x402-1.1.0.tgz",
-      "size": 6656,
-      "sha256": "7478c2c34071967382bae38e86b7ce49c5be5bede371b4f3962ddbfb158d8aa3"
+      "size": 6766,
+      "sha256": "286cb0efee1703d23d30c57f3a949d2c3db8671929f00affeb6d482e41cd3ba5"
     },
     {
       "name": "echoframe-mpp-1.1.0.tgz",
@@ -35,7 +32,7 @@
     {
       "name": "echoframe-node-1.1.0.tgz",
       "size": 27452,
-      "sha256": "394277901f6ec05fa4575fb3fb0a4da752cf8ad21560e93086faf9fe66322081"
+      "sha256": "7850a2da12d99d5d5a33f92f7f6037ae9ce9b8cf947894e248d68c5f3e1e9449"
     },
     {
       "name": "echoframe-react-1.1.0.tgz",
@@ -45,7 +42,7 @@
     {
       "name": "echoframe-cli-1.1.0.tgz",
       "size": 7692,
-      "sha256": "da5f127a58bbe8cd134dd1ceae922eab9f1c6d857b355aed5d4fef6be8a7398d"
+      "sha256": "dcb07dd40ca9579d9b55fc4b91fb4a710aa896a7c32a3f2a7df51ffce3693663"
     },
     {
       "name": "echoframe-mcp-1.1.0.tgz",
@@ -54,8 +51,38 @@
     },
     {
       "name": "echoframe-web-1.1.0.zip",
-      "size": 1993946,
-      "sha256": "03a11aa6d30c36c7c38a335c985c8558c218da10fe28b6f51d2a1ff56f9a482a"
+      "size": 2425486,
+      "sha256": "dbf90f12a7601f642e5ae69008af9cd74f4d2cd5054ce653115b00fe77f2bcfc"
+    },
+    {
+      "name": "echoframe-pages-1.1.0.zip",
+      "size": 2427126,
+      "sha256": "daa6715c1474393bcd7c746f09e35000f975aaf313407c1d858106f3825fbc32"
+    },
+    {
+      "name": "echoframe-evidence-1.1.0.zip",
+      "size": 1051586,
+      "sha256": "c72f3676ec0f2eee3db4a98f3a465e753ee6c0ddc6491eb7b80ae7cb8ee4a97c"
+    },
+    {
+      "name": "echoframe-grant-1.1.0.pdf",
+      "size": 213294,
+      "sha256": "257dc6caa7e43e0207a39e1966e47ea19530c9551fed1b026a7b27816fd7aad1"
+    },
+    {
+      "name": "echoframe-grant-1.1.0.html",
+      "size": 278902,
+      "sha256": "49db4d2e832d730570a8dcdc4e6f23e88673280d3f8c6d645cf3de3f33cb2a7f"
+    },
+    {
+      "name": "release-verification.json",
+      "size": 4432,
+      "sha256": "7cc17ca46b5f7740bb7acbc4165f739022f2656a9ec7c4ff53a7713a1a5783cd"
+    },
+    {
+      "name": "secret-scan.json",
+      "size": 318,
+      "sha256": "fb7e63925f3fe5a397c601bafec15018d8f21507ad78c27d2d7f3835123e588d"
     }
   ]
 }

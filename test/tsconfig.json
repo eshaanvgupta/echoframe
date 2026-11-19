@@ -1,1 +1,42 @@
-{"extends":"../tsconfig.base.json","compilerOptions":{"noEmit":true,"declaration":false,"baseUrl":"..","paths":{"@echoframe/core":["packages/core/src/index.ts"],"@echoframe/celo":["packages/celo/src/index.ts"],"@echoframe/x402":["packages/x402/src/index.ts"],"@echoframe/mpp":["packages/mpp/src/index.ts"],"@echoframe/erc8183":["packages/erc8183/src/index.ts"],"@echoframe/node":["packages/node/src/index.ts"],"@echoframe/cli":["packages/cli/src/index.ts"],"@echoframe/mcp":["packages/mcp/src/index.ts"]}},"include":["**/*.ts","../examples/**/*.ts","../scripts/fixtures.ts","../vitest.config.ts","../playwright.config.ts"]}
+{
+  "extends": "../tsconfig.base.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "declaration": false,
+    "baseUrl": "..",
+    "paths": {
+      "@echoframe/core": [
+        "packages/core/src/index.ts"
+      ],
+      "@echoframe/celo": [
+        "packages/celo/src/index.ts"
+      ],
+      "@echoframe/x402": [
+        "packages/x402/src/index.ts"
+      ],
+      "@echoframe/mpp": [
+        "packages/mpp/src/index.ts"
+      ],
+      "@echoframe/erc8183": [
+        "packages/erc8183/src/index.ts"
+      ],
+      "@echoframe/node": [
+        "packages/node/src/index.ts"
+      ],
+      "@echoframe/cli": [
+        "packages/cli/src/index.ts"
+      ],
+      "@echoframe/mcp": [
+        "packages/mcp/src/index.ts"
+      ]
+    }
+  },
+  "include": [
+    "**/*.ts",
+    "../examples/**/*.ts",
+    "../scripts/fixtures.ts",
+    "../vitest.config.ts",
+    "../playwright.config.ts",
+    "../docs/evidence/**/*.test.ts"
+  ]
+}

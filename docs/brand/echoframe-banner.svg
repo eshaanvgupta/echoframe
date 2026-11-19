@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="460" viewBox="0 0 1280 460" role="img" aria-labelledby="title desc">
+<title id="title">ECHOFRAME — The Verification Layer for Autonomous Commerce</title><desc id="desc">A midnight navy technical instrument connects payment observations to independently reproduced outcome checks. Money moved. Did the work happen?</desc>
+<defs><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#233448" stroke-width=".6"/></pattern></defs>
+<path fill="#09101a" d="M0 0h1280v460H0z"/><path fill="url(#grid)" d="M0 0h1280v460H0z"/>
+<path stroke="#4de4ef" stroke-width="2" d="M40 40h36m-36 0v36m1200-36h-36m36 0v36M40 420h36m-36 0v-36m1200 36h-36m36 0v-36"/>
+<g font-family="'IBM Plex Mono',monospace" font-size="14" fill="#4de4ef" letter-spacing="2"><text x="72" y="89">OPEN SOURCE / CELO / LOCAL FIRST</text><text x="72" y="391">01 RECORD</text><text x="272" y="391">02 RECONCILE</text><text x="502" y="391">03 REPRODUCE</text></g>
+<text x="66" y="186" font-family="'Space Grotesk',Arial,sans-serif" font-size="94" letter-spacing="-6" font-weight="600" fill="#c6ff4d">ECHOFRAME</text>
+<text x="72" y="234" font-family="'Space Grotesk',Arial,sans-serif" font-size="24" fill="#f1f4ea">The Verification Layer for Autonomous Commerce.</text>
+<text x="72" y="296" font-family="'Space Grotesk',Arial,sans-serif" font-size="32" fill="#f1f4ea">Money moved. Did the work happen?</text>
+<g fill="none" stroke="#4de4ef" stroke-width="2"><path d="M828 122h92v80h92v-40h104v96h-104v56h-92v-72h-92"/><path d="M828 202h92m92 0h104" stroke-dasharray="5 7"/><circle cx="828" cy="122" r="9" fill="#09101a"/><circle cx="920" cy="202" r="12" fill="#09101a"/><circle cx="1012" cy="258" r="12" fill="#09101a"/><circle cx="1116" cy="162" r="9" fill="#c6ff4d" stroke="#c6ff4d"/></g>
+<g font-family="monospace" font-size="12" fill="#afbdd0"><text x="796" y="98">OBSERVED</text><text x="900" y="348">COMMITTED</text><text x="1052" y="130">REPRODUCED</text></g><text x="814" y="391" font-family="monospace" font-size="13" fill="#ff9a88">SETTLEMENT ≠ DELIVERY</text>
+</svg>

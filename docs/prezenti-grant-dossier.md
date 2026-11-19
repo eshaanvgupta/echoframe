@@ -2,6 +2,10 @@
 
 Prepared on 2026-11-19. This dossier records implemented software and an activation plan, not an assertion of grant eligibility, award or independent adoption.
 
+**Category: AI & Agent Economy Infrastructure ? Verification and Trust Infrastructure.**
+
+**ECHOFRAME ? The Verification Layer for Autonomous Commerce.** Money moved. Did the work happen?
+
 **Problem.** A buyer or builder often cannot distinguish permission to pay, a quote actually accepted, a settled token event, an HTTP response and independently checked work. Timeout/retry ambiguity can trigger duplicate economic actions. Evidence spans merchants, facilitators, chains and returned files, and is difficult to reproduce independently.
 
 **Product and users.** ECHOFRAME is local-first forensic infrastructure for Celo agents, merchant developers, framework maintainers, auditors and mobile buyers. Nine buildable packages, a static responsive PWA, CLI, read-only MCP, persistent journals and 16 deterministic scenarios connect one specific payment flight record to a reproducible regression. No paid API or AI model determines security outcomes.
@@ -41,3 +45,15 @@ Before submission the applicant must supply private contact/delivery information
 Maintain pinned protocol profiles and their official-source matrix, review upstream drafts/dependency advisories monthly, rerun installed-consumer and full release checks before versions, preserve old proof byte semantics and clearly version deliberate conservative changes. Triage opt-in public reproductions without asking for raw credentials. Retain no usage telemetry by default; collect feedback/activation records only with consent. Budget ongoing effort for framework compatibility, security regressions, accessibility and documentation after the four-month grant. Community cases must be reproducible and clearly distinguish observed incidents from simulations.
 
 Current release adds durable real-framework instrumentation and trace diagnosis; it does not create an external partner. Public mainnet/Sepolia inspection records are linked in live-rpc-observations.json. A consenting genuine supported merchant integration, independently reproduced deliverable, usage/feedback evidence and authorized funded mainnet activity remain outstanding. See integration.md for the exact opt-in path.
+
+## Demonstrated integration and public review
+
+A genuine owner-approved 0.01 test-USDC purchase has now been captured on Celo Sepolia using MetaMask and the official hosted facilitator. Its complete owner-authorized redacted evidence, exact matched expectations, selected Transfer log and independently reproducible proof/regression are in `docs/evidence/celo-sepolia-2026-11-19/`. The original unsupported header and separately sourced read-only recovery are preserved. This self-operated integration is counted as one testnet validation, zero independently adopted integrations and zero consenting mainnet purchases. Earlier public-chain inspection records remain a separate category.
+
+The public release provides nine package archives, two static deployment builds, checksums and a technical evidence archive. Actual publication URLs and clean remote CI confirmation are in `publication.json`; current exact test counts are in `release-verification.json`. A public website demonstrates software availability rather than satisfying Celo mainnet-use criteria. See `grant-presentation.md` for the concise reviewer presentation and `demo.md` for the reproducible product journey.
+
+## Competitive overlap and activation
+
+Payment authorization middleware verifies payment credentials and invokes settlement; ECHOFRAME observes that workflow and reproduces declared result checks without signing. Chain dashboards aggregate transaction observations; ECHOFRAME binds explicit expected parties/token/amount/log to a recorded request context. Reputation services estimate sellers; ECHOFRAME checks a particular supplied result. Journals, receipts and deterministic validation are established components; the contribution is the interoperable local-first evidence-to-regression workflow. No comprehensive market exclusivity claim is made.
+
+The first activation requires an independent developer to install a packed SDK, instrument a supported workflow, export a trace and independently reproduce a check or failure. Collect opt-in issue links and feedback rather than asserting downloaded packages are users. Seek initial users among existing Celo x402/MPP merchants and agent framework maintainers, then distribute executable reproductions and integration PRs with their consent. The 10/30/100 figures are milestones to pursue, not current counts or commitments by external teams.

@@ -11,7 +11,7 @@ transforming...
 ✓ 782 modules transformed.
 rendering chunks...
 computing gzip size...
-dist/index.html                                              0.92 kB │ gzip:   0.49 kB
+dist/index.html                                              0.92 kB │ gzip:   0.50 kB
 dist/assets/ibm-plex-mono-latin-400-normal-CvHOgSBP.woff    13.14 kB
 dist/assets/space-grotesk-latin-600-normal-DjKNqYRj.woff2   13.28 kB
 dist/assets/ibm-plex-mono-latin-400-normal-DMJ8VG8y.woff2   14.70 kB
@@ -23,20 +23,20 @@ dist/assets/inter-latin-500-normal-BL9OpVg8.woff            31.28 kB
 dist/assets/index-DTuhHXAy.css                              37.26 kB │ gzip:   8.30 kB
 dist/assets/rolldown-runtime-XKyaHtl9.js                     0.72 kB │ gzip:   0.42 kB
 dist/assets/utils-Bpv4vmSW.js                                2.19 kB │ gzip:   0.97 kB
-dist/assets/dist-Ic-UEqku.js                                 4.62 kB │ gzip:   1.77 kB
+dist/assets/dist-50rHIj5M.js                                 4.62 kB │ gzip:   1.77 kB
 dist/assets/hmac-CCofjpRN.js                                 4.82 kB │ gzip:   2.23 kB
-dist/assets/dist-DSL_8o_P.js                                 6.97 kB │ gzip:   2.97 kB
-dist/assets/dist-BDCaHK6t.js                                15.97 kB │ gzip:   5.83 kB
+dist/assets/dist-B8ECd5lH.js                                 6.97 kB │ gzip:   2.97 kB
+dist/assets/dist-CKnFCzrE.js                                15.97 kB │ gzip:   5.83 kB
 dist/assets/secp256k1-45PJDJHu.js                           25.05 kB │ gzip:   9.80 kB
 dist/assets/crypto-PqJvI8XV.js                             132.75 kB │ gzip:  39.94 kB
-dist/assets/index-D-KrzxAi.js                              538.34 kB │ gzip: 168.04 kB
+dist/assets/index-Bj_jduX7.js                              540.03 kB │ gzip: 168.60 kB
 
-✓ built in 686ms
-Offline shell faa4701cf95dd3a5: 44 static assets. RPC/evidence requests are never cached by the service worker.
+✓ built in 515ms
+Offline shell 198bca2b42c25043: 64 static assets at /. RPC and private evidence requests are never cached.
 {
-  javascriptGzipBytes: 230021,
+  javascriptGzipBytes: 230592,
   cssGzipBytes: 8256,
-  totalAssetBytes: 936667,
+  totalAssetBytes: 938352,
   budgets: { javascriptGzipBytes: 350000, cssGzipBytes: 40000 },
   reason: 'Includes offline cryptography, safe DSL, strict adapters and IndexedDB. No network font or image dependencies.'
 }

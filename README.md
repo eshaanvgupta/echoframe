@@ -1,85 +1,134 @@
-# ECHOFRAME // 42220
+<p align="center"><img src="docs/brand/echoframe-banner.svg" alt="ECHOFRAME — The Verification Layer for Autonomous Commerce. Money moved. Did the work happen?" width="100%"></p>
 
-**Money moved. Did the work happen? Prove what you can; label what you cannot.**
+[![Quality gates](https://github.com/eshaanvgupta/echoframe/actions/workflows/ci.yml/badge.svg)](https://github.com/eshaanvgupta/echoframe/actions/workflows/ci.yml) [![MIT](https://img.shields.io/badge/license-MIT-c6ff4d?labelColor=09101a)](LICENSE) [![Node 24](https://img.shields.io/badge/Node-24%2B-4de4ef?labelColor=09101a)](.node-version)
 
-ECHOFRAME is an open-source, local-first payment flight recorder, independent evidence verifier and deterministic failure laboratory for Celo agent commerce. It ties a request, authorization, quote, settlement observation, returned bytes and reproducible checks into a portable evidence bundle. Financial status, delivery status, mandate authority and evidence strength stay separate.
+**[Open the application](https://eshaanvgupta.github.io/echoframe/) · [Release & package downloads](https://github.com/eshaanvgupta/echoframe/releases/tag/v1.1.0) · [Integration guide](docs/integration.md) · [Technical evidence](docs/technical-evidence.md) · [Grant dossier](docs/prezenti-grant-dossier.md)**
 
-The product does not move money. It requires no wallet, API key, database service, AI model or paid infrastructure. Imported evidence, checks, replay and export work offline after the static application has loaded. Public RPC inspection requires internet access and can fail honestly.
+A payment receipt answers one question: did a payment event occur? It does not tell a buyer whether the merchant returned the promised result, whether the result passed its declared checks, or whether a timed-out request is safe to repeat.
 
-![Actual desktop application](docs/screenshots/desktop.png)
+ECHOFRAME records these boundaries and makes them reproducible. It is an implemented, local-first verification and payment reliability layer for Celo commerce: **nine reusable packages**, Express/Hono instrumentation, independent outcome checks, durable journals, a read-only CLI/MCP interface, a static web application and **16 deterministic failure scenarios**. It has no mandatory AI model, hosted database, paid API or wallet connection. Optional live payment examples require separate, explicit authorization.
 
-## Run locally
+## Five-minute quickstart
 
-Use **Node 24 LTS** (tested with 24.16.0) and Corepack. A native Node SQLite API is used; Node 20 is unsupported. On Windows PowerShell with restricted script execution, use `corepack.cmd` or `pnpm.cmd`.
+Use **Node 24 LTS** and **pnpm 10.34.9**. Windows PowerShell users can use `corepack.cmd` if script policy blocks the command shim.
 
 ```sh
+git clone https://github.com/eshaanvgupta/echoframe.git
+cd echoframe
 corepack enable
-pnpm install --frozen-lockfile
-pnpm dev
+corepack pnpm install --frozen-lockfile
+corepack pnpm dev
 ```
 
-Open `http://127.0.0.1:5173`. Nothing is published or signed. If another global pnpm version overrides Corepack, invoke `corepack pnpm` in place of `pnpm`; the workspace pins 10.34.9.
+Open **http://127.0.0.1:5173**. Choose **Open paid-but-not-delivered case**, inspect the separate payment and work verdicts, open a diagnostic finding, then run **Fix & Re-run** in Failure Lab. The case is explicitly **SIMULATED**. Nothing signs or spends funds. [Reproduce the full demonstration](docs/demo.md).
 
-## Five-minute independent verification
+For an independent CLI demonstration:
 
 ```sh
-pnpm build
-pnpm cli init local-evidence
-pnpm cli verify local-evidence/sample.echoframe.json --json
-pnpm cli replay response-lost --safe --seed 42220
-pnpm cli integration-test --json
-pnpm --filter @echoframe/example-express-x402 start
-pnpm --filter @echoframe/example-hono-mpp start
+corepack pnpm build:packages
+corepack pnpm cli init local-evidence/demo
+corepack pnpm cli verify local-evidence/demo/sample.echoframe.json --json
+corepack pnpm cli replay response-lost --seed 42220
+corepack pnpm cli replay response-lost --safe --seed 42220
+corepack pnpm cli integration-test --json
 ```
 
-The examples perform real local HTTP request handling and official SDK serialization against a **synthetic local facilitator**, never a chain or payment signer. Their credentials and references are deliberately synthetic. The Express example uses the official `HTTPFacilitatorClient` over loopback. Captured metadata is allowlisted before persistence. The drop-in `PaymentRecorder` has real Express and Hono middleware, durable correlation, metadata-only defaults, opt-in outcome projections, intentional export and restart recovery. See [full developer integration](docs/integration.md), [quickstart](docs/quickstart.md), [API reference](docs/api.md), [protocol matrix](docs/protocol-matrix.md).
+## Follow the evidence
 
-## Product workflow
+```mermaid
+flowchart LR
+  A[Buyer / agent] -->|Request and selected quote| M[Merchant: Express / Hono]
+  M -->|Existing payment workflow| F[x402 / MPP facilitator]
+  F -->|Authorized settlement| C[Celo]
+  M -->|Returned result| A
+  M -.->|Redacted observations| R[ECHOFRAME PaymentRecorder]
+  C -.->|Read-only receipt and selected Transfer| R
+  R --> J[Local durable journal]
+  R --> B[Portable evidence bundle]
+  B --> V[Independent verifier]
+  V --> D[Separate payment, authority and delivery verdicts]
+  V --> L[Trace diagnosis → regression → deterministic rerun]
+```
 
-- **Trace Explorer:** file/drag-drop imports, protocol challenges, strict integrity checks, event links, provenance, real Celo transaction inspection and explicit selection of every attributed Transfer log and trace-aware diagnostic findings.
-- **Failure Lab:** trace-derived diagnoses and regressions, 16 seeded scenarios, vulnerable/safe policies, virtual timeline scrubbing, explicit policy controls, before/after invariants and runnable regression exports.
-- **Outcome Studio:** visual policy builder and bounded JSON DSL; schema subset, presence, HTTP status, exact hashes, numeric/math bounds, freshness, supplied cross-checks and source signatures. Subjective checks remain `NOT_MACHINE_VERIFIABLE`.
-- **Journal and Vault:** SQLite SDK and IndexedDB browser journals; idempotency, restart recovery, conservative retry recommendations, local deletion, private/public export, authenticated encrypted files and contained HTML reports.
-- **Developer Console:** nine packages, read-only MCP, live endpoint checks, challenge parser and optional read-only Self/ERC-8004 registry views.
-- **Grant Evidence and Methodology:** downloadable factual records, source research, explicit missing adoption/mainnet prerequisites and proof boundaries.
+The recorder observes the developer's payment stack. It never signs, broadcasts, refunds or retries a payment. The optional MetaMask example delegates the one approved testnet settlement to the official merchant/facilitator SDK workflow.
 
-## Compatibility
+![Actual ECHOFRAME application, captured by automated browser tests](docs/screenshots/desktop.png)
 
-| Surface | Shipped boundary |
+| Surface | Implemented behavior | Boundary |
+| --- | --- | --- |
+| Trace Explorer | Bounded imports, event provenance, read-only Celo inspection, selected log and trace diagnostics | Imported payment claims cannot promote themselves into trusted settlement |
+| Failure Lab | 16 seeded cases, explicit vulnerable/safe policies, timeline, fix/rerun and runnable exports | Simulations do not demonstrate a production vulnerability |
+| Outcome Studio | Visual bounded DSL, content/schema/status/bounds checks, independent proof reproduction | Subjective quality and unverifiable source claims remain unresolved |
+| Payment Journal | Durable SQLite/IndexedDB attempt identity, conservative recovery and settlement uniqueness | Local files are plaintext; deletion removes local retry protection |
+| Evidence Vault | Local persistence, intentional complete/public exports, encrypted files and contained HTML | No cloud synchronization or automatic backup |
+| Developer Console | Executable integrations, official challenge codecs, six read-only MCP tools | No wallet keys; unsupported protocol profiles fail closed |
+| Methodology & grant evidence | Proof semantics, factual ledger, genuine Sepolia evidence and reproduction instructions | No external audit, independent adoption or mainnet-use claim |
+
+## Install the SDKs
+
+Registry publication is separate. The GitHub release supplies all nine versioned tarballs, checksums and static assets. Install the tarballs together so local package dependencies resolve without an npm namespace:
+
+```sh
+node scripts/install-release.mjs ../echoframe-consumer
+```
+
+This downloads all nine public release tarballs, checks their SHA-256 values and installs them together into a new project. It refuses an existing directory. [Manual distribution instructions](docs/distribution.md) explain the checksums and npm publication boundary. `corepack pnpm test:consumer` independently packs and tests the checkout outside the monorepo.
+
+| Package | Responsibility |
 | --- | --- |
-| x402 | v2 HTTP, `exact`, Celo EVM, EIP-3009 metadata/credential consistency; no signer, no production facilitator settlement |
-| MPP | official mppx 0.21.0, `evm` one-shot `charge`; current flat authorization payload; no sessions/subscriptions |
-| ERC-8183 | draft reference `a078cab5` ABI; user-configured address and code pin; strict receipt events and job views |
-| Celo | mainnet 42220 and Sepolia 11142220; chain identity, receipt/block inclusion, ERC-20 event decoding, exact integer expectations and decimals |
-| Identity | optional official ERC-8004 mainnet and Self mainnet/Sepolia read interfaces; no passport data or registration |
+| `@echoframe/core` | Canonicalization, evidence roots, verification, policies, diagnosis and replay |
+| `@echoframe/celo` | Read-only chain, receipt/block and exact ERC-20 attribution |
+| `@echoframe/x402` | Strict v2 exact EIP-3009 observation profile |
+| `@echoframe/mpp` | Official MPP `evm` one-shot `charge` observation profile |
+| `@echoframe/erc8183` | Pinned draft reference ABI, strict events and job reads |
+| `@echoframe/node` | Express/Hono PaymentRecorder, SQLite journals and intentional exports |
+| `@echoframe/cli` | Independent verify, inspect, diagnose, replay and integration self-test |
+| `@echoframe/mcp` | Six non-signing tools via the official MCP SDK |
+| `@echoframe/react` | Reusable, accessible evidence verdict components |
 
-Imported RPC exports remain `APP_REPORTED`. Re-fetch with complete trusted chain, transaction, token, sender, recipient, amount and selected log expectations to observe intended-payment attribution. A successful receipt alone never establishes a purchase; unknown token semantics remain unverified. RPC agreement is a trust assumption, not a light-client proof. A bundle signature proves that a key signed a commitment; it does not prove identity or service quality. An unsigned bundle can be rewritten with new hashes: retain a trusted root externally. [Proof semantics](docs/proof-semantics.md).
+Minimal instrumentation, before the developer's existing payment middleware:
 
-## Verify the release
+```ts
+import { PaymentRecorder, SqliteAttemptJournal } from '@echoframe/node';
 
-```sh
-pnpm typecheck
-pnpm lint
-pnpm test
-pnpm build
-pnpm test:consumer
-pnpm exec playwright install chromium
-pnpm test:e2e
-pnpm test:performance
-pnpm audit:licenses
-pnpm audit --audit-level moderate
+const recorder = new PaymentRecorder({
+  protocol: 'x402', chainId: 11142220, environment: 'TESTNET',
+  payment: { token, recipient, sender, amount: '10000' },
+  journal: new SqliteAttemptJournal('./attempts.sqlite'),
+  storagePath: './recordings.sqlite',
+});
+app.use(recorder.express()); // Use recorder.hono() with a Hono app.
+// Mount your existing supported payment workflow next.
 ```
 
-Tests include fixed-seed fast-check sequences, all 16 generated regression files, official x402 local HTTP transport, MPP, ERC-8183, actual SQLite reopen, MCP client calls and CLI/module verdict agreement. Playwright runs desktop 1440, tablet 768, phone 390 and narrow phone 360 with offline persistence, keyboard and reduced-motion checks. Automated accessibility audits complement manual judgment; they are not accessibility certification.
+`token`, `recipient` and `sender` are the application's explicit expected addresses. The default records metadata and commitments. [The complete guide](docs/integration.md) includes runnable Express/Hono apps, opaque request IDs, optional outcome policies, restart recovery, exports, independent verification and unsupported cases.
 
-Exact observed results and limits are recorded in [completion report](docs/completion-report.md) and [release-verification.json](docs/release-verification.json). Screenshots are captured from the running application, not design renders.
+## Genuine Celo Sepolia evidence
 
-## Deploy static files
+One owner-approved **0.01 test-USDC** purchase used MetaMask, official x402 SDK 2.31.0 and the hosted Celo Sepolia facilitator. No synthetic settlement response was used. This is a **self-operated testnet integration**, separate from independent ecosystem adoption.
 
-`pnpm build` produces **`apps/web/dist`**. Upload that directory to any HTTPS static host with SPA fallback. Cloudflare Pages requires no Worker, Functions, database or keys in the build. See [exact deployment instructions](docs/deployment.md) for Pages direct upload and Git integration. A GitHub source push is not a deployed website.
+- Transaction: [`0x2054f2592088b6aca722c555e0472267eab9b3a24091a743ff38c6b711930d32`](https://celo-sepolia.blockscout.com/tx/0x2054f2592088b6aca722c555e0472267eab9b3a24091a743ff38c6b711930d32).
+- Exact chain/token/buyer/seller/atomic expectations matched **Transfer log 1** using read-only RPC; execution succeeded.
+- The HTTP 200 retained result passed independently reproduced presence, schema and exact-value checks.
+- The original protocol response header was rejected. Its failure remains in the bundle; a separately persisted genuine facilitator SDK reference enabled read-only recovery. No second payment occurred.
+- No authority signature is retained. Imported payment observations remain untrusted until independently re-fetched; deterministic outcome checks reproduce offline.
 
-No npm package publishing, website publication, mainnet transaction, funding award, external feedback session or independent user adoption is implied by a local build. Mainnet activity and grant eligibility remain separately evidenced prerequisites.
+[Complete redacted bundle](docs/evidence/celo-sepolia-2026-11-19/complete-redacted.echoframe.json) · [Matched expectations/log](docs/evidence/celo-sepolia-2026-11-19/payment-match.json) · [Outcome proof](docs/evidence/celo-sepolia-2026-11-19/outcome-proof.json) · [Verification report](docs/evidence/celo-sepolia-2026-11-19/verification-report.json) · [Runnable regression](docs/evidence/celo-sepolia-2026-11-19/purchase.regression.test.ts)
 
-MIT. [Security](SECURITY.md) · [Contributing](CONTRIBUTING.md) · [Threat model](docs/threat-model.md).
+Publication of these five redacted files was explicitly authorized by their owner. [Run your own opt-in Sepolia integration](examples/celo-x402-live/README.md). Starting the example never initiates a purchase; review, signature and submission are separate actions.
 
-Release 1.1.0 keeps evidence schema/proof version 1.0.0 while extending verifier report version 1.1.0. See [upgrade findings and fixes](docs/security-review-1.1.md) and [distribution](docs/distribution.md). No npm registry publication is claimed; `pnpm test:consumer` produces and verifies all nine installable artifacts outside the workspace.
+## Verification, support and contribution
+
+```sh
+corepack pnpm release:check
+node scripts/report.mjs
+corepack pnpm --filter @echoframe/web build:pages
+corepack pnpm test:pages
+corepack pnpm audit:secrets
+```
+
+[GitHub Actions](https://github.com/eshaanvgupta/echoframe/actions/workflows/ci.yml) independently runs the complete suite on clean Linux checkouts, external packed-package installation, generated regressions, four responsive widths, offline recovery, automated accessibility, performance and dependency/license audits. Exact counts, environment and limits are recorded in [release verification](docs/release-verification.json), [technical evidence](docs/technical-evidence.md) and the versioned evidence archive. Browser emulation does not establish physical-device compatibility.
+
+Hash consistency is not authenticity. RPC observations are not light-client consensus proofs. Settlement does not prove delivery. Source authenticity, mandate authority and subjective quality remain separate. See [proof semantics](docs/proof-semantics.md), [protocol matrix](docs/protocol-matrix.md), [threat model](docs/threat-model.md) and [security policy](SECURITY.md). Report suspected vulnerabilities privately; never attach credentials or payment signatures to public issues.
+
+[Contribute a reproducible case](CONTRIBUTING.md) · [Changelog](CHANGELOG.md) · [MIT license](LICENSE) · [Third-party notices](THIRD_PARTY_NOTICES.txt) · [Free static deployment](docs/deployment.md)

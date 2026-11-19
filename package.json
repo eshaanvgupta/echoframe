@@ -23,7 +23,9 @@
     "fixtures": "tsx scripts/fixtures.ts",
     "release:check": "node scripts/release-check.mjs",
     "quality": "corepack pnpm typecheck && corepack pnpm lint && corepack pnpm test && corepack pnpm build && corepack pnpm test:consumer && corepack pnpm test:e2e",
-    "release:assets": "node scripts/package-release.mjs"
+    "release:assets": "node scripts/package-release.mjs",
+    "audit:secrets": "node scripts/secret-scan.mjs",
+    "test:pages": "node scripts/pages-smoke.mjs"
   },
   "devDependencies": {
     "@axe-core/playwright": "4.14.0",

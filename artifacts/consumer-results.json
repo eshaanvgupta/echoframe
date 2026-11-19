@@ -12,7 +12,7 @@
     "@echoframe/mcp"
   ],
   "installedCliVerdict": "VALID",
-  "installedGeneratedRegressionTests": 17,
+  "installedGeneratedRegressionTests": 18,
   "installedRecorderSelfTest": true,
   "temporaryConsumer": true,
   "noNpmPublication": true

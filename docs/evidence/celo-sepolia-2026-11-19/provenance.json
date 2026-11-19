@@ -1,0 +1,33 @@
+{
+  "environment": "CELO_SEPOLIA_TESTNET",
+  "chainId": 11142220,
+  "publicationConsent": "Owner explicitly authorized publication of these five redacted files on 2026-11-19",
+  "source": "Owner-provided Downloads files",
+  "files": [
+    {
+      "name": "complete-redacted.echoframe.json",
+      "downloadSha256": "7743531f328dc62e8ffb18f73e5321c44513b640de5b1e2f83369b0dc91583ba"
+    },
+    {
+      "name": "outcome-proof.json",
+      "downloadSha256": "966c335dceea2c6c2014cf0263d684b692063bb9d40432dc0c221552d681569f"
+    },
+    {
+      "name": "payment-match.json",
+      "downloadSha256": "f3acaf0bab202d62243753ec0643567998768d06aaff9e8d76699a13ffd7a52f"
+    },
+    {
+      "name": "verification-report.json",
+      "downloadSha256": "d3ff079a8167794ec2feabd42c4ebb93badca8316433a5d76000f8bc7f08abfc"
+    },
+    {
+      "name": "purchase.regression.test.ts",
+      "downloadSha256": "7cefe71ac791360c14244340ef078c301ce9f1404972db3acc8591da4e46b935"
+    }
+  ],
+  "regressionAdjustment": "Generated regression received strict TypeScript type annotations; captured evidence bytes and assertions are unchanged.",
+  "independentCliReconciliation": "Verified again using the read-only installed CLI with user-confirmed exact payment expectations; selected Transfer log 1.",
+  "secretsRetained": false,
+  "independentAdoption": false,
+  "mainnetActivity": false
+}

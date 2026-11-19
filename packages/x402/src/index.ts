@@ -40,7 +40,9 @@ export function inspectX402Signature(header:string|undefined,selected:X402Requir
   if(auth.to.toLowerCase()!==expected.payTo.toLowerCase()||auth.value!==expected.amount)throw new EvidenceError('AUTHORIZATION_MISMATCH','Authorization recipient or amount differs from offer');
   if(options.expectedPayer&&auth.from.toLowerCase()!==address.parse(options.expectedPayer).toLowerCase())throw new EvidenceError('PAYER','Unexpected authorization payer');
   const now=BigInt(Math.floor(options.nowSeconds??Date.now()/1000));
-  if(BigInt(auth.validAfter)>=now||BigInt(auth.validBefore)<=now||BigInt(auth.validBefore)-BigInt(auth.validAfter)>BigInt(expected.maxTimeoutSeconds))throw new EvidenceError('AUTH_WINDOW','Authorization is expired, premature or exceeds quoted timeout');
+  // Official ExactEvmScheme uses validAfter=0 and expires at signing time + maxTimeoutSeconds.
+  // Bound remaining validity, not the interval since the epoch.
+  if(BigInt(auth.validAfter)>=now||BigInt(auth.validBefore)<=now||BigInt(auth.validBefore)-now>BigInt(expected.maxTimeoutSeconds))throw new EvidenceError('AUTH_WINDOW','Authorization is expired, premature or has more remaining validity than the quoted timeout');
   if(options.expectedResourceUrl&&value.resource?.url!==options.expectedResourceUrl)throw new EvidenceError('RESOURCE','Resource context changed');
   return {protocol:'x402',version:2,quoteHash:quoteCommitment(expected),payer:auth.from.toLowerCase(),payee:auth.to.toLowerCase(),amount:auth.value,network:expected.network,signatureStatus:'STRUCTURALLY_CONSISTENT_NOT_CRYPTOGRAPHICALLY_VERIFIED',credentialRetained:false,warning:'EIP-3009 does not intrinsically bind arbitrary request IDs; local journal attribution is separate.'};
 }

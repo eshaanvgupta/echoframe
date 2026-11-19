@@ -1,0 +1,195 @@
+{
+  "status": "passed",
+  "checkedAt": "2026-11-19T10:22:33.720Z",
+  "url": "http://127.0.0.1:49380/echoframe/",
+  "environment": "LOCAL_STATIC_SUBPATH_SERVER",
+  "engine": "Chromium desktop emulation",
+  "routeChecks": [
+    {
+      "width": 1440,
+      "route": "/",
+      "status": 200
+    },
+    {
+      "width": 1440,
+      "route": "explorer/",
+      "status": 200
+    },
+    {
+      "width": 1440,
+      "route": "lab/",
+      "status": 200
+    },
+    {
+      "width": 1440,
+      "route": "studio/",
+      "status": 200
+    },
+    {
+      "width": 1440,
+      "route": "journal/",
+      "status": 200
+    },
+    {
+      "width": 1440,
+      "route": "vault/",
+      "status": 200
+    },
+    {
+      "width": 1440,
+      "route": "developers/",
+      "status": 200
+    },
+    {
+      "width": 1440,
+      "route": "grant/",
+      "status": 200
+    },
+    {
+      "width": 1440,
+      "route": "about/methodology/",
+      "status": 200
+    },
+    {
+      "width": 768,
+      "route": "/",
+      "status": 200
+    },
+    {
+      "width": 768,
+      "route": "explorer/",
+      "status": 200
+    },
+    {
+      "width": 768,
+      "route": "lab/",
+      "status": 200
+    },
+    {
+      "width": 768,
+      "route": "studio/",
+      "status": 200
+    },
+    {
+      "width": 768,
+      "route": "journal/",
+      "status": 200
+    },
+    {
+      "width": 768,
+      "route": "vault/",
+      "status": 200
+    },
+    {
+      "width": 768,
+      "route": "developers/",
+      "status": 200
+    },
+    {
+      "width": 768,
+      "route": "grant/",
+      "status": 200
+    },
+    {
+      "width": 768,
+      "route": "about/methodology/",
+      "status": 200
+    },
+    {
+      "width": 390,
+      "route": "/",
+      "status": 200
+    },
+    {
+      "width": 390,
+      "route": "explorer/",
+      "status": 200
+    },
+    {
+      "width": 390,
+      "route": "lab/",
+      "status": 200
+    },
+    {
+      "width": 390,
+      "route": "studio/",
+      "status": 200
+    },
+    {
+      "width": 390,
+      "route": "journal/",
+      "status": 200
+    },
+    {
+      "width": 390,
+      "route": "vault/",
+      "status": 200
+    },
+    {
+      "width": 390,
+      "route": "developers/",
+      "status": 200
+    },
+    {
+      "width": 390,
+      "route": "grant/",
+      "status": 200
+    },
+    {
+      "width": 390,
+      "route": "about/methodology/",
+      "status": 200
+    },
+    {
+      "width": 360,
+      "route": "/",
+      "status": 200
+    },
+    {
+      "width": 360,
+      "route": "explorer/",
+      "status": 200
+    },
+    {
+      "width": 360,
+      "route": "lab/",
+      "status": 200
+    },
+    {
+      "width": 360,
+      "route": "studio/",
+      "status": 200
+    },
+    {
+      "width": 360,
+      "route": "journal/",
+      "status": 200
+    },
+    {
+      "width": 360,
+      "route": "vault/",
+      "status": 200
+    },
+    {
+      "width": 360,
+      "route": "developers/",
+      "status": 200
+    },
+    {
+      "width": 360,
+      "route": "grant/",
+      "status": 200
+    },
+    {
+      "width": 360,
+      "route": "about/methodology/",
+      "status": 200
+    }
+  ],
+  "evidenceDownloads": 5,
+  "genuineBundleImport": "VALID; imported payment UNKNOWN; reproduced outcome TESTED_PASS",
+  "offlinePersistence": true,
+  "journalRecovery": true,
+  "pageErrors": [],
+  "economicActions": 0
+}

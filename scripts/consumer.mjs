@@ -21,7 +21,8 @@ try{
   await writeFile(join(consumer,'smoke.mjs'),smoke);console.log(run([join(consumer,'smoke.mjs')],consumer).trim());
   const output=run([join(consumer,'node_modules/@echoframe/cli/dist/index.js'),'verify','independent.echoframe.json','--json'],consumer);if(JSON.parse(output).integrity!=='VALID')throw new Error('Installed CLI verification failed');
   await cp(join(root,'scenarios'),join(consumer,'scenarios'),{recursive:true});
+  await cp(join(root,'docs/evidence'),join(consumer,'evidence'),{recursive:true});
   run([join(root,'node_modules/vitest/vitest.mjs'),'run','--reporter=json','--outputFile=regression-results.json'],consumer);
-  const tests=JSON.parse(await readFile(join(consumer,'regression-results.json'),'utf8'));if(tests.numFailedTests!==0||tests.numPassedTests<17)throw new Error('Installed regression tests did not all pass');
+  const tests=JSON.parse(await readFile(join(consumer,'regression-results.json'),'utf8'));if(tests.numFailedTests!==0||tests.numPassedTests<18)throw new Error('Installed regression tests did not all pass');
   const report={status:'passed',packages:names.map(n=>`@echoframe/${n}`),installedCliVerdict:'VALID',installedGeneratedRegressionTests:tests.numPassedTests,installedRecorderSelfTest:true,temporaryConsumer:true,noNpmPublication:true};await writeFile(join(artifacts,'consumer-results.json'),JSON.stringify(report,null,2));console.log(JSON.stringify(report));
 }finally{await rm(consumer,{recursive:true,force:true});}

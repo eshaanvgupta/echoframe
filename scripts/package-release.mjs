@@ -1,21 +1,23 @@
-import {readFile,readdir,writeFile,mkdir} from 'node:fs/promises';
+import {readFile,readdir,writeFile,mkdir,cp} from 'node:fs/promises';
 import {resolve,relative,join} from 'node:path';
 import {createHash} from 'node:crypto';
-const root=resolve(import.meta.dirname,'..'),version=JSON.parse(await readFile(join(root,'package.json'),'utf8')).version,output=join(root,'artifacts'),web=join(root,'apps/web/dist');
+const root=resolve(import.meta.dirname,'..'),version=JSON.parse(await readFile(join(root,'package.json'),'utf8')).version,output=join(root,'artifacts');
 const names=['core','celo','x402','mpp','erc8183','node','react','cli','mcp'];await mkdir(output,{recursive:true});
-// Deterministic ZIP/store output. This only archives trusted build files; it never extracts imported archives.
-const files=[];async function walk(directory){for(const entry of (await readdir(directory,{withFileTypes:true})).sort((a,b)=>a.name.localeCompare(b.name))){const path=join(directory,entry.name);if(entry.isDirectory())await walk(path);else if(entry.isFile())files.push({name:relative(web,path).replaceAll('\\','/'),bytes:await readFile(path)});}}await walk(web);
-if(!files.some(f=>f.name==='_headers')||!files.some(f=>f.name==='_redirects')||!files.some(f=>f.name==='sw.js'))throw new Error('Static deployment assets are incomplete');
 const table=Array.from({length:256},(_,n)=>{for(let k=0;k<8;k++)n=n&1?0xedb88320^(n>>>1):n>>>1;return n>>>0;});
 const crc32=bytes=>{let crc=0xffffffff;for(const byte of bytes)crc=table[(crc^byte)&255]^(crc>>>8);return (crc^0xffffffff)>>>0;};
-const locals=[],central=[];let offset=0;
-for(const file of files){const name=Buffer.from(file.name),crc=crc32(file.bytes),size=file.bytes.length,header=Buffer.alloc(30),directory=Buffer.alloc(46);if(size>25*1024*1024)throw new Error('Pages asset exceeds 25MiB');
-  header.writeUInt32LE(0x04034b50,0);header.writeUInt16LE(20,4);header.writeUInt16LE(0x800,6);header.writeUInt16LE(0x5d73,12);header.writeUInt32LE(crc,14);header.writeUInt32LE(size,18);header.writeUInt32LE(size,22);header.writeUInt16LE(name.length,26);
-  directory.writeUInt32LE(0x02014b50,0);directory.writeUInt16LE(20,4);directory.writeUInt16LE(20,6);directory.writeUInt16LE(0x800,8);directory.writeUInt16LE(0x5d73,14);directory.writeUInt32LE(crc,16);directory.writeUInt32LE(size,20);directory.writeUInt32LE(size,24);directory.writeUInt16LE(name.length,28);directory.writeUInt32LE(offset,42);
-  locals.push(header,name,file.bytes);central.push(directory,name);offset+=header.length+name.length+size;
-}
-const centralBytes=Buffer.concat(central),end=Buffer.alloc(22);end.writeUInt32LE(0x06054b50,0);end.writeUInt16LE(files.length,8);end.writeUInt16LE(files.length,10);end.writeUInt32LE(centralBytes.length,12);end.writeUInt32LE(offset,16);
-const webName=`echoframe-web-${version}.zip`;await writeFile(join(output,webName),Buffer.concat([...locals,centralBytes,end]));
-const assets=[];for(const name of [...names.map(n=>`echoframe-${n}-${version}.tgz`),webName]){const bytes=await readFile(join(output,name));assets.push({name,size:bytes.length,sha256:createHash('sha256').update(bytes).digest('hex')});}
+async function tree(directory,prefix=''){const files=[];async function walk(dir){for(const entry of (await readdir(dir,{withFileTypes:true})).sort((a,b)=>a.name.localeCompare(b.name))){const path=join(dir,entry.name);if(entry.isDirectory())await walk(path);else if(entry.isFile())files.push({name:prefix+relative(directory,path).replaceAll('\\','/'),bytes:await readFile(path)});}}await walk(directory);return files;}
+// Deterministic stored ZIP output. Only trusted build files are archived; no imported archive is extracted.
+async function zip(name,files){const locals=[],central=[];let offset=0;for(const file of files){const path=Buffer.from(file.name),crc=crc32(file.bytes),size=file.bytes.length,header=Buffer.alloc(30),directory=Buffer.alloc(46);if(size>25*1024*1024)throw new Error('Asset exceeds 25MiB');header.writeUInt32LE(0x04034b50,0);header.writeUInt16LE(20,4);header.writeUInt16LE(0x800,6);header.writeUInt16LE(0x5d73,12);header.writeUInt32LE(crc,14);header.writeUInt32LE(size,18);header.writeUInt32LE(size,22);header.writeUInt16LE(path.length,26);directory.writeUInt32LE(0x02014b50,0);directory.writeUInt16LE(20,4);directory.writeUInt16LE(20,6);directory.writeUInt16LE(0x800,8);directory.writeUInt16LE(0x5d73,14);directory.writeUInt32LE(crc,16);directory.writeUInt32LE(size,20);directory.writeUInt32LE(size,24);directory.writeUInt16LE(path.length,28);directory.writeUInt32LE(offset,42);locals.push(header,path,file.bytes);central.push(directory,path);offset+=header.length+path.length+size;}const centralBytes=Buffer.concat(central),end=Buffer.alloc(22);end.writeUInt32LE(0x06054b50,0);end.writeUInt16LE(files.length,8);end.writeUInt16LE(files.length,10);end.writeUInt32LE(centralBytes.length,12);end.writeUInt32LE(offset,16);await writeFile(join(output,name),Buffer.concat([...locals,centralBytes,end]));}
+const web=await tree(join(root,'apps/web/dist'));if(!['_headers','_redirects','sw.js'].every(n=>web.some(f=>f.name===n)))throw new Error('Incomplete root static build');
+const webName=`echoframe-web-${version}.zip`,pagesName=`echoframe-pages-${version}.zip`,evidenceName=`echoframe-evidence-${version}.zip`;
+await zip(webName,web);await zip(pagesName,await tree(join(root,'apps/web/dist-pages')));
+await cp(join(root,'docs/release-verification.json'),join(output,'release-verification.json'));
+const evidence=await tree(join(root,'docs/evidence'),'evidence/');
+for(const name of ['release-verification.json','gate-results.json','unit-results.json','e2e-results.json','consumer-results.json','pages-results.json','lighthouse-summary.json','bundle-budget.json','dependency-audit.json','license-audit.json','secret-scan.json'])evidence.push({name:'verification/'+name,bytes:await readFile(join(output,name))});
+for(const name of ['README.md','CHANGELOG.md','SECURITY.md','CONTRIBUTING.md','LICENSE'])evidence.push({name,bytes:await readFile(join(root,name))});
+for(const name of ['architecture.md','proof-semantics.md','threat-model.md','demo.md','technical-evidence.md','prezenti-grant-dossier.md'])evidence.push({name:'docs/'+name,bytes:await readFile(join(root,'docs',name))});
+for(const name of ['desktop.png','tablet.png','phone.png','narrow.png'])evidence.push({name:'screenshots/'+name,bytes:await readFile(join(root,'docs/screenshots',name))});
+await zip(evidenceName,evidence);
+const assets=[];for(const name of [...names.map(n=>`echoframe-${n}-${version}.tgz`),webName,pagesName,evidenceName,`echoframe-grant-${version}.pdf`,`echoframe-grant-${version}.html`,'release-verification.json','secret-scan.json']){const bytes=await readFile(join(output,name));assets.push({name,size:bytes.length,sha256:createHash('sha256').update(bytes).digest('hex')});}
 await writeFile(join(output,`SHA256SUMS-${version}.txt`),assets.map(a=>`${a.sha256}  ${a.name}`).join('\n')+'\n');
-await writeFile(join(output,`release-${version}.json`),JSON.stringify({version,packageCount:names.length,staticFiles:files.length,publication:{npm:false,website:false},assets},null,2)+'\n');console.log(JSON.stringify({version,packages:names.length,staticFiles:files.length,assets:assets.length,noPublication:true}));
+await writeFile(join(output,`release-${version}.json`),JSON.stringify({version,packageCount:names.length,staticFiles:web.length,artifactScope:'Prepared immutable release assets; publication is confirmed separately by GitHub and the public URL.',assets},null,2)+'\n');console.log(JSON.stringify({version,packages:names.length,assets:assets.length,prepared:true}));

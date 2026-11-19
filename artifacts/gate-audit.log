@@ -10,9 +10,9 @@
       "high": 0,
       "critical": 0
     },
-    "dependencies": 448,
+    "dependencies": 458,
     "devDependencies": 0,
     "optionalDependencies": 0,
-    "totalDependencies": 448
+    "totalDependencies": 458
   }
 }

@@ -1,0 +1,32 @@
+{
+  "findings": [
+    {
+      "condition": "Generated Pages build output was included in repository lint; two new script lint defects also failed the gate",
+      "observedGate": "pnpm lint",
+      "originalExitCode": 1,
+      "preservedLog": "release-discovered-lint-failure.log",
+      "fix": "Exclude generated dist-pages output consistently with dist; use explicit regex spacing and window.innerWidth in source. Source lint rules remain enforced.",
+      "regression": "Full lint rerun; Pages route/offline checks and root quality gates."
+    },
+    {
+      "condition": "Official SDK validAfter=0 rejected by authorization-duration check",
+      "fix": "Bound remaining validity against quote maxTimeoutSeconds.",
+      "regression": "celo-live-approval.test.ts"
+    },
+    {
+      "condition": "Unsupported actual protocol response header prevented finalization despite successful hosted settlement",
+      "fix": "Preserve the rejected header event and reconcile only an explicitly persisted successful SDK reference; refuse multiple/conflicting references; never synthesize a protocol response or repeat payment.",
+      "regression": "Reference selection negative tests and genuine captured purchase regression."
+    },
+    {
+      "condition": "Long verified payment JSON overflowed mobile review page",
+      "fix": "Wrap result JSON and export links.",
+      "regression": "Actual review at 1440,768,390,360 pixels; no overflow."
+    },
+    {
+      "condition": "Root-relative routing/assets/cache prevented GitHub project Pages hosting",
+      "fix": "Deployment basename, prefixed downloads and scoped service-worker caches; physical deep-link documents and meta CSP.",
+      "regression": "36 subpath route/viewport checks, exact evidence downloads and offline recovery."
+    }
+  ]
+}

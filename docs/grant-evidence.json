@@ -3,7 +3,7 @@
   "asOfClientDate": "2026-11-19",
   "product": "ECHOFRAME",
   "sourceRepository": "https://github.com/eshaanvgupta/echoframe",
-  "evidenceScope": "Local software implementation and reproducible synthetic tests; no adoption or consenting mainnet-use evidence inferred",
+  "evidenceScope": "Implemented local-first software, reproducible simulations, public read-only chain observations, and one owner-approved genuine self-operated Celo Sepolia purchase; no independent adoption or mainnet-use evidence inferred",
   "implementedPackages": [
     "core",
     "x402",
@@ -32,7 +32,7 @@
     "externalFeedbackSessions": "not_yet_observed"
   },
   "mainnetGrantPrerequisite": "not_yet_satisfied_by_observed_evidence",
-  "websiteDeployment": "not_published",
+  "websiteDeployment": "See docs/publication.json for post-deployment verification",
   "npmPublication": "not_published",
   "frontierCap": {
     "amount": 15000,
@@ -50,5 +50,21 @@
     "countsAsConsentingPurchase": false
   },
   "selfAgentId": "read-only inspection supported; full integration commitment requires applicant agreement",
-  "erc8004Eligibility": "infrastructure exception must be confirmed; no registration performed"
+  "erc8004Eligibility": "infrastructure exception must be confirmed; no registration performed",
+  "genuineIntegration": {
+    "environment": "TESTNET",
+    "chainId": 11142220,
+    "protocol": "x402 v2 exact EIP-3009",
+    "count": 1,
+    "amountAtomic": "10000",
+    "decimals": 6,
+    "transaction": "0x2054f2592088b6aca722c555e0472267eab9b3a24091a743ff38c6b711930d32",
+    "evidence": "docs/evidence/celo-sepolia-2026-11-19/",
+    "selectedTransferLog": 1,
+    "outcome": "TESTED_PASS",
+    "authority": "NOT_PROVIDED",
+    "scope": "Self-operated user-approved Sepolia integration; original unsupported header and separately sourced read-only recovery preserved",
+    "countsAsIndependentAdoption": false,
+    "countsAsMainnetUsage": false
+  }
 }

@@ -38,3 +38,9 @@ Deploy at the domain root under HTTPS. PWA offline storage is origin-scoped. Cha
 Manual smoke check after publication: open a nested route, import the paid-but-not-delivered example, export and independently verify it, create/reload a pending journal, switch offline and reopen the vault, then test a real transaction hash. Record the actual URL and provider deployment ID only after a successful result.
 
 `pnpm release:assets` also prepares `artifacts/echoframe-web-1.1.0.zip` with SHA-256 checksums. Upload its contents at the domain root. The ZIP does not add a server or hosting account.
+
+## GitHub project Pages
+
+The public repository uses GitHub Actions Pages deployment at `/echoframe/`. Build with `corepack pnpm --filter @echoframe/web build:pages`; output is `apps/web/dist-pages`. The application basename, asset/download URLs, manifest and service worker all use that prefix. Supported routes have physical index documents, so deep links return HTTP 200 without a rewrite service. A meta CSP applies on Pages; custom response headers in `_headers` apply only on Cloudflare. Service-worker caches are scoped to the application base.
+
+The CI workflow deploys only after its complete release quality job passes. Pages was enabled using the authorized repository account; actual deployment success and smoke-test results are recorded in publication.json after the live URL is checked. Reproduce local subpath checks with `corepack pnpm test:pages`; set `ECHOFRAME_SITE_URL=https://eshaanvgupta.github.io/echoframe/` to run the same read-only checks against the public site. This uses a fresh browser context and only writes test records to that context?s IndexedDB. It never signs or pays.

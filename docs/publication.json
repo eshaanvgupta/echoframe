@@ -1,0 +1,33 @@
+{
+  "version": "1.1.0",
+  "status": "PREPARED_FOR_PUBLICATION",
+  "repository": "https://github.com/eshaanvgupta/echoframe",
+  "defaultBranch": "main",
+  "priorVerifiedCI": {
+    "sourceCommit": "68ede06307cea0ad235714dc99c64ebb80cdff99",
+    "url": "https://github.com/eshaanvgupta/echoframe/actions/runs/44477817064",
+    "conclusion": "success",
+    "scope": "Previous implementation baseline; final release CI is verified separately."
+  },
+  "website": {
+    "status": "PAGES_CONFIGURED_AWAITING_DEPLOYMENT",
+    "plannedUrl": "https://eshaanvgupta.github.io/echoframe/",
+    "verifiedUrl": null
+  },
+  "release": {
+    "status": "NOT_YET_PUBLISHED",
+    "plannedTag": "v1.1.0",
+    "verifiedUrl": null
+  },
+  "npm": {
+    "published": false,
+    "installation": "Versioned GitHub release tarballs installed together"
+  },
+  "genuinePaymentEvidence": {
+    "environment": "CELO_SEPOLIA_TESTNET",
+    "transaction": "0x2054f2592088b6aca722c555e0472267eab9b3a24091a743ff38c6b711930d32",
+    "publicationConsent": "Owner explicitly approved the five redacted Downloads files",
+    "independentAdoption": false,
+    "mainnet": false
+  }
+}

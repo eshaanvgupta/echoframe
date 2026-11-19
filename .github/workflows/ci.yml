@@ -1,13 +1,16 @@
 name: ECHOFRAME quality gates
 on:
   push:
+    branches: [main]
+    tags: ['v*']
   pull_request:
+  workflow_dispatch:
 permissions:
   contents: read
 jobs:
   release-checks:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 25
     steps:
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
       - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
@@ -15,23 +18,59 @@ jobs:
           node-version: '24'
       - run: corepack enable
       - run: pnpm install --frozen-lockfile
-      - run: pnpm typecheck
-      - run: pnpm lint
-      - run: pnpm test
-      - run: pnpm audit:licenses
-      - run: pnpm build
-      - run: pnpm test:consumer
       - run: pnpm exec playwright install --with-deps chromium
-      - run: pnpm test:e2e
-      - run: pnpm test:performance
-      - run: pnpm audit --audit-level moderate
+      - run: pnpm release:check
+      - run: node scripts/report.mjs
+      - run: node scripts/grant-deck.mjs
+      - run: pnpm build
+      - run: pnpm --filter @echoframe/web build:pages
+      - run: pnpm test:pages
+      - run: pnpm audit:secrets
       - run: pnpm release:assets
+      - run: node scripts/secret-scan.mjs --verify-only
       - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
         if: always()
         with:
           name: release-evidence
-          path: |
-            artifacts/
-            apps/web/dist/
-            playwright-report/
-            docs/screenshots/
+          path: artifacts/
+      - uses: actions/upload-pages-artifact@7b1f4a764d45c48632c6b24a0339c27f5614fb0b # v4
+        if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+        with:
+          path: apps/web/dist-pages
+  deploy-pages:
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    needs: release-checks
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    concurrency:
+      group: github-pages
+      cancel-in-progress: false
+    steps:
+      - name: Deploy verified static application
+        id: deployment
+        uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e # v4
+  publish-release:
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: release-checks
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+      - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # v7
+        with:
+          name: release-evidence
+          path: artifacts
+      - name: Publish verified versioned assets
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          version=$(node -p "require('./package.json').version")
+          test "$GITHUB_REF_NAME" = "v$version"
+          gh release create "$GITHUB_REF_NAME" artifacts/*.tgz artifacts/*.zip artifacts/*.pdf artifacts/echoframe-grant-*.html "artifacts/SHA256SUMS-$version.txt" "artifacts/release-$version.json" artifacts/release-verification.json artifacts/secret-scan.json --verify-tag --title "ECHOFRAME $version — Verification Layer for Autonomous Commerce" --notes-file docs/release-notes.md

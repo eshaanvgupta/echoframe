@@ -3,4 +3,4 @@
 > node scripts/consumer.mjs
 
 All nine installed ESM packages imported and exercised.
-{"status":"passed","packages":["@echoframe/core","@echoframe/celo","@echoframe/x402","@echoframe/mpp","@echoframe/erc8183","@echoframe/node","@echoframe/react","@echoframe/cli","@echoframe/mcp"],"installedCliVerdict":"VALID","installedGeneratedRegressionTests":17,"installedRecorderSelfTest":true,"temporaryConsumer":true,"noNpmPublication":true}
+{"status":"passed","packages":["@echoframe/core","@echoframe/celo","@echoframe/x402","@echoframe/mpp","@echoframe/erc8183","@echoframe/node","@echoframe/react","@echoframe/cli","@echoframe/mcp"],"installedCliVerdict":"VALID","installedGeneratedRegressionTests":18,"installedRecorderSelfTest":true,"temporaryConsumer":true,"noNpmPublication":true}

@@ -1,76 +1,78 @@
 {
   "schemaVersion": "1.0.0",
   "clientDate": "2026-11-19",
-  "checkedAt": "2026-11-19T07:08:36.416Z",
+  "checkedAt": "2026-11-19T10:21:15.561Z",
   "platform": "win32",
   "node": "v24.16.0",
   "status": "LOCAL_RELEASE_GATES_PASSED",
+  "executionEnvironment": "LOCAL_WINDOWS",
+  "workflow": null,
   "commands": [
     {
       "command": "pnpm install --frozen-lockfile",
       "exitCode": 0,
-      "elapsedMs": 1619,
+      "elapsedMs": 1180,
       "status": "passed"
     },
     {
       "command": "pnpm typecheck",
       "exitCode": 0,
-      "elapsedMs": 45117,
+      "elapsedMs": 36150,
       "status": "passed"
     },
     {
       "command": "pnpm lint",
       "exitCode": 0,
-      "elapsedMs": 4664,
+      "elapsedMs": 3351,
       "status": "passed"
     },
     {
       "command": "pnpm test",
       "exitCode": 0,
-      "elapsedMs": 15694,
+      "elapsedMs": 11814,
       "status": "passed"
     },
     {
       "command": "pnpm audit:licenses",
       "exitCode": 0,
-      "elapsedMs": 1990,
+      "elapsedMs": 1580,
       "status": "passed"
     },
     {
       "command": "pnpm build",
       "exitCode": 0,
-      "elapsedMs": 33826,
+      "elapsedMs": 23930,
       "status": "passed"
     },
     {
       "command": "pnpm test:consumer",
       "exitCode": 0,
-      "elapsedMs": 76477,
+      "elapsedMs": 81762,
       "status": "passed"
     },
     {
       "command": "pnpm test:e2e",
       "exitCode": 0,
-      "elapsedMs": 66971,
+      "elapsedMs": 56735,
       "status": "passed"
     },
     {
       "command": "pnpm test:performance",
       "exitCode": 0,
-      "elapsedMs": 15608,
+      "elapsedMs": 14592,
       "status": "passed"
     },
     {
       "command": "pnpm audit --audit-level moderate --json",
       "exitCode": 0,
-      "elapsedMs": 1733,
+      "elapsedMs": 1430,
       "status": "passed"
     }
   ],
   "unitAndIntegration": {
-    "passed": 393,
+    "passed": 406,
     "failed": 0,
-    "files": 25
+    "files": 27
   },
   "properties": {
     "stateMachineSequences": 2500,
@@ -112,7 +114,7 @@
       "@echoframe/mcp"
     ],
     "installedCliVerdict": "VALID",
-    "installedGeneratedRegressionTests": 17,
+    "installedGeneratedRegressionTests": 18,
     "installedRecorderSelfTest": true,
     "temporaryConsumer": true,
     "noNpmPublication": true
@@ -120,16 +122,16 @@
   "lighthouse": {
     "scope": "Local production static build, mobile simulated throttling; RPC health URLs blocked for repeatability",
     "scores": {
-      "performance": 0.82,
+      "performance": 0.93,
       "accessibility": 1,
-      "best-practices": 1,
+      "best-practices": 0.96,
       "seo": 1
     }
   },
   "bundleBudget": {
-    "javascriptGzipBytes": 230021,
+    "javascriptGzipBytes": 230592,
     "cssGzipBytes": 8256,
-    "totalAssetBytes": 936667,
+    "totalAssetBytes": 938352,
     "budgets": {
       "javascriptGzipBytes": 350000,
       "cssGzipBytes": 40000
@@ -144,18 +146,18 @@
       "high": 0,
       "critical": 0
     },
-    "licensePackages": 360,
+    "licensePackages": 369,
     "licenseAudit": "passed"
   },
   "sourceRepository": "https://github.com/eshaanvgupta/echoframe",
   "publication": {
-    "website": "not_published",
+    "website": "See docs/publication.json for independently confirmed deployment status",
     "npm": "not_published",
-    "remoteGithubCi": "not_yet_observed"
+    "remoteGithubCi": "See workflow and docs/publication.json"
   },
   "limitations": [
     "No cryptographic light client; RPC trust assumptions are explicit",
-    "No production x402/MPP signature verification or payment transport; adapters are non-signing and narrowly profiled",
+    "Default recorders are non-signing and narrowly profiled; the optional separately authorized Sepolia example delegates settlement to the official hosted facilitator",
     "No independently verified Celo ERC-8183 deployment was supplied",
     "No external feedback sessions or consenting ECHOFRAME mainnet payment integration observed",
     "No external security audit or real-device accessibility certification"

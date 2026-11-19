@@ -1,6 +1,6 @@
 {
   "status": "passed",
-  "packageCount": 360,
+  "packageCount": 369,
   "incompatible": [],
   "unknown": [],
   "packages": [
@@ -285,6 +285,16 @@
       "license": "MIT"
     },
     {
+      "name": "@signinwithethereum/siwe",
+      "version": "4.2.1",
+      "license": "Apache-2.0"
+    },
+    {
+      "name": "@signinwithethereum/siwe-parser",
+      "version": "4.2.1",
+      "license": "Apache-2.0"
+    },
+    {
       "name": "@types/body-parser",
       "version": "1.19.6",
       "license": "MIT"
@@ -440,6 +450,26 @@
       "license": "Apache-2.0"
     },
     {
+      "name": "@x402/evm",
+      "version": "2.31.0",
+      "license": "Apache-2.0"
+    },
+    {
+      "name": "@x402/extensions",
+      "version": "2.31.0",
+      "license": "Apache-2.0"
+    },
+    {
+      "name": "@x402/fetch",
+      "version": "2.31.0",
+      "license": "Apache-2.0"
+    },
+    {
+      "name": "@x402/hono",
+      "version": "2.31.0",
+      "license": "Apache-2.0"
+    },
+    {
       "name": "abitype",
       "version": "1.2.3",
       "license": "MIT"
@@ -498,6 +528,11 @@
       "name": "ansi-styles",
       "version": "6.2.3",
       "license": "MIT"
+    },
+    {
+      "name": "apg-js",
+      "version": "4.4.0",
+      "license": "BSD-2-Clause"
     },
     {
       "name": "assertion-error",
@@ -1106,6 +1141,11 @@
     },
     {
       "name": "jose",
+      "version": "5.10.0",
+      "license": "MIT"
+    },
+    {
+      "name": "jose",
       "version": "6.2.18",
       "license": "MIT"
     },
@@ -1653,6 +1693,11 @@
       "name": "tsx",
       "version": "4.23.15",
       "license": "MIT"
+    },
+    {
+      "name": "tweetnacl",
+      "version": "1.0.3",
+      "license": "Unlicense"
     },
     {
       "name": "type-check",

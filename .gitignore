@@ -13,3 +13,9 @@ artifacts/*.tgz
 docs/screenshots/*-actual.png
 
 artifacts/*.zip
+
+dist-pages/
+
+artifacts/echoframe-grant-*.pdf
+artifacts/echoframe-grant-*.html
+artifacts/release-verification.json
