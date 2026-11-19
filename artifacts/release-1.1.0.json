@@ -6,83 +6,83 @@
   "assets": [
     {
       "name": "echoframe-core-1.1.0.tgz",
-      "size": 48010,
-      "sha256": "1b76775a7a9e11d24b9c058789b226a6a222c6f635d8515e323c26bdaa2c6d7e"
+      "size": 48005,
+      "sha256": "8d2bfffc2e6d8c863aae58a419436710f63321f1e168c1a559349db07cda4574"
     },
     {
       "name": "echoframe-celo-1.1.0.tgz",
-      "size": 13595,
-      "sha256": "aec9162dfc97c221b16a19f4603c239411452ea6db57f0b69cc4cb60abcb2bb1"
+      "size": 13590,
+      "sha256": "628650bdbab5a7364884b9b7895fe6f1b05f7e8c0820c478e93c609fb9467114"
     },
     {
       "name": "echoframe-x402-1.1.0.tgz",
-      "size": 6766,
-      "sha256": "286cb0efee1703d23d30c57f3a949d2c3db8671929f00affeb6d482e41cd3ba5"
+      "size": 6760,
+      "sha256": "3d9453f677c6fa0ca57a03a16105153ed9a09601ff2e14210f68a1f220d4212c"
     },
     {
       "name": "echoframe-mpp-1.1.0.tgz",
-      "size": 6660,
-      "sha256": "6e59e4e9ef2ca2eb9fd983103e909b3c343b45824eb6eef8d1b342ccdb3dceb1"
+      "size": 6654,
+      "sha256": "5a2c5323aa42cd54906025decd8827e6f3bb6f143d4c8646daca7d446d9e8aa7"
     },
     {
       "name": "echoframe-erc8183-1.1.0.tgz",
-      "size": 5612,
-      "sha256": "181f880470157753f40652d7c9ee1dc235fbd69e524f3c4ef40c139929979a46"
+      "size": 5605,
+      "sha256": "4298158a76ff0fe2e87789df571bbf4a7027b6f7f4de4604f73e56cf419a5227"
     },
     {
       "name": "echoframe-node-1.1.0.tgz",
-      "size": 27452,
-      "sha256": "7850a2da12d99d5d5a33f92f7f6037ae9ce9b8cf947894e248d68c5f3e1e9449"
+      "size": 27446,
+      "sha256": "a5bc9aafb6f10ea1ec2f5c794458425b2379828c3b1983299e12d5cacfd5aadf"
     },
     {
       "name": "echoframe-react-1.1.0.tgz",
-      "size": 3119,
-      "sha256": "419bff888865ced2aed8b0a6e3c65f0c4a2a190089f9f2429f7defd7cf38fdf5"
+      "size": 3113,
+      "sha256": "dd2e62095bacaf1f474273c2526d484353f3ad5951e30a15937c7b2e0f9039b9"
     },
     {
       "name": "echoframe-cli-1.1.0.tgz",
-      "size": 7692,
-      "sha256": "dcb07dd40ca9579d9b55fc4b91fb4a710aa896a7c32a3f2a7df51ffce3693663"
+      "size": 7687,
+      "sha256": "449df06b8ac51117ba000b81949872dacef4b8233492d4268cbc704e0136e047"
     },
     {
       "name": "echoframe-mcp-1.1.0.tgz",
-      "size": 4247,
-      "sha256": "11dbe7f8dfadb325cf580906588b275805a01310b28dda074ac661df59d04a8b"
+      "size": 4242,
+      "sha256": "f2d3dc3f224e2c655084bcd5be5f58e6647dfc4e603090f3abf03c8811f86eaa"
     },
     {
       "name": "echoframe-web-1.1.0.zip",
-      "size": 2425486,
-      "sha256": "dbf90f12a7601f642e5ae69008af9cd74f4d2cd5054ce653115b00fe77f2bcfc"
+      "size": 2422836,
+      "sha256": "1aa1bb5fbf18a848e668f52a6b0228a08b4425d2468884e3e865232bf770d959"
     },
     {
       "name": "echoframe-pages-1.1.0.zip",
-      "size": 2427126,
-      "sha256": "daa6715c1474393bcd7c746f09e35000f975aaf313407c1d858106f3825fbc32"
+      "size": 2424476,
+      "sha256": "7bf627a1162ad5f6ed3f5af8026a96f41b5eb0712c17261e367c1c55f2de4079"
     },
     {
       "name": "echoframe-evidence-1.1.0.zip",
-      "size": 1051586,
-      "sha256": "c72f3676ec0f2eee3db4a98f3a465e753ee6c0ddc6491eb7b80ae7cb8ee4a97c"
+      "size": 1048721,
+      "sha256": "1c275cdfba9949666f02fe6b912804361a76c844faf35e67a2c8a776c3d86bab"
     },
     {
       "name": "echoframe-grant-1.1.0.pdf",
-      "size": 213294,
-      "sha256": "257dc6caa7e43e0207a39e1966e47ea19530c9551fed1b026a7b27816fd7aad1"
+      "size": 220354,
+      "sha256": "6ed3ab6daf968d1d591f74d2310d9acc9c8797386a5076a7d70176ad69feded6"
     },
     {
       "name": "echoframe-grant-1.1.0.html",
-      "size": 278902,
-      "sha256": "49db4d2e832d730570a8dcdc4e6f23e88673280d3f8c6d645cf3de3f33cb2a7f"
+      "size": 276410,
+      "sha256": "4598415a01cbb687fde9d1a82121671c22e674f4a3cb71f909755b5ec540139b"
     },
     {
       "name": "release-verification.json",
-      "size": 4432,
-      "sha256": "7cc17ca46b5f7740bb7acbc4165f739022f2656a9ec7c4ff53a7713a1a5783cd"
+      "size": 4637,
+      "sha256": "0124530031a984687b4b3cddbbafc71215eb11b95a2ba2179035f309fe1b0eca"
     },
     {
       "name": "secret-scan.json",
       "size": 318,
-      "sha256": "fb7e63925f3fe5a397c601bafec15018d8f21507ad78c27d2d7f3835123e588d"
+      "sha256": "7ccf9b11558619c1b7e660f542cbb35ffbaf06398a4bebeeaed90812cbb0a0d0"
     }
   ]
 }

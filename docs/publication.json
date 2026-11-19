@@ -1,42 +1,64 @@
 {
   "version": "1.1.1",
-  "status": "PATCH_PREPARED_PRIOR_RELEASE_CONFIRMED",
+  "status": "PUBLISHED_AND_INDEPENDENTLY_CHECKED",
+  "verifiedAt": "2026-11-19T10:39:56.475Z",
   "repository": "https://github.com/eshaanvgupta/echoframe",
   "defaultBranch": "main",
-  "priorVerifiedCI": {
-    "sourceCommit": "68ede06307cea0ad235714dc99c64ebb80cdff99",
-    "url": "https://github.com/eshaanvgupta/echoframe/actions/runs/44477817064",
+  "releaseCommit": "edaa73bd7548104ea6f1e9c244c8729b493562b6",
+  "release": {
+    "tag": "v1.1.1",
+    "url": "https://github.com/eshaanvgupta/echoframe/releases/tag/v1.1.1",
+    "publicAssets": 18,
+    "sha256Matches": 16
+  },
+  "quality": {
+    "releaseWorkflow": "https://github.com/eshaanvgupta/echoframe/actions/runs/44506428844",
+    "mainAndPublicSiteWorkflow": "https://github.com/eshaanvgupta/echoframe/actions/runs/44506428712",
     "conclusion": "success",
-    "scope": "Previous implementation baseline; final release CI is verified separately."
+    "freshCheckout": true,
+    "report": "docs/release-verification.json"
   },
   "website": {
-    "status": "DEPLOYMENT_PROVIDER_CONFIRMED_PUBLIC_BROWSER_CHECK_PENDING",
-    "plannedUrl": "https://eshaanvgupta.github.io/echoframe/",
-    "verifiedUrl": null,
-    "verificationLimitation": "Initial local browser and HTTP fetch returned connection reset; no successful public-site smoke test is claimed yet. Patch CI will test from GitHub after deployment."
+    "url": "https://eshaanvgupta.github.io/echoframe/",
+    "status": "DEPLOYED_AND_BROWSER_VERIFIED",
+    "verificationEnvironment": "PUBLIC_GITHUB_PAGES",
+    "routeViewportChecks": 36,
+    "exactEvidenceDownloads": 5,
+    "offlinePersistence": true,
+    "journalRecovery": true,
+    "report": "artifacts/public-site-results.json",
+    "artifactId": 14520137175,
+    "localNetworkLimitation": "This Windows environment returned connection resets for github.io. The actual public URL passed the full browser smoke test from the independent GitHub Ubuntu runner."
   },
-  "release": {
-    "status": "NOT_YET_PUBLISHED",
-    "plannedTag": "v1.1.1",
-    "verifiedUrl": null
+  "installedPublicArtifacts": {
+    "version": "1.1.1",
+    "status": "passed",
+    "source": "Actual public GitHub release archives; all SHA-256 values checked before installation",
+    "outsideMonorepo": true,
+    "platform": "win32",
+    "node": "v24.16.0",
+    "packages": 9,
+    "installedGeneratedRegressions": 18,
+    "installedCliIntegrity": "VALID",
+    "installedCliOutcome": "TESTED_PASS",
+    "recorderSelfTest": "passed; real loopback HTTP with explicitly simulated payment handling",
+    "economicActions": 0
   },
   "npm": {
     "published": false,
-    "installation": "Versioned GitHub release tarballs installed together"
+    "reason": "No npm account/scope publication was performed; public GitHub archives install together with verified SHA-256 checksums."
   },
   "genuinePaymentEvidence": {
     "environment": "CELO_SEPOLIA_TESTNET",
     "transaction": "0x2054f2592088b6aca722c555e0472267eab9b3a24091a743ff38c6b711930d32",
+    "source": "docs/evidence/celo-sepolia-2026-11-19/",
     "publicationConsent": "Owner explicitly approved the five redacted Downloads files",
     "independentAdoption": false,
     "mainnet": false
   },
-  "previousRelease": {
-    "version": "1.1.0",
-    "url": "https://github.com/eshaanvgupta/echoframe/releases/tag/v1.1.0",
-    "sourceCommit": "a01a750ea817a6921307cfbfa93b89535a3abf2b",
-    "qualityRun": "https://github.com/eshaanvgupta/echoframe/actions/runs/44505344558",
-    "conclusion": "success",
-    "assets": 18
+  "grant": {
+    "presentation": "https://github.com/eshaanvgupta/echoframe/releases/download/v1.1.1/echoframe-grant-1.1.1.pdf",
+    "dossier": "docs/prezenti-grant-dossier.md",
+    "eligibility": "Not established: consenting mainnet integration, independent adoption and applicant/program prerequisites remain external."
   }
 }

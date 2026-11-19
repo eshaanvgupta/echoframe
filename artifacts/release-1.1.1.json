@@ -1,0 +1,88 @@
+{
+  "version": "1.1.1",
+  "packageCount": 9,
+  "staticFiles": 73,
+  "artifactScope": "Prepared immutable release assets; publication is confirmed separately by GitHub and the public URL.",
+  "assets": [
+    {
+      "name": "echoframe-core-1.1.1.tgz",
+      "size": 48006,
+      "sha256": "e4f1abb53e6f12f49bac55de730163683732eec3c02fb02aedbb54fe257c251d"
+    },
+    {
+      "name": "echoframe-celo-1.1.1.tgz",
+      "size": 13590,
+      "sha256": "244577bef96ddeedd1f7ea1ea88ac6fa4cb5d722874cc2fa5d8b62a3e9a2dca5"
+    },
+    {
+      "name": "echoframe-x402-1.1.1.tgz",
+      "size": 6761,
+      "sha256": "0f949b523acc7f44990a58686a0bd238d1ea1b46bede3016791e9e57dab64f80"
+    },
+    {
+      "name": "echoframe-mpp-1.1.1.tgz",
+      "size": 6655,
+      "sha256": "8bb5cda83bc69c19e44746d83672d2186dd026e7c851717e8cd483f6368ae644"
+    },
+    {
+      "name": "echoframe-erc8183-1.1.1.tgz",
+      "size": 5607,
+      "sha256": "36e3a01fbfc0b0ce127c0991070427c04c4a50e61aa2aa1908c859a5bb544770"
+    },
+    {
+      "name": "echoframe-node-1.1.1.tgz",
+      "size": 27446,
+      "sha256": "3284640757ee3fe268c42c9b539f69814532320b14afffa1f1bc6944e6e9a6b0"
+    },
+    {
+      "name": "echoframe-react-1.1.1.tgz",
+      "size": 3116,
+      "sha256": "b004006d49a7eb1aead756f8d0a498ef782c323fc883bfe8534e8e3e3577bbd3"
+    },
+    {
+      "name": "echoframe-cli-1.1.1.tgz",
+      "size": 7688,
+      "sha256": "86628e53e8e57b5904a4f1aa7157db7e710063b3c15bd9cbc8d825f35a920d24"
+    },
+    {
+      "name": "echoframe-mcp-1.1.1.tgz",
+      "size": 4243,
+      "sha256": "577ade0a0c9fa81066081f8c89be8a6a61576ef45a1434f89ec56503df9a4904"
+    },
+    {
+      "name": "echoframe-web-1.1.1.zip",
+      "size": 2424790,
+      "sha256": "d399eedc83925d9f689bf72087d19d4fc13996bd2b288eba7e974e05f42b6f1c"
+    },
+    {
+      "name": "echoframe-pages-1.1.1.zip",
+      "size": 2426440,
+      "sha256": "1e76dd9761a36b9818651b6788788ddcb4c88e37fbef2cb50cf18c83b0633081"
+    },
+    {
+      "name": "echoframe-evidence-1.1.1.zip",
+      "size": 1048905,
+      "sha256": "8e46354c68790028219df5e9522134f3549e408cae2bd92e16525b09a5fa6656"
+    },
+    {
+      "name": "echoframe-grant-1.1.1.pdf",
+      "size": 220354,
+      "sha256": "85c83a18ab0d526cf2d1714383273d2dc6fcae96d5bf4f2f04e003e55e6cf03d"
+    },
+    {
+      "name": "echoframe-grant-1.1.1.html",
+      "size": 276410,
+      "sha256": "626fe121bc99c9deee62e79baf2ceb6096d5d67a2f4ce2e181a540522d83d5dd"
+    },
+    {
+      "name": "release-verification.json",
+      "size": 4667,
+      "sha256": "07c6c4346fa28e68d219d9f3269616fa289c7a8d88d21012d92617a41a49de3e"
+    },
+    {
+      "name": "secret-scan.json",
+      "size": 318,
+      "sha256": "53341285fc4c10dd217fc7761111dccda08b82a029320775affd40651a1f990b"
+    }
+  ]
+}

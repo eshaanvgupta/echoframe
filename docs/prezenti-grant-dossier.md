@@ -2,9 +2,9 @@
 
 Prepared on 2026-11-19. This dossier records implemented software and an activation plan, not an assertion of grant eligibility, award or independent adoption.
 
-**Category: AI & Agent Economy Infrastructure ? Verification and Trust Infrastructure.**
+**Category: AI & Agent Economy Infrastructure — Verification and Trust Infrastructure.**
 
-**ECHOFRAME ? The Verification Layer for Autonomous Commerce.** Money moved. Did the work happen?
+**ECHOFRAME — The Verification Layer for Autonomous Commerce.** Money moved. Did the work happen?
 
 **Problem.** A buyer or builder often cannot distinguish permission to pay, a quote actually accepted, a settled token event, an HTTP response and independently checked work. Timeout/retry ambiguity can trigger duplicate economic actions. Evidence spans merchants, facilitators, chains and returned files, and is difficult to reproduce independently.
 

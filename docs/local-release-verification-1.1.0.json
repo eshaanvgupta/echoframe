@@ -1,0 +1,165 @@
+{
+  "schemaVersion": "1.0.0",
+  "clientDate": "2026-11-19",
+  "checkedAt": "2026-11-19T10:21:15.561Z",
+  "platform": "win32",
+  "node": "v24.16.0",
+  "status": "LOCAL_RELEASE_GATES_PASSED",
+  "executionEnvironment": "LOCAL_WINDOWS",
+  "workflow": null,
+  "commands": [
+    {
+      "command": "pnpm install --frozen-lockfile",
+      "exitCode": 0,
+      "elapsedMs": 1180,
+      "status": "passed"
+    },
+    {
+      "command": "pnpm typecheck",
+      "exitCode": 0,
+      "elapsedMs": 36150,
+      "status": "passed"
+    },
+    {
+      "command": "pnpm lint",
+      "exitCode": 0,
+      "elapsedMs": 3351,
+      "status": "passed"
+    },
+    {
+      "command": "pnpm test",
+      "exitCode": 0,
+      "elapsedMs": 11814,
+      "status": "passed"
+    },
+    {
+      "command": "pnpm audit:licenses",
+      "exitCode": 0,
+      "elapsedMs": 1580,
+      "status": "passed"
+    },
+    {
+      "command": "pnpm build",
+      "exitCode": 0,
+      "elapsedMs": 23930,
+      "status": "passed"
+    },
+    {
+      "command": "pnpm test:consumer",
+      "exitCode": 0,
+      "elapsedMs": 81762,
+      "status": "passed"
+    },
+    {
+      "command": "pnpm test:e2e",
+      "exitCode": 0,
+      "elapsedMs": 56735,
+      "status": "passed"
+    },
+    {
+      "command": "pnpm test:performance",
+      "exitCode": 0,
+      "elapsedMs": 14592,
+      "status": "passed"
+    },
+    {
+      "command": "pnpm audit --audit-level moderate --json",
+      "exitCode": 0,
+      "elapsedMs": 1430,
+      "status": "passed"
+    }
+  ],
+  "unitAndIntegration": {
+    "passed": 406,
+    "failed": 0,
+    "files": 27
+  },
+  "properties": {
+    "stateMachineSequences": 2500,
+    "actionsPerSequence": "8–40",
+    "seed": 42220,
+    "identityCases": 2000,
+    "identitySeed": 8183
+  },
+  "scenarios": {
+    "count": 16,
+    "environment": "SIMULATED",
+    "generatedRegressionTests": 16
+  },
+  "browser": {
+    "passed": 54,
+    "failed": 0,
+    "skipped": 6,
+    "skipReason": "Full scenario loop and automated two-theme audits run on desktop only; representative interactions run on all four widths.",
+    "viewports": [
+      1440,
+      768,
+      390,
+      360
+    ],
+    "engine": "Chromium desktop emulation; physical MiniPay/iOS/Android devices not tested",
+    "accessibility": "20 route/theme automated axe combinations plus keyboard, focus, reduced motion and overflow checks"
+  },
+  "installedConsumer": {
+    "status": "passed",
+    "packages": [
+      "@echoframe/core",
+      "@echoframe/celo",
+      "@echoframe/x402",
+      "@echoframe/mpp",
+      "@echoframe/erc8183",
+      "@echoframe/node",
+      "@echoframe/react",
+      "@echoframe/cli",
+      "@echoframe/mcp"
+    ],
+    "installedCliVerdict": "VALID",
+    "installedGeneratedRegressionTests": 18,
+    "installedRecorderSelfTest": true,
+    "temporaryConsumer": true,
+    "noNpmPublication": true
+  },
+  "lighthouse": {
+    "scope": "Local production static build, mobile simulated throttling; RPC health URLs blocked for repeatability",
+    "scores": {
+      "performance": 0.93,
+      "accessibility": 1,
+      "best-practices": 0.96,
+      "seo": 1
+    }
+  },
+  "bundleBudget": {
+    "javascriptGzipBytes": 230592,
+    "cssGzipBytes": 8256,
+    "totalAssetBytes": 938352,
+    "budgets": {
+      "javascriptGzipBytes": 350000,
+      "cssGzipBytes": 40000
+    },
+    "reason": "Includes offline cryptography, safe DSL, strict adapters and IndexedDB. No network font or image dependencies."
+  },
+  "dependencies": {
+    "advisories": {
+      "info": 0,
+      "low": 0,
+      "moderate": 0,
+      "high": 0,
+      "critical": 0
+    },
+    "licensePackages": 369,
+    "licenseAudit": "passed"
+  },
+  "sourceRepository": "https://github.com/eshaanvgupta/echoframe",
+  "publication": {
+    "website": "See docs/publication.json for independently confirmed deployment status",
+    "npm": "not_published",
+    "remoteGithubCi": "See workflow and docs/publication.json"
+  },
+  "limitations": [
+    "No cryptographic light client; RPC trust assumptions are explicit",
+    "Default recorders are non-signing and narrowly profiled; the optional separately authorized Sepolia example delegates settlement to the official hosted facilitator",
+    "No independently verified Celo ERC-8183 deployment was supplied",
+    "No external feedback sessions or consenting ECHOFRAME mainnet payment integration observed",
+    "No external security audit or real-device accessibility certification"
+  ]
+}

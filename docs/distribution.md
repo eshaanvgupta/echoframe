@@ -1,4 +1,4 @@
-# Reproducible distribution — 1.1.0
+# Reproducible distribution - 1.1.1
 
 Npm publication is not claimed. Actual GitHub release and public website confirmations are recorded separately in publication.json. The GitHub source repository is https://github.com/eshaanvgupta/echoframe. Use Node 24+ and the pinned pnpm 10.34.9.
 

@@ -1,0 +1,14 @@
+{
+  "version": "1.1.1",
+  "status": "passed",
+  "source": "Actual public GitHub release archives; all SHA-256 values checked before installation",
+  "outsideMonorepo": true,
+  "platform": "win32",
+  "node": "v24.16.0",
+  "packages": 9,
+  "installedGeneratedRegressions": 18,
+  "installedCliIntegrity": "VALID",
+  "installedCliOutcome": "TESTED_PASS",
+  "recorderSelfTest": "passed; real loopback HTTP with explicitly simulated payment handling",
+  "economicActions": 0
+}

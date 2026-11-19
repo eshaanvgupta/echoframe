@@ -1,71 +1,76 @@
 {
+  "softwareVersion": "1.1.1",
   "schemaVersion": "1.0.0",
   "clientDate": "2026-11-19",
-  "checkedAt": "2026-11-19T10:21:15.561Z",
-  "platform": "win32",
-  "node": "v24.16.0",
-  "status": "LOCAL_RELEASE_GATES_PASSED",
-  "executionEnvironment": "LOCAL_WINDOWS",
-  "workflow": null,
+  "checkedAt": "2026-11-19T10:35:33.079Z",
+  "platform": "linux",
+  "node": "v24.22.3",
+  "status": "GITHUB_ACTIONS_RELEASE_GATES_PASSED",
+  "executionEnvironment": "GITHUB_ACTIONS_UBUNTU",
+  "workflow": {
+    "url": "https://github.com/eshaanvgupta/echoframe/actions/runs/44506428844",
+    "sourceCommit": "edaa73bd7548104ea6f1e9c244c8729b493562b6",
+    "statusAtReportGeneration": "IN_PROGRESS"
+  },
   "commands": [
     {
       "command": "pnpm install --frozen-lockfile",
       "exitCode": 0,
-      "elapsedMs": 1180,
+      "elapsedMs": 635,
       "status": "passed"
     },
     {
       "command": "pnpm typecheck",
       "exitCode": 0,
-      "elapsedMs": 36150,
+      "elapsedMs": 16313,
       "status": "passed"
     },
     {
       "command": "pnpm lint",
       "exitCode": 0,
-      "elapsedMs": 3351,
+      "elapsedMs": 1789,
       "status": "passed"
     },
     {
       "command": "pnpm test",
       "exitCode": 0,
-      "elapsedMs": 11814,
+      "elapsedMs": 6692,
       "status": "passed"
     },
     {
       "command": "pnpm audit:licenses",
       "exitCode": 0,
-      "elapsedMs": 1580,
+      "elapsedMs": 349,
       "status": "passed"
     },
     {
       "command": "pnpm build",
       "exitCode": 0,
-      "elapsedMs": 23930,
+      "elapsedMs": 12804,
       "status": "passed"
     },
     {
       "command": "pnpm test:consumer",
       "exitCode": 0,
-      "elapsedMs": 81762,
+      "elapsedMs": 19139,
       "status": "passed"
     },
     {
       "command": "pnpm test:e2e",
       "exitCode": 0,
-      "elapsedMs": 56735,
+      "elapsedMs": 44333,
       "status": "passed"
     },
     {
       "command": "pnpm test:performance",
       "exitCode": 0,
-      "elapsedMs": 14592,
+      "elapsedMs": 10313,
       "status": "passed"
     },
     {
       "command": "pnpm audit --audit-level moderate --json",
       "exitCode": 0,
-      "elapsedMs": 1430,
+      "elapsedMs": 340,
       "status": "passed"
     }
   ],
@@ -122,16 +127,16 @@
   "lighthouse": {
     "scope": "Local production static build, mobile simulated throttling; RPC health URLs blocked for repeatability",
     "scores": {
-      "performance": 0.93,
+      "performance": 0.99,
       "accessibility": 1,
       "best-practices": 0.96,
       "seo": 1
     }
   },
   "bundleBudget": {
-    "javascriptGzipBytes": 230592,
+    "javascriptGzipBytes": 230658,
     "cssGzipBytes": 8256,
-    "totalAssetBytes": 938352,
+    "totalAssetBytes": 938565,
     "budgets": {
       "javascriptGzipBytes": 350000,
       "cssGzipBytes": 40000

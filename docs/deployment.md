@@ -37,7 +37,7 @@ Deploy at the domain root under HTTPS. PWA offline storage is origin-scoped. Cha
 
 Manual smoke check after publication: open a nested route, import the paid-but-not-delivered example, export and independently verify it, create/reload a pending journal, switch offline and reopen the vault, then test a real transaction hash. Record the actual URL and provider deployment ID only after a successful result.
 
-`pnpm release:assets` also prepares `artifacts/echoframe-web-1.1.0.zip` with SHA-256 checksums. Upload its contents at the domain root. The ZIP does not add a server or hosting account.
+`pnpm release:assets` also prepares `artifacts/echoframe-web-1.1.1.zip` with SHA-256 checksums. Upload its contents at the domain root. The ZIP does not add a server or hosting account.
 
 ## GitHub project Pages
 

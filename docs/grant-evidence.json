@@ -32,7 +32,11 @@
     "externalFeedbackSessions": "not_yet_observed"
   },
   "mainnetGrantPrerequisite": "not_yet_satisfied_by_observed_evidence",
-  "websiteDeployment": "See docs/publication.json for post-deployment verification",
+  "websiteDeployment": {
+    "status": "DEPLOYED_AND_BROWSER_VERIFIED",
+    "url": "https://eshaanvgupta.github.io/echoframe/",
+    "verification": "GitHub Ubuntu Chromium; 36 route/width checks, five exact evidence downloads and offline recovery"
+  },
   "npmPublication": "not_published",
   "frontierCap": {
     "amount": 15000,
@@ -66,5 +70,24 @@
     "scope": "Self-operated user-approved Sepolia integration; original unsupported header and separately sourced read-only recovery preserved",
     "countsAsIndependentAdoption": false,
     "countsAsMainnetUsage": false
+  },
+  "githubRelease": {
+    "tag": "v1.1.1",
+    "url": "https://github.com/eshaanvgupta/echoframe/releases/tag/v1.1.1",
+    "publicAssets": 18,
+    "sha256Matches": 16
+  },
+  "remoteCI": {
+    "releaseWorkflow": "https://github.com/eshaanvgupta/echoframe/actions/runs/44506428844",
+    "mainAndPublicSiteWorkflow": "https://github.com/eshaanvgupta/echoframe/actions/runs/44506428712",
+    "conclusion": "success",
+    "freshCheckout": true,
+    "report": "docs/release-verification.json"
+  },
+  "installedPublicRelease": {
+    "packages": 9,
+    "regressions": 18,
+    "status": "passed",
+    "scope": "Maintainer-operated installation outside monorepo; not independent adoption"
   }
 }
