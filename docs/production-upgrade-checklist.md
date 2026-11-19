@@ -26,4 +26,4 @@ Read the README, architecture, proof semantics, threat model, completion report,
 
 Progress and final executed evidence will be recorded in the completion report; this checklist does not claim work is finished.
 
-Final software verification: all ten fresh gates passed, 391 tests, 54 browser checks plus six documented skips, nine independently installed packages and 17 installed regressions. See completion-report.md for exact results, internal security fixes and remaining genuine merchant/publication/grant prerequisites.
+Final software verification: all ten fresh gates passed, 393 tests, 54 browser checks plus six documented skips, nine independently installed packages and 17 installed regressions. See completion-report.md for exact results, internal security fixes and remaining genuine merchant/publication/grant prerequisites.

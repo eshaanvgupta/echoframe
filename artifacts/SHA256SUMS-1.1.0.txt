@@ -3,8 +3,8 @@ aec9162dfc97c221b16a19f4603c239411452ea6db57f0b69cc4cb60abcb2bb1  echoframe-celo
 7478c2c34071967382bae38e86b7ce49c5be5bede371b4f3962ddbfb158d8aa3  echoframe-x402-1.1.0.tgz
 6e59e4e9ef2ca2eb9fd983103e909b3c343b45824eb6eef8d1b342ccdb3dceb1  echoframe-mpp-1.1.0.tgz
 181f880470157753f40652d7c9ee1dc235fbd69e524f3c4ef40c139929979a46  echoframe-erc8183-1.1.0.tgz
-9aa82ba46b3ed409da3805dc9eca3dca01dbdc20e443ecee544dbd288fd299c5  echoframe-node-1.1.0.tgz
+394277901f6ec05fa4575fb3fb0a4da752cf8ad21560e93086faf9fe66322081  echoframe-node-1.1.0.tgz
 419bff888865ced2aed8b0a6e3c65f0c4a2a190089f9f2429f7defd7cf38fdf5  echoframe-react-1.1.0.tgz
-4b0c00b3719a3c88f3c73277c893aeafe36d6eee3fe0cbbea9fc7f6e9acb9a13  echoframe-cli-1.1.0.tgz
+da5f127a58bbe8cd134dd1ceae922eab9f1c6d857b355aed5d4fef6be8a7398d  echoframe-cli-1.1.0.tgz
 11dbe7f8dfadb325cf580906588b275805a01310b28dda074ac661df59d04a8b  echoframe-mcp-1.1.0.tgz
-fd97cd251a2b35099e90441bb9798ffad893f27acc4e4f2c87ccfb040779a096  echoframe-web-1.1.0.zip
+03a11aa6d30c36c7c38a335c985c8558c218da10fe28b6f51d2a1ff56f9a482a  echoframe-web-1.1.0.zip

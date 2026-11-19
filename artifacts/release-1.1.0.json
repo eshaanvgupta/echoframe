@@ -34,8 +34,8 @@
     },
     {
       "name": "echoframe-node-1.1.0.tgz",
-      "size": 26636,
-      "sha256": "9aa82ba46b3ed409da3805dc9eca3dca01dbdc20e443ecee544dbd288fd299c5"
+      "size": 27452,
+      "sha256": "394277901f6ec05fa4575fb3fb0a4da752cf8ad21560e93086faf9fe66322081"
     },
     {
       "name": "echoframe-react-1.1.0.tgz",
@@ -45,7 +45,7 @@
     {
       "name": "echoframe-cli-1.1.0.tgz",
       "size": 7692,
-      "sha256": "4b0c00b3719a3c88f3c73277c893aeafe36d6eee3fe0cbbea9fc7f6e9acb9a13"
+      "sha256": "da5f127a58bbe8cd134dd1ceae922eab9f1c6d857b355aed5d4fef6be8a7398d"
     },
     {
       "name": "echoframe-mcp-1.1.0.tgz",
@@ -54,8 +54,8 @@
     },
     {
       "name": "echoframe-web-1.1.0.zip",
-      "size": 1992527,
-      "sha256": "fd97cd251a2b35099e90441bb9798ffad893f27acc4e4f2c87ccfb040779a096"
+      "size": 1993946,
+      "sha256": "03a11aa6d30c36c7c38a335c985c8558c218da10fe28b6f51d2a1ff56f9a482a"
     }
   ]
 }

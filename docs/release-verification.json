@@ -1,7 +1,7 @@
 {
   "schemaVersion": "1.0.0",
   "clientDate": "2026-11-19",
-  "checkedAt": "2026-11-19T06:51:31.810Z",
+  "checkedAt": "2026-11-19T07:08:36.416Z",
   "platform": "win32",
   "node": "v24.16.0",
   "status": "LOCAL_RELEASE_GATES_PASSED",
@@ -9,66 +9,66 @@
     {
       "command": "pnpm install --frozen-lockfile",
       "exitCode": 0,
-      "elapsedMs": 1558,
+      "elapsedMs": 1619,
       "status": "passed"
     },
     {
       "command": "pnpm typecheck",
       "exitCode": 0,
-      "elapsedMs": 43410,
+      "elapsedMs": 45117,
       "status": "passed"
     },
     {
       "command": "pnpm lint",
       "exitCode": 0,
-      "elapsedMs": 4605,
+      "elapsedMs": 4664,
       "status": "passed"
     },
     {
       "command": "pnpm test",
       "exitCode": 0,
-      "elapsedMs": 14938,
+      "elapsedMs": 15694,
       "status": "passed"
     },
     {
       "command": "pnpm audit:licenses",
       "exitCode": 0,
-      "elapsedMs": 1816,
+      "elapsedMs": 1990,
       "status": "passed"
     },
     {
       "command": "pnpm build",
       "exitCode": 0,
-      "elapsedMs": 32979,
+      "elapsedMs": 33826,
       "status": "passed"
     },
     {
       "command": "pnpm test:consumer",
       "exitCode": 0,
-      "elapsedMs": 56736,
+      "elapsedMs": 76477,
       "status": "passed"
     },
     {
       "command": "pnpm test:e2e",
       "exitCode": 0,
-      "elapsedMs": 63224,
+      "elapsedMs": 66971,
       "status": "passed"
     },
     {
       "command": "pnpm test:performance",
       "exitCode": 0,
-      "elapsedMs": 15375,
+      "elapsedMs": 15608,
       "status": "passed"
     },
     {
       "command": "pnpm audit --audit-level moderate --json",
       "exitCode": 0,
-      "elapsedMs": 1466,
+      "elapsedMs": 1733,
       "status": "passed"
     }
   ],
   "unitAndIntegration": {
-    "passed": 391,
+    "passed": 393,
     "failed": 0,
     "files": 25
   },
@@ -120,7 +120,7 @@
   "lighthouse": {
     "scope": "Local production static build, mobile simulated throttling; RPC health URLs blocked for repeatability",
     "scores": {
-      "performance": 0.84,
+      "performance": 0.82,
       "accessibility": 1,
       "best-practices": 1,
       "seo": 1

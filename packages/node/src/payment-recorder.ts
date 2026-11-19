@@ -64,7 +64,17 @@ export class PaymentRecorder{
     const exchange:Exchange={key,id,attemptKey:null,authenticated:false};
     if(overlap)this.add(key,'attempt.duplicate',{contextKey:key,reason:'CONCURRENT_REQUEST',recommendation:'RECONCILE_FIRST'});
     try{
-      const credential=headerValue(headers,this.options.protocol==='x402'?'PAYMENT-SIGNATURE':'Authorization');
+      let credential:string|undefined;
+      if(this.options.protocol==='x402')credential=headerValue(headers,'PAYMENT-SIGNATURE');
+      else{
+        const rawAuthorization=headerValue(headers,'Authorization'),alternate=headerValue(headers,'Payment-Authorization');
+        // The alternate payment header exists specifically to coexist with ordinary HTTP authentication.
+        const authorization=rawAuthorization&&/^Payment\s/i.test(rawAuthorization)?rawAuthorization:undefined;
+        if(authorization&&alternate)throw new EvidenceError('MPP_CREDENTIAL_HEADER','Ambiguous payment credential headers');
+        const selection=this.store.get(key)?.events.filter(e=>e.type==='quote.selected').at(-1),selectedHeader=selection?data(selection.data).credentialHeader:'Authorization';
+        if((selectedHeader==='Payment-Authorization'&&authorization)||(selectedHeader!=='Payment-Authorization'&&alternate))throw new EvidenceError('MPP_CREDENTIAL_HEADER','Credential header differs from the original challenge');
+        credential=selectedHeader==='Payment-Authorization'?alternate:authorization;
+      }
       if(!credential)return exchange;
       const observed=this.options.protocol==='x402'?readX402CredentialMetadata(credential):readMppCredentialMetadata(credential);
       const pinned=this.offer(key);
@@ -94,14 +104,15 @@ export class PaymentRecorder{
       const challengeHeader=headerValue(headers,this.options.protocol==='x402'?'PAYMENT-REQUIRED':'WWW-Authenticate');
       if(status===402&&challengeHeader){
         try{
-          const offers=this.options.protocol==='x402'?parseX402Challenge(challengeHeader).accepts.map((q,i)=>normalizeX402Offer(q,`offer-${i}`)):[normalizeMppOffer(parseMppChallenge(challengeHeader,this.now()))];
+          const mppChallenge=this.options.protocol==='mpp'?parseMppChallenge(challengeHeader,this.now()):null;
+          const offers=mppChallenge?[normalizeMppOffer(mppChallenge)]:parseX402Challenge(challengeHeader).accepts.map((q,i)=>normalizeX402Offer(q,`offer-${i}`));
           const matches=offers.filter(q=>this.matches(q));
           const selected=this.options.selectOffer?offers[this.options.selectOffer(offers)]:matches.length===1?matches[0]:undefined;
           if(!selected||!this.matches(selected))throw new EvidenceError('OFFER_SELECTION','Select one offer that matches the configured payment');
           this.add(key,'payment.challenge',{quote:json(selected),offerCount:offers.length});
           const pinned=this.offer(key);if(pinned&&pinned.quoteHash!==selected.quoteHash)throw new EvidenceError('QUOTE_CHANGED','Original pinned quote cannot be replaced');
           this.store.mutate(key,()=>{throw new Error('Missing context');},b=>sealBundle({...b,paymentOffers:[selected]}));
-          this.add(key,'quote.selected',{quote:json(selected),expectationOrigin:'APPLICATION_CONFIGURED'});
+          this.add(key,'quote.selected',{quote:json(selected),expectationOrigin:'APPLICATION_CONFIGURED',credentialHeader:this.options.protocol==='x402'?'PAYMENT-SIGNATURE':mppChallenge?.header??'Authorization'});
         }catch(error){this.error(key,error);}
       }
       const protocolHeader=headerValue(headers,this.options.protocol==='x402'?'PAYMENT-RESPONSE':'Payment-Receipt');
@@ -120,6 +131,7 @@ export class PaymentRecorder{
           }
         }catch(error){this.error(key,error);}
       }else if(exchange.attemptKey){const record=await this.options.journal.get(exchange.attemptKey);if(record&&record.events.at(-1)!.state==='AUTHORIZED')await this.options.journal.append(exchange.attemptKey,'UNKNOWN',null,this.now());this.add(key,'payment.unknown',{reason:'PROTOCOL_RESPONSE_NOT_OBSERVED',recommendation:'RECONCILE_FIRST'});}
+      if(exchange.attemptKey){const record=await this.options.journal.get(exchange.attemptKey);if(record)this.store.mutate(key,()=>{throw new Error('Missing context');},b=>sealBundle({...b,recoveryState:record.events.at(-1)!.state}));}
       this.add(key,body.complete?'merchant.response':'merchant.response_lost',{status,byteCount:body.byteCount,contentHash:body.contentHash,mime:safeMime(headerValue(headers,'Content-Type')),complete:body.complete,reason:body.reason,commitmentScope:'APPLICATION_RESPONSE_BYTES',captureMode:this.options.capture?'JSON_ALLOWLIST_PROJECTION':'METADATA_AND_COMMITMENT_ONLY'});
       // A 402 challenge is not a purchased deliverable.
       if(status!==402&&body.complete)this.add(key,body.byteCount?'delivery.returned':'delivery.empty',{status,byteCount:body.byteCount,contentHash:body.contentHash,quality:'APP_REPORTED'});
@@ -165,7 +177,7 @@ export class PaymentRecorder{
   async recover():Promise<Array<{contextKey:string;attemptKey:string|null;recommendation:'RECONCILE_FIRST'}>>{
     const attempts=await this.options.journal.list();const recovered=[];for(const {contextKey,bundle}of this.store.list()){
       const identity=bundle.events.filter(e=>e.type==='attempt.identity').at(-1),attempt=identity?String(data(identity.data).attemptKey):attempts.find(a=>a.identity.requestId===contextKey)?.key??null;
-      if(attempt){const record=await this.options.journal.get(attempt);if(record&&['SETTLED','REVERTED','FAILED','REFUNDED'].includes(record.events.at(-1)!.state))continue;}
+      if(attempt){const record=await this.options.journal.get(attempt);if(record){this.store.mutate(contextKey,()=>{throw new Error('Missing context');},b=>sealBundle({...b,recoveryState:record.events.at(-1)!.state}));if(['SETTLED','REVERTED','FAILED','REFUNDED'].includes(record.events.at(-1)!.state))continue;}}
       this.add(contextKey,'journal.recovered',{attemptKey:attempt,recommendation:'RECONCILE_FIRST'});recovered.push({contextKey,attemptKey:attempt,recommendation:'RECONCILE_FIRST' as const});
     }return recovered;
   }
@@ -178,7 +190,7 @@ export class PaymentRecorder{
     if(result.financialStatus==='SETTLED'){
       const attempts=await this.options.journal.list();
       const identity=b.events.filter(e=>e.type==='attempt.identity').at(-1),attempt=identity?String(data(identity.data).attemptKey):attempts.find(a=>a.identity.requestId===contextKey)?.key??null;
-      if(attempt){const current=await this.options.journal.get(attempt);if(current&&['SUBMITTED','PENDING','UNKNOWN'].includes(current.events.at(-1)!.state))await this.options.journal.append(attempt,'SETTLED',settlementAttributionKey(this.options.chainId,transactionHash,options.selectedLogIndex),this.now());}
+      if(attempt){const current=await this.options.journal.get(attempt);if(current&&['SUBMITTED','PENDING','UNKNOWN'].includes(current.events.at(-1)!.state)){const settled=await this.options.journal.append(attempt,'SETTLED',settlementAttributionKey(this.options.chainId,transactionHash,options.selectedLogIndex),this.now());this.store.mutate(contextKey,()=>{throw new Error('Missing context');},bundle=>sealBundle({...bundle,recoveryState:settled.events.at(-1)!.state}));}}
     }
     this.add(contextKey,'financial.observation',{status:result.financialStatus,quality:'APP_REPORTED',source:'READ_ONLY_RPC_WITH_CONFIGURED_EXPECTATIONS'});return result;
   }

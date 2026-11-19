@@ -31,8 +31,8 @@ dist/assets/secp256k1-45PJDJHu.js                           25.05 kB │ gzip:  
 dist/assets/crypto-PqJvI8XV.js                             132.75 kB │ gzip:  39.94 kB
 dist/assets/index-D-KrzxAi.js                              538.34 kB │ gzip: 168.04 kB
 
-✓ built in 634ms
-Offline shell 1997361603db0540: 44 static assets. RPC/evidence requests are never cached by the service worker.
+✓ built in 686ms
+Offline shell faa4701cf95dd3a5: 44 static assets. RPC/evidence requests are never cached by the service worker.
 {
   javascriptGzipBytes: 230021,
   cssGzipBytes: 8256,

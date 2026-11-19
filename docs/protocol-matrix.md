@@ -17,3 +17,5 @@ ERC-8183 prose and embedded reference disagree on funding ABI, budget-setting pe
 All local fixtures in `fixtures/` and `scenarios/` are SIMULATED. Tests include official library serialization, official HTTPFacilitatorClient over actual loopback HTTP, strict negative challenge alternatives and receipt corruption. SDK codec use does not itself validate payment signatures, server HMACs or real chain settlement.
 
 The new `PaymentRecorder` uses these existing official codecs at a durable request boundary for Express and Hono. It never calls a genuine facilitator settle API; only the isolated loopback example calls its synthetic facilitator. Unknown extensions, duplicate JSON members and unsupported echoed MPP challenge fields fail closed. Result bytes are metadata/commitment only by default; explicit JSON projection policies are described in [integration.md](integration.md).
+
+Durable MPP recording follows the selected challenge's advertised Payment-Authorization header or default Authorization; ambiguous dual credentials are rejected and never retained.
