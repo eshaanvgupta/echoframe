@@ -1,0 +1,233 @@
+{
+  "environment": "SIMULATED",
+  "before": {
+    "version": "1.0.0",
+    "scenarioId": "crash-recovery",
+    "seed": 42220,
+    "variant": "vulnerable",
+    "policy": {
+      "commitQuote": true,
+      "bindRequest": true,
+      "reconcileUnknown": true,
+      "requireOutcome": true,
+      "matchChain": true,
+      "selectTransfer": true,
+      "separateEvaluator": true,
+      "persistentJournal": false,
+      "exactDecimals": true,
+      "mandateAtSettlement": true,
+      "independentClaims": true,
+      "rpcAgreement": true
+    },
+    "preconditions": [
+      "SIMULATED Celo Sepolia; no wallet or network calls",
+      "One exact quote: 1000 atomic units, known token and payee",
+      "A virtual clock and fixed seed control all fault timing",
+      "Injected condition: Process restarts after broadcast with an unresolved attempt."
+    ],
+    "timeline": [
+      {
+        "index": 0,
+        "at": 27,
+        "stage": "INTENT",
+        "action": "Discovered exact quote",
+        "data": {
+          "chainId": 11142220,
+          "amount": "1000",
+          "quoteCommitment": "0x6b84edc84b53c3085cd35ca2e68a7a4b69e5ba4cddf7da4589f7235bd81f78ec"
+        },
+        "financialStatus": "NOT_INITIATED"
+      },
+      {
+        "index": 1,
+        "at": 45,
+        "stage": "AUTHORITY",
+        "action": "Recorded a simulated authorization; no signature produced",
+        "data": null,
+        "financialStatus": "AUTHORIZED"
+      },
+      {
+        "index": 2,
+        "at": 108,
+        "stage": "PAYMENT",
+        "action": "Simulated broadcast",
+        "data": {
+          "attemptKey": "0xbe5ae878a5e28dc0df4e8ccb91f443eb83c7072b52b72ad152ebf9bf4822dd39"
+        },
+        "financialStatus": "SUBMITTED"
+      },
+      {
+        "index": 3,
+        "at": 194,
+        "stage": "PAYMENT",
+        "action": "Response unavailable; broadcast outcome unknown",
+        "data": null,
+        "financialStatus": "UNKNOWN"
+      },
+      {
+        "index": 4,
+        "at": 283,
+        "stage": "PAYMENT",
+        "action": "Restart discarded attempt identity",
+        "data": {
+          "recovered": false
+        },
+        "financialStatus": "UNKNOWN"
+      },
+      {
+        "index": 5,
+        "at": 317,
+        "stage": "AUTHORITY",
+        "action": "Vulnerable policy requested a second authorization",
+        "data": {
+          "authorizations": 2
+        },
+        "financialStatus": "UNKNOWN"
+      }
+    ],
+    "invariants": [
+      {
+        "id": "persistentJournal",
+        "satisfied": false,
+        "detail": "Reload the append-only journal and reconcile the existing attempt."
+      },
+      {
+        "id": "append-only-state",
+        "satisfied": true,
+        "detail": "All journal transitions follow the declared state machine"
+      },
+      {
+        "id": "no-real-payment",
+        "satisfied": true,
+        "detail": "The replay engine has no transport, key or wallet dependency"
+      }
+    ],
+    "missingEvidence": [
+      "Independent receipt confirming the original broadcast"
+    ],
+    "safeNextAction": "RECONCILE_FIRST â€” retain original attempt; never sign fresh payment",
+    "assertions": {
+      "passed": 2,
+      "failed": 1
+    },
+    "financialStatus": "UNKNOWN",
+    "deliveryStatus": "UNKNOWN",
+    "authorizations": 2,
+    "resultHash": "0xe80b93a815cef0aaf653d52cb4f3368485b5d5082f4c2f3ad07501932ac28f6b"
+  },
+  "after": {
+    "version": "1.0.0",
+    "scenarioId": "crash-recovery",
+    "seed": 42220,
+    "variant": "honest",
+    "policy": {
+      "commitQuote": true,
+      "bindRequest": true,
+      "reconcileUnknown": true,
+      "requireOutcome": true,
+      "matchChain": true,
+      "selectTransfer": true,
+      "separateEvaluator": true,
+      "persistentJournal": true,
+      "exactDecimals": true,
+      "mandateAtSettlement": true,
+      "independentClaims": true,
+      "rpcAgreement": true
+    },
+    "preconditions": [
+      "SIMULATED Celo Sepolia; no wallet or network calls",
+      "One exact quote: 1000 atomic units, known token and payee",
+      "A virtual clock and fixed seed control all fault timing",
+      "Injected condition: Process restarts after broadcast with an unresolved attempt."
+    ],
+    "timeline": [
+      {
+        "index": 0,
+        "at": 27,
+        "stage": "INTENT",
+        "action": "Discovered exact quote",
+        "data": {
+          "chainId": 11142220,
+          "amount": "1000",
+          "quoteCommitment": "0x6b84edc84b53c3085cd35ca2e68a7a4b69e5ba4cddf7da4589f7235bd81f78ec"
+        },
+        "financialStatus": "NOT_INITIATED"
+      },
+      {
+        "index": 1,
+        "at": 45,
+        "stage": "AUTHORITY",
+        "action": "Recorded a simulated authorization; no signature produced",
+        "data": null,
+        "financialStatus": "AUTHORIZED"
+      },
+      {
+        "index": 2,
+        "at": 108,
+        "stage": "PAYMENT",
+        "action": "Simulated broadcast",
+        "data": {
+          "attemptKey": "0xbe5ae878a5e28dc0df4e8ccb91f443eb83c7072b52b72ad152ebf9bf4822dd39"
+        },
+        "financialStatus": "SUBMITTED"
+      },
+      {
+        "index": 3,
+        "at": 194,
+        "stage": "PAYMENT",
+        "action": "Response unavailable; broadcast outcome unknown",
+        "data": null,
+        "financialStatus": "UNKNOWN"
+      },
+      {
+        "index": 4,
+        "at": 283,
+        "stage": "PAYMENT",
+        "action": "Reloaded existing durable attempt",
+        "data": {
+          "recovered": true
+        },
+        "financialStatus": "UNKNOWN"
+      },
+      {
+        "index": 5,
+        "at": 317,
+        "stage": "PAYMENT",
+        "action": "Reconcile first; no fresh authorization",
+        "data": {
+          "recommendation": "RECONCILE_FIRST"
+        },
+        "financialStatus": "UNKNOWN"
+      }
+    ],
+    "invariants": [
+      {
+        "id": "persistentJournal",
+        "satisfied": true,
+        "detail": "Reload the append-only journal and reconcile the existing attempt."
+      },
+      {
+        "id": "append-only-state",
+        "satisfied": true,
+        "detail": "All journal transitions follow the declared state machine"
+      },
+      {
+        "id": "no-real-payment",
+        "satisfied": true,
+        "detail": "The replay engine has no transport, key or wallet dependency"
+      }
+    ],
+    "missingEvidence": [
+      "Independent receipt confirming the original broadcast"
+    ],
+    "safeNextAction": "RECONCILE_FIRST â€” retain original attempt; never sign fresh payment",
+    "assertions": {
+      "passed": 3,
+      "failed": 0
+    },
+    "financialStatus": "UNKNOWN",
+    "deliveryStatus": "UNKNOWN",
+    "authorizations": 1,
+    "resultHash": "0x958bef0d1ae5622cfdb343fcc8ef36c4ad8a04db9be5ca62cc879dd453e74414"
+  }
+}

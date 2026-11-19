@@ -1,0 +1,231 @@
+{
+  "schemaVersion": "1.0.0",
+  "verificationAlgorithm": "echoframe-jcs-keccak-v1",
+  "bundleId": "0x984aaef7de6e42efb474e1b867cf65e0ad95656d4b691e46cb9e07e840e52b2b",
+  "chainId": 11142220,
+  "protocolKind": "local",
+  "environment": "SIMULATED",
+  "createdAt": "2026-01-01T00:00:00.000Z",
+  "observedAt": "2026-01-01T00:00:00.317Z",
+  "redactionProfile": "boundary-allowlist-v1",
+  "title": "Paid but not delivered",
+  "claims": [
+    {
+      "id": "simulation",
+      "statement": "Deterministic local fixture; no public transaction",
+      "quality": "TEST_REPRODUCED"
+    }
+  ],
+  "actors": [],
+  "events": [
+    {
+      "id": "event-0",
+      "index": 0,
+      "type": "replay.intent",
+      "at": "2026-01-01T00:00:00.027Z",
+      "timestampProvenance": "VIRTUAL_CLOCK",
+      "data": {
+        "action": "Discovered exact quote",
+        "details": {
+          "chainId": 11142220,
+          "amount": "1000",
+          "quoteCommitment": "0x6b84edc84b53c3085cd35ca2e68a7a4b69e5ba4cddf7da4589f7235bd81f78ec"
+        }
+      },
+      "previousHash": null,
+      "hash": "0xcaaaeee82e1f56e8d45bd23eafc97fca17bc7ecc5ffbeb23bca7b7558188ee3c"
+    },
+    {
+      "id": "event-1",
+      "index": 1,
+      "type": "replay.authority",
+      "at": "2026-01-01T00:00:00.045Z",
+      "timestampProvenance": "VIRTUAL_CLOCK",
+      "data": {
+        "action": "Recorded a simulated authorization; no signature produced",
+        "details": null
+      },
+      "previousHash": "0xcaaaeee82e1f56e8d45bd23eafc97fca17bc7ecc5ffbeb23bca7b7558188ee3c",
+      "hash": "0x7d4de74486c4c24f9f17160e006e3f7d0e4b5ca8cda4059bedb1eea62780cc48"
+    },
+    {
+      "id": "event-2",
+      "index": 2,
+      "type": "replay.payment",
+      "at": "2026-01-01T00:00:00.108Z",
+      "timestampProvenance": "VIRTUAL_CLOCK",
+      "data": {
+        "action": "Simulated broadcast",
+        "details": {
+          "attemptKey": "0xbe5ae878a5e28dc0df4e8ccb91f443eb83c7072b52b72ad152ebf9bf4822dd39"
+        }
+      },
+      "previousHash": "0x7d4de74486c4c24f9f17160e006e3f7d0e4b5ca8cda4059bedb1eea62780cc48",
+      "hash": "0x37dbd0ba5faffcfde85270b1470993a5095c2294f8a9da16a592ee99a8235230"
+    },
+    {
+      "id": "event-3",
+      "index": 3,
+      "type": "replay.payment",
+      "at": "2026-01-01T00:00:00.194Z",
+      "timestampProvenance": "VIRTUAL_CLOCK",
+      "data": {
+        "action": "Simulated successful receipt; not a public chain receipt",
+        "details": null
+      },
+      "previousHash": "0x37dbd0ba5faffcfde85270b1470993a5095c2294f8a9da16a592ee99a8235230",
+      "hash": "0xd81979a17cf1d7a763289489eceeee16061c3309a7f0f08d2d3608444d06cb4e"
+    },
+    {
+      "id": "event-4",
+      "index": 4,
+      "type": "replay.delivery",
+      "at": "2026-01-01T00:00:00.283Z",
+      "timestampProvenance": "VIRTUAL_CLOCK",
+      "data": {
+        "action": "HTTP 200 returned zero body bytes",
+        "details": null
+      },
+      "previousHash": "0xd81979a17cf1d7a763289489eceeee16061c3309a7f0f08d2d3608444d06cb4e",
+      "hash": "0x56e0deb7f16287fd4db8dbc4682baee7bc090f4a901d598aa6e08801d2409f3b"
+    },
+    {
+      "id": "event-5",
+      "index": 5,
+      "type": "replay.proof",
+      "at": "2026-01-01T00:00:00.317Z",
+      "timestampProvenance": "VIRTUAL_CLOCK",
+      "data": {
+        "action": "Outcome validation failed",
+        "details": null
+      },
+      "previousHash": "0x56e0deb7f16287fd4db8dbc4682baee7bc090f4a901d598aa6e08801d2409f3b",
+      "hash": "0x0e29eb156b8cc031094beefd1a4a995101a398d83ce3611c88f9ce146bcb166a"
+    },
+    {
+      "id": "event-6",
+      "index": 6,
+      "type": "financial.observation",
+      "at": "2026-01-01T00:00:00.317Z",
+      "timestampProvenance": "VIRTUAL_CLOCK",
+      "data": {
+        "status": "SETTLED",
+        "source": "deterministic simulation"
+      },
+      "previousHash": "0x0e29eb156b8cc031094beefd1a4a995101a398d83ce3611c88f9ce146bcb166a",
+      "hash": "0x3a0d0823dd5122cf48a59a568f4d523fa02136b93db7b2ffad3c8185a23d6d34"
+    },
+    {
+      "id": "outcome-0",
+      "index": 7,
+      "type": "delivery.empty",
+      "at": "2026-01-01T00:00:00.317Z",
+      "timestampProvenance": "VIRTUAL_CLOCK",
+      "data": {
+        "contentHash": "0x12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126"
+      },
+      "previousHash": "0x3a0d0823dd5122cf48a59a568f4d523fa02136b93db7b2ffad3c8185a23d6d34",
+      "hash": "0xa9f51d36c1c15b66b798d3665ea143267169edb4010e30b1875b72975985ae31"
+    }
+  ],
+  "paymentOffers": [],
+  "requestContextHash": "0x2e8e8d2144b7cb3a3cafc5c7a315dfffb610eddf214f30176cce12b1f7933d7d",
+  "facilitatorResponse": null,
+  "transactionHashes": [],
+  "rpcObservations": [],
+  "contentHashes": [],
+  "outcomes": [
+    {
+      "chainId": 11142220,
+      "eventId": "outcome-0",
+      "input": {
+        "body": "",
+        "status": 200
+      },
+      "manifest": {
+        "name": "Structured market rate",
+        "now": "2026-01-01T12:00:00.000Z",
+        "rules": [
+          {
+            "kind": "presence"
+          },
+          {
+            "kind": "http",
+            "max": 299,
+            "min": 200
+          },
+          {
+            "kind": "schema",
+            "schema": {
+              "additionalProperties": false,
+              "properties": {
+                "asOf": {
+                  "type": "string"
+                },
+                "pair": {
+                  "type": "string"
+                },
+                "rate": {
+                  "maximum": 1000000,
+                  "minimum": 0.0001,
+                  "type": "number"
+                }
+              },
+              "required": [
+                "pair",
+                "rate",
+                "asOf"
+              ],
+              "type": "object"
+            }
+          },
+          {
+            "kind": "freshness",
+            "maxAgeSeconds": 3600,
+            "path": "asOf"
+          }
+        ],
+        "version": "1.0.0"
+      },
+      "proofHash": "0xa3bf2d368114134f7633d673419b1c73606f56088b9561369383bce393e10f27",
+      "result": {
+        "checks": [
+          {
+            "detail": "Deterministic condition not satisfied",
+            "index": 0,
+            "kind": "presence",
+            "status": "FAIL"
+          },
+          {
+            "detail": "Condition satisfied",
+            "index": 1,
+            "kind": "http",
+            "status": "PASS"
+          },
+          {
+            "detail": "Deterministic condition not satisfied",
+            "index": 2,
+            "kind": "schema",
+            "status": "FAIL"
+          },
+          {
+            "detail": "Deterministic condition not satisfied",
+            "index": 3,
+            "kind": "freshness",
+            "status": "FAIL"
+          }
+        ],
+        "contentHash": "0x12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "inputHash": "0xf62464bb24201ed91e7d0a07cb8846c74f9f4f153fb2ce1a8dd2e042840ccbdc",
+        "manifestHash": "0xbbc6bce65045256707ba4feced8db3b5ef547a3f8a276b88c9f694fc474205df",
+        "verdict": "TESTED_FAIL"
+      },
+      "version": "1.0.0"
+    }
+  ],
+  "warnings": [],
+  "policyVersion": "1.0.0",
+  "recoveryState": "SETTLED",
+  "artifacts": [],
+  "rootHash": "0x847ca1e40187003c591dba462d79c3d45e3f91a18fedcc34e09416dfea75970b"
+}

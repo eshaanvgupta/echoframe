@@ -1,0 +1,32 @@
+import {describe,it,expect} from 'vitest';
+import {ReadonlyRpc,reconcile,decodeTransfers,formatUnitsExact,validateEndpoint,networks,type ReadMethod} from '../packages/celo/src/index.js';
+import {receipt,TX,B,TOKEN,A,transport,copy,BLOCK} from './fixtures.js';
+describe('strict ERC-20 receipt decoding',()=>{
+  it('decodes exact integer transfer and log identity',()=>expect(decodeTransfers(receipt(),TX)[0]).toMatchObject({token:TOKEN,from:A,to:B,amount:'1000',logIndex:2}));
+  it('ignores logs from reverted transactions',()=>{const r=receipt();r.status='0x0';expect(decodeTransfers(r)).toEqual([]);});
+  it('rejects receipt hash mismatch',()=>expect(()=>decodeTransfers(receipt(),'0x'+'ff'.repeat(32))).toThrow('TX_MISMATCH'));
+  const changes:Array<[string,(r:ReturnType<typeof receipt>)=>void]>=[['wrong data length',r=>r.logs[0]!.data='0x01'],['topic count',r=>r.logs[0]!.topics.pop()],['indexed address padding',r=>r.logs[0]!.topics[1]='0x'+'ff'.repeat(32)],['removed log',r=>r.logs[0]!.removed=true],['wrong block',r=>r.logs[0]!.blockHash=TX],['wrong tx context',r=>r.logs[0]!.transactionHash=BLOCK],['bad emitting address',r=>r.logs[0]!.address='0x123'],['duplicate attribution',r=>r.logs.push(copy(r.logs[0]!))]];
+  it.each(changes)('rejects %s',(_name,change)=>{const r=receipt();change(r);expect(()=>decodeTransfers(r)).toThrow();});
+  it('ignores unrelated event topics',()=>{const r=receipt();r.logs[0]!.topics[0]=TX;expect(decodeTransfers(r)).toHaveLength(0);});
+  it.each([[1000,6,'0.001000'],[1000,0,'1000'],[1,18,'0.000000000000000001']])('formats exact atomic units %#',(amount,decimals,expected)=>expect(formatUnitsExact(String(amount),Number(decimals))).toBe(expected));
+  it('rejects unsafe decimal assumptions',()=>expect(()=>formatUnitsExact('1',100)).toThrow());
+});
+describe('conservative RPC reconciliation',()=>{
+  const rpc=(overrides:Parameters<typeof transport>[0]={})=>new ReadonlyRpc({chainId:11142220,transport:transport(overrides),retries:0});
+  it('matches supplied expectations and keeps delivery UNKNOWN',async()=>{const r=await reconcile(rpc(),TX,{expected:{asset:TOKEN,sender:A,recipient:B,amount:'1000',decimals:6}});expect(r.financialStatus).toBe('SETTLED');expect(r.deliveryStatus).toBe('UNKNOWN');expect(r.decimals.source).toBe('RPC');});
+  it('marks absent expectations explicitly',async()=>expect((await reconcile(rpc(),TX)).expectations).toEqual({asset:null,sender:null,recipient:null,amount:null,decimals:null}));
+  it.each([{asset:A},{recipient:A},{sender:B},{amount:'1000000'},{decimals:18}])('does not settle mismatched expectation %j',async expected=>expect((await reconcile(rpc(),TX,{expected})).financialStatus).toBe('UNKNOWN'));
+  it('keeps absent receipts PENDING',async()=>expect((await reconcile(rpc({'eth_getTransactionReceipt':null}),TX)).financialStatus).toBe('PENDING'));
+  it('keeps RPC downtime UNKNOWN and stale',async()=>{const r=await reconcile(rpc({'eth_chainId':new Error('timeout')}),TX);expect(r.financialStatus).toBe('UNKNOWN');expect(r.stale).toBe(true);});
+  it('rejects wrong runtime chain identity',async()=>{const r=await reconcile(rpc({'eth_chainId':'0xa4ec'}),TX);expect(r.financialStatus).toBe('UNKNOWN');expect(r.receipt).toBeNull();});
+  it('compares block inclusion rather than trusting receipt alone',async()=>expect((await reconcile(rpc({'eth_getBlockByHash':{hash:BLOCK,number:'0x10',timestamp:'0x100',transactions:[]}}),TX)).financialStatus).toBe('UNKNOWN'));
+  it('requires selection among multiple transfers',async()=>{const r=receipt();r.logs.push({...copy(r.logs[0]!),logIndex:'0x3'});expect((await reconcile(rpc({'eth_getTransactionReceipt':r}),TX)).financialStatus).toBe('UNKNOWN');expect((await reconcile(rpc({'eth_getTransactionReceipt':r}),TX,{selectedLogIndex:3})).selectedLogIndex).toBe(3);});
+  it('returns an honest unsupported-token-decimals warning',async()=>{const r=await reconcile(rpc({'eth_call':'0x'}),TX);expect(r.decimals.source).toBe('NOT_PROVIDED');expect(r.warnings.join()).toContain('integer units');});
+  it('bounds rate-limit retries',async()=>{let calls=0;const r=new ReadonlyRpc({chainId:11142220,retries:2,backoffMs:0,transport:async()=>{calls++;throw new Error('429');}});await expect(r.checkChain()).rejects.toThrow('429');expect(calls).toBe(3);});
+  it('honors cancellation without new payments',async()=>{const c=new AbortController();c.abort();await expect(reconcile(rpc(),TX,{signal:c.signal})).rejects.toThrow();});
+  it('restricts RPC to read-only methods',async()=>await expect(rpc().call('eth_sendRawTransaction'as ReadMethod,[])).rejects.toThrow('READ_ONLY'));
+  it.each(['http://127.0.0.1','https://127.0.0.1','https://169.254.169.254','https://evil.example/rpc','https://user:pass@forno.celo.org'])('blocks untrusted/internal endpoint %s',endpoint=>expect(()=>validateEndpoint(endpoint)).toThrow());
+  it('allows explicit trusted HTTPS user configuration',()=>expect(validateEndpoint('https://rpc.example.org',['https://rpc.example.org'])).toBe('https://rpc.example.org/'));
+  it('cross-checks receipt agreement',async()=>{const r=new ReadonlyRpc({chainId:11142220,endpoints:[networks[11142220].rpc,networks[42220].rpc],transport:transport(),retries:0});expect((await reconcile(r,TX,{crossCheck:true})).rpcAgreement).toBe('AGREES');});
+  it('retains UNKNOWN on contradictory observations',async()=>{const r=new ReadonlyRpc({chainId:11142220,endpoints:[networks[11142220].rpc,networks[42220].rpc],retries:0,transport:async(e,m,p,s)=>m==='eth_getTransactionReceipt'&&e.includes('forno.celo.org')?null:transport()(e,m,p,s)});const result=await reconcile(r,TX,{crossCheck:true});expect(result.rpcAgreement).toBe('DISAGREES');expect(result.financialStatus).toBe('UNKNOWN');});
+});

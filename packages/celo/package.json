@@ -1,0 +1,26 @@
+{
+  "name": "@echoframe/celo",
+  "version": "1.0.0",
+  "description": "ECHOFRAME celo: read-only evidence infrastructure",
+  "type": "module",
+  "license": "MIT",
+  "engines": {
+    "node": ">=24"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "dependencies": {
+    "zod": "4.6.7",
+    "@echoframe/core": "workspace:*",
+    "viem": "2.58.1"
+  }
+}

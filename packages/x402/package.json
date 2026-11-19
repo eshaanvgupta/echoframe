@@ -1,0 +1,26 @@
+{
+  "name": "@echoframe/x402",
+  "version": "1.0.0",
+  "description": "ECHOFRAME x402: read-only evidence infrastructure",
+  "type": "module",
+  "license": "MIT",
+  "engines": {
+    "node": ">=24"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "dependencies": {
+    "@echoframe/core": "workspace:*",
+    "@x402/core": "2.31.0",
+    "zod": "4.6.7"
+  }
+}

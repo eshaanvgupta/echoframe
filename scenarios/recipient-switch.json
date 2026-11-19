@@ -1,0 +1,223 @@
+{
+  "environment": "SIMULATED",
+  "before": {
+    "version": "1.0.0",
+    "scenarioId": "recipient-switch",
+    "seed": 42220,
+    "variant": "vulnerable",
+    "policy": {
+      "commitQuote": false,
+      "bindRequest": true,
+      "reconcileUnknown": true,
+      "requireOutcome": true,
+      "matchChain": true,
+      "selectTransfer": true,
+      "separateEvaluator": true,
+      "persistentJournal": true,
+      "exactDecimals": true,
+      "mandateAtSettlement": true,
+      "independentClaims": true,
+      "rpcAgreement": true
+    },
+    "preconditions": [
+      "SIMULATED Celo Sepolia; no wallet or network calls",
+      "One exact quote: 1000 atomic units, known token and payee",
+      "A virtual clock and fixed seed control all fault timing",
+      "Injected condition: Merchant changes payTo after discovery."
+    ],
+    "timeline": [
+      {
+        "index": 0,
+        "at": 27,
+        "stage": "INTENT",
+        "action": "Discovered exact quote",
+        "data": {
+          "chainId": 11142220,
+          "amount": "1000",
+          "quoteCommitment": "0x6b84edc84b53c3085cd35ca2e68a7a4b69e5ba4cddf7da4589f7235bd81f78ec"
+        },
+        "financialStatus": "NOT_INITIATED"
+      },
+      {
+        "index": 1,
+        "at": 45,
+        "stage": "INTENT",
+        "action": "Offer changed after discovery",
+        "data": {
+          "field": "payTo",
+          "original": "payee-A",
+          "observed": "payee-B"
+        },
+        "financialStatus": "NOT_INITIATED"
+      },
+      {
+        "index": 2,
+        "at": 108,
+        "stage": "AUTHORITY",
+        "action": "Changed quote accepted without comparison",
+        "data": null,
+        "financialStatus": "NOT_INITIATED"
+      },
+      {
+        "index": 3,
+        "at": 194,
+        "stage": "AUTHORITY",
+        "action": "Recorded a simulated authorization; no signature produced",
+        "data": null,
+        "financialStatus": "AUTHORIZED"
+      },
+      {
+        "index": 4,
+        "at": 283,
+        "stage": "PAYMENT",
+        "action": "Simulated broadcast",
+        "data": {
+          "attemptKey": "0xbe5ae878a5e28dc0df4e8ccb91f443eb83c7072b52b72ad152ebf9bf4822dd39"
+        },
+        "financialStatus": "SUBMITTED"
+      },
+      {
+        "index": 5,
+        "at": 317,
+        "stage": "PAYMENT",
+        "action": "Simulated successful receipt; not a public chain receipt",
+        "data": null,
+        "financialStatus": "SETTLED"
+      },
+      {
+        "index": 6,
+        "at": 348,
+        "stage": "DELIVERY",
+        "action": "Synthetic structured rate response returned",
+        "data": {
+          "pair": "CELO/USD",
+          "rate": 0.41,
+          "asOf": "2026-01-01T11:59:00.000Z"
+        },
+        "financialStatus": "SETTLED"
+      },
+      {
+        "index": 7,
+        "at": 366,
+        "stage": "PROOF",
+        "action": "Built-in structure and numeric bounds satisfied",
+        "data": null,
+        "financialStatus": "SETTLED"
+      }
+    ],
+    "invariants": [
+      {
+        "id": "commitQuote",
+        "satisfied": false,
+        "detail": "Pin the full discovered quote commitment before authorization."
+      },
+      {
+        "id": "append-only-state",
+        "satisfied": true,
+        "detail": "All journal transitions follow the declared state machine"
+      },
+      {
+        "id": "no-real-payment",
+        "satisfied": true,
+        "detail": "The replay engine has no transport, key or wallet dependency"
+      }
+    ],
+    "missingEvidence": [],
+    "safeNextAction": "Export the evidence and reproduce the declared checks",
+    "assertions": {
+      "passed": 2,
+      "failed": 1
+    },
+    "financialStatus": "SETTLED",
+    "deliveryStatus": "TESTED_PASS",
+    "authorizations": 1,
+    "resultHash": "0x872ce3f2d7b982ade6c8956a3d390d4c5e6f68f728e5515681e6e59d286085b9"
+  },
+  "after": {
+    "version": "1.0.0",
+    "scenarioId": "recipient-switch",
+    "seed": 42220,
+    "variant": "honest",
+    "policy": {
+      "commitQuote": true,
+      "bindRequest": true,
+      "reconcileUnknown": true,
+      "requireOutcome": true,
+      "matchChain": true,
+      "selectTransfer": true,
+      "separateEvaluator": true,
+      "persistentJournal": true,
+      "exactDecimals": true,
+      "mandateAtSettlement": true,
+      "independentClaims": true,
+      "rpcAgreement": true
+    },
+    "preconditions": [
+      "SIMULATED Celo Sepolia; no wallet or network calls",
+      "One exact quote: 1000 atomic units, known token and payee",
+      "A virtual clock and fixed seed control all fault timing",
+      "Injected condition: Merchant changes payTo after discovery."
+    ],
+    "timeline": [
+      {
+        "index": 0,
+        "at": 27,
+        "stage": "INTENT",
+        "action": "Discovered exact quote",
+        "data": {
+          "chainId": 11142220,
+          "amount": "1000",
+          "quoteCommitment": "0x6b84edc84b53c3085cd35ca2e68a7a4b69e5ba4cddf7da4589f7235bd81f78ec"
+        },
+        "financialStatus": "NOT_INITIATED"
+      },
+      {
+        "index": 1,
+        "at": 45,
+        "stage": "INTENT",
+        "action": "Offer changed after discovery",
+        "data": {
+          "field": "payTo",
+          "original": "payee-A",
+          "observed": "payee-B"
+        },
+        "financialStatus": "NOT_INITIATED"
+      },
+      {
+        "index": 2,
+        "at": 108,
+        "stage": "AUTHORITY",
+        "action": "Commitment mismatch: authorization blocked",
+        "data": null,
+        "financialStatus": "NOT_INITIATED"
+      }
+    ],
+    "invariants": [
+      {
+        "id": "commitQuote",
+        "satisfied": true,
+        "detail": "Pin the full discovered quote commitment before authorization."
+      },
+      {
+        "id": "append-only-state",
+        "satisfied": true,
+        "detail": "All journal transitions follow the declared state machine"
+      },
+      {
+        "id": "no-real-payment",
+        "satisfied": true,
+        "detail": "The replay engine has no transport, key or wallet dependency"
+      }
+    ],
+    "missingEvidence": [],
+    "safeNextAction": "Stop and manually inspect the changed quote",
+    "assertions": {
+      "passed": 3,
+      "failed": 0
+    },
+    "financialStatus": "NOT_INITIATED",
+    "deliveryStatus": "UNKNOWN",
+    "authorizations": 0,
+    "resultHash": "0xa596615a0fb2b037eb8a5b70d8066aa2b2b5a61fb7f2ad417ff596c3757a6d2a"
+  }
+}

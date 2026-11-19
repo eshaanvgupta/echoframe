@@ -1,0 +1,227 @@
+{
+  "environment": "SIMULATED",
+  "before": {
+    "version": "1.0.0",
+    "scenarioId": "mandate-expiry",
+    "seed": 42220,
+    "variant": "vulnerable",
+    "policy": {
+      "commitQuote": true,
+      "bindRequest": true,
+      "reconcileUnknown": true,
+      "requireOutcome": true,
+      "matchChain": true,
+      "selectTransfer": true,
+      "separateEvaluator": true,
+      "persistentJournal": true,
+      "exactDecimals": true,
+      "mandateAtSettlement": false,
+      "independentClaims": true,
+      "rpcAgreement": true
+    },
+    "preconditions": [
+      "SIMULATED Celo Sepolia; no wallet or network calls",
+      "One exact quote: 1000 atomic units, known token and payee",
+      "A virtual clock and fixed seed control all fault timing",
+      "Injected condition: Mandate expires between authorization and final observation."
+    ],
+    "timeline": [
+      {
+        "index": 0,
+        "at": 27,
+        "stage": "INTENT",
+        "action": "Discovered exact quote",
+        "data": {
+          "chainId": 11142220,
+          "amount": "1000",
+          "quoteCommitment": "0x6b84edc84b53c3085cd35ca2e68a7a4b69e5ba4cddf7da4589f7235bd81f78ec"
+        },
+        "financialStatus": "NOT_INITIATED"
+      },
+      {
+        "index": 1,
+        "at": 45,
+        "stage": "AUTHORITY",
+        "action": "Recorded a simulated authorization; no signature produced",
+        "data": null,
+        "financialStatus": "AUTHORIZED"
+      },
+      {
+        "index": 2,
+        "at": 108,
+        "stage": "PAYMENT",
+        "action": "Simulated broadcast",
+        "data": {
+          "attemptKey": "0xbe5ae878a5e28dc0df4e8ccb91f443eb83c7072b52b72ad152ebf9bf4822dd39"
+        },
+        "financialStatus": "SUBMITTED"
+      },
+      {
+        "index": 3,
+        "at": 194,
+        "stage": "AUTHORITY",
+        "action": "Mandate expired before settlement observation",
+        "data": null,
+        "financialStatus": "SUBMITTED"
+      },
+      {
+        "index": 4,
+        "at": 283,
+        "stage": "PROOF",
+        "action": "Vulnerable policy kept authority marked valid",
+        "data": null,
+        "financialStatus": "SETTLED"
+      },
+      {
+        "index": 5,
+        "at": 317,
+        "stage": "DELIVERY",
+        "action": "Synthetic structured rate response returned",
+        "data": {
+          "pair": "CELO/USD",
+          "rate": 0.41,
+          "asOf": "2026-01-01T11:59:00.000Z"
+        },
+        "financialStatus": "SETTLED"
+      },
+      {
+        "index": 6,
+        "at": 348,
+        "stage": "PROOF",
+        "action": "Built-in structure and numeric bounds satisfied",
+        "data": null,
+        "financialStatus": "SETTLED"
+      }
+    ],
+    "invariants": [
+      {
+        "id": "mandateAtSettlement",
+        "satisfied": false,
+        "detail": "Report EXPIRED and stop automatic continuation; reconcile the existing payment."
+      },
+      {
+        "id": "append-only-state",
+        "satisfied": true,
+        "detail": "All journal transitions follow the declared state machine"
+      },
+      {
+        "id": "no-real-payment",
+        "satisfied": true,
+        "detail": "The replay engine has no transport, key or wallet dependency"
+      }
+    ],
+    "missingEvidence": [],
+    "safeNextAction": "Export the evidence and reproduce the declared checks",
+    "assertions": {
+      "passed": 2,
+      "failed": 1
+    },
+    "financialStatus": "SETTLED",
+    "deliveryStatus": "TESTED_PASS",
+    "authorizations": 1,
+    "resultHash": "0x108eb56c86fb68d476ff9b7214c286d8a87682865ce09950fd13dcda5f655b74"
+  },
+  "after": {
+    "version": "1.0.0",
+    "scenarioId": "mandate-expiry",
+    "seed": 42220,
+    "variant": "honest",
+    "policy": {
+      "commitQuote": true,
+      "bindRequest": true,
+      "reconcileUnknown": true,
+      "requireOutcome": true,
+      "matchChain": true,
+      "selectTransfer": true,
+      "separateEvaluator": true,
+      "persistentJournal": true,
+      "exactDecimals": true,
+      "mandateAtSettlement": true,
+      "independentClaims": true,
+      "rpcAgreement": true
+    },
+    "preconditions": [
+      "SIMULATED Celo Sepolia; no wallet or network calls",
+      "One exact quote: 1000 atomic units, known token and payee",
+      "A virtual clock and fixed seed control all fault timing",
+      "Injected condition: Mandate expires between authorization and final observation."
+    ],
+    "timeline": [
+      {
+        "index": 0,
+        "at": 27,
+        "stage": "INTENT",
+        "action": "Discovered exact quote",
+        "data": {
+          "chainId": 11142220,
+          "amount": "1000",
+          "quoteCommitment": "0x6b84edc84b53c3085cd35ca2e68a7a4b69e5ba4cddf7da4589f7235bd81f78ec"
+        },
+        "financialStatus": "NOT_INITIATED"
+      },
+      {
+        "index": 1,
+        "at": 45,
+        "stage": "AUTHORITY",
+        "action": "Recorded a simulated authorization; no signature produced",
+        "data": null,
+        "financialStatus": "AUTHORIZED"
+      },
+      {
+        "index": 2,
+        "at": 108,
+        "stage": "PAYMENT",
+        "action": "Simulated broadcast",
+        "data": {
+          "attemptKey": "0xbe5ae878a5e28dc0df4e8ccb91f443eb83c7072b52b72ad152ebf9bf4822dd39"
+        },
+        "financialStatus": "SUBMITTED"
+      },
+      {
+        "index": 3,
+        "at": 194,
+        "stage": "AUTHORITY",
+        "action": "Mandate expired before settlement observation",
+        "data": null,
+        "financialStatus": "SUBMITTED"
+      },
+      {
+        "index": 4,
+        "at": 283,
+        "stage": "PAYMENT",
+        "action": "Existing payment pending; continuation stopped",
+        "data": null,
+        "financialStatus": "PENDING"
+      }
+    ],
+    "invariants": [
+      {
+        "id": "mandateAtSettlement",
+        "satisfied": true,
+        "detail": "Report EXPIRED and stop automatic continuation; reconcile the existing payment."
+      },
+      {
+        "id": "append-only-state",
+        "satisfied": true,
+        "detail": "All journal transitions follow the declared state machine"
+      },
+      {
+        "id": "no-real-payment",
+        "satisfied": true,
+        "detail": "The replay engine has no transport, key or wallet dependency"
+      }
+    ],
+    "missingEvidence": [
+      "Current valid mandate and final receipt"
+    ],
+    "safeNextAction": "RECONCILE_FIRST â€” retain original attempt; never sign fresh payment",
+    "assertions": {
+      "passed": 3,
+      "failed": 0
+    },
+    "financialStatus": "PENDING",
+    "deliveryStatus": "UNKNOWN",
+    "authorizations": 1,
+    "resultHash": "0x637cce7c0680ab2fa94f0c138edc4e140e0a07a5e5b2e852fe2912f4447b0837"
+  }
+}

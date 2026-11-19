@@ -1,0 +1,239 @@
+{
+  "schemaVersion": "1.0.0",
+  "verificationAlgorithm": "echoframe-jcs-keccak-v1",
+  "bundleId": "0x963af585c3d5726881cc73673829644abd232861e6119745762558fe063cfee8",
+  "chainId": 11142220,
+  "protocolKind": "local",
+  "environment": "SIMULATED",
+  "createdAt": "2026-01-01T00:00:00.000Z",
+  "observedAt": "2026-01-01T00:00:00.317Z",
+  "redactionProfile": "boundary-allowlist-v1",
+  "title": "Settled. Delivered. Checked.",
+  "claims": [
+    {
+      "id": "simulation",
+      "statement": "Deterministic local fixture; no public transaction",
+      "quality": "TEST_REPRODUCED"
+    }
+  ],
+  "actors": [],
+  "events": [
+    {
+      "id": "event-0",
+      "index": 0,
+      "type": "replay.intent",
+      "at": "2026-01-01T00:00:00.027Z",
+      "timestampProvenance": "VIRTUAL_CLOCK",
+      "data": {
+        "action": "Discovered exact quote",
+        "details": {
+          "chainId": 11142220,
+          "amount": "1000",
+          "quoteCommitment": "0x6b84edc84b53c3085cd35ca2e68a7a4b69e5ba4cddf7da4589f7235bd81f78ec"
+        }
+      },
+      "previousHash": null,
+      "hash": "0xcaaaeee82e1f56e8d45bd23eafc97fca17bc7ecc5ffbeb23bca7b7558188ee3c"
+    },
+    {
+      "id": "event-1",
+      "index": 1,
+      "type": "replay.authority",
+      "at": "2026-01-01T00:00:00.045Z",
+      "timestampProvenance": "VIRTUAL_CLOCK",
+      "data": {
+        "action": "Recorded a simulated authorization; no signature produced",
+        "details": null
+      },
+      "previousHash": "0xcaaaeee82e1f56e8d45bd23eafc97fca17bc7ecc5ffbeb23bca7b7558188ee3c",
+      "hash": "0x7d4de74486c4c24f9f17160e006e3f7d0e4b5ca8cda4059bedb1eea62780cc48"
+    },
+    {
+      "id": "event-2",
+      "index": 2,
+      "type": "replay.payment",
+      "at": "2026-01-01T00:00:00.108Z",
+      "timestampProvenance": "VIRTUAL_CLOCK",
+      "data": {
+        "action": "Simulated broadcast",
+        "details": {
+          "attemptKey": "0xbe5ae878a5e28dc0df4e8ccb91f443eb83c7072b52b72ad152ebf9bf4822dd39"
+        }
+      },
+      "previousHash": "0x7d4de74486c4c24f9f17160e006e3f7d0e4b5ca8cda4059bedb1eea62780cc48",
+      "hash": "0x37dbd0ba5faffcfde85270b1470993a5095c2294f8a9da16a592ee99a8235230"
+    },
+    {
+      "id": "event-3",
+      "index": 3,
+      "type": "replay.payment",
+      "at": "2026-01-01T00:00:00.194Z",
+      "timestampProvenance": "VIRTUAL_CLOCK",
+      "data": {
+        "action": "Simulated successful receipt; not a public chain receipt",
+        "details": null
+      },
+      "previousHash": "0x37dbd0ba5faffcfde85270b1470993a5095c2294f8a9da16a592ee99a8235230",
+      "hash": "0xd81979a17cf1d7a763289489eceeee16061c3309a7f0f08d2d3608444d06cb4e"
+    },
+    {
+      "id": "event-4",
+      "index": 4,
+      "type": "replay.delivery",
+      "at": "2026-01-01T00:00:00.283Z",
+      "timestampProvenance": "VIRTUAL_CLOCK",
+      "data": {
+        "action": "Synthetic structured rate response returned",
+        "details": {
+          "pair": "CELO/USD",
+          "rate": 0.41,
+          "asOf": "2026-01-01T11:59:00.000Z"
+        }
+      },
+      "previousHash": "0xd81979a17cf1d7a763289489eceeee16061c3309a7f0f08d2d3608444d06cb4e",
+      "hash": "0x6f1e23d6a423d7656e5b54cc0493f11afdf4de41b0cc5884cc2c849970c9379d"
+    },
+    {
+      "id": "event-5",
+      "index": 5,
+      "type": "replay.proof",
+      "at": "2026-01-01T00:00:00.317Z",
+      "timestampProvenance": "VIRTUAL_CLOCK",
+      "data": {
+        "action": "Built-in structure and numeric bounds satisfied",
+        "details": null
+      },
+      "previousHash": "0x6f1e23d6a423d7656e5b54cc0493f11afdf4de41b0cc5884cc2c849970c9379d",
+      "hash": "0xa7d477afc157f2212096c4385e0c744765477bb5f08d70bfda562cfcfef26d8e"
+    },
+    {
+      "id": "event-6",
+      "index": 6,
+      "type": "financial.observation",
+      "at": "2026-01-01T00:00:00.317Z",
+      "timestampProvenance": "VIRTUAL_CLOCK",
+      "data": {
+        "status": "SETTLED",
+        "source": "deterministic simulation"
+      },
+      "previousHash": "0xa7d477afc157f2212096c4385e0c744765477bb5f08d70bfda562cfcfef26d8e",
+      "hash": "0xe7484a932f9d3b9e2934a5c7d55a4a4c2ca83ece43299019f2bf965d4bc14ae6"
+    },
+    {
+      "id": "outcome-0",
+      "index": 7,
+      "type": "delivery.returned",
+      "at": "2026-01-01T00:00:00.317Z",
+      "timestampProvenance": "VIRTUAL_CLOCK",
+      "data": {
+        "contentHash": "0x8bddea77aa7ec85c1b17f68f1344fb33c5d0e6e40ec7b91bba8919f2f4db71b8"
+      },
+      "previousHash": "0xe7484a932f9d3b9e2934a5c7d55a4a4c2ca83ece43299019f2bf965d4bc14ae6",
+      "hash": "0xdda5c4f3f8b2c522ad3831dea10bac8c6584d4aa060bc728ce4f3022801da0fa"
+    }
+  ],
+  "paymentOffers": [],
+  "requestContextHash": "0xb93142d09befa0dcee65d47ab87e47e5528359bb0ca691690b82be3ff5e444a4",
+  "facilitatorResponse": null,
+  "transactionHashes": [],
+  "rpcObservations": [],
+  "contentHashes": [],
+  "outcomes": [
+    {
+      "chainId": 11142220,
+      "eventId": "outcome-0",
+      "input": {
+        "body": {
+          "asOf": "2026-01-01T11:59:00.000Z",
+          "pair": "CELO/USD",
+          "rate": 0.41
+        },
+        "status": 200
+      },
+      "manifest": {
+        "name": "Structured market rate",
+        "now": "2026-01-01T12:00:00.000Z",
+        "rules": [
+          {
+            "kind": "presence"
+          },
+          {
+            "kind": "http",
+            "max": 299,
+            "min": 200
+          },
+          {
+            "kind": "schema",
+            "schema": {
+              "additionalProperties": false,
+              "properties": {
+                "asOf": {
+                  "type": "string"
+                },
+                "pair": {
+                  "type": "string"
+                },
+                "rate": {
+                  "maximum": 1000000,
+                  "minimum": 0.0001,
+                  "type": "number"
+                }
+              },
+              "required": [
+                "pair",
+                "rate",
+                "asOf"
+              ],
+              "type": "object"
+            }
+          },
+          {
+            "kind": "freshness",
+            "maxAgeSeconds": 3600,
+            "path": "asOf"
+          }
+        ],
+        "version": "1.0.0"
+      },
+      "proofHash": "0x3f6697195d848f695662c20ebb1c02bb9bf3d568ec9316ac40556f658bb60319",
+      "result": {
+        "checks": [
+          {
+            "detail": "Condition satisfied",
+            "index": 0,
+            "kind": "presence",
+            "status": "PASS"
+          },
+          {
+            "detail": "Condition satisfied",
+            "index": 1,
+            "kind": "http",
+            "status": "PASS"
+          },
+          {
+            "detail": "Condition satisfied",
+            "index": 2,
+            "kind": "schema",
+            "status": "PASS"
+          },
+          {
+            "detail": "Condition satisfied",
+            "index": 3,
+            "kind": "freshness",
+            "status": "PASS"
+          }
+        ],
+        "contentHash": "0x8bddea77aa7ec85c1b17f68f1344fb33c5d0e6e40ec7b91bba8919f2f4db71b8",
+        "inputHash": "0x83bdb03f71d6658c7ade5abaa01e4a6cb7d14f7c0f6ac659fd33e2646efa4591",
+        "manifestHash": "0xbbc6bce65045256707ba4feced8db3b5ef547a3f8a276b88c9f694fc474205df",
+        "verdict": "TESTED_PASS"
+      },
+      "version": "1.0.0"
+    }
+  ],
+  "warnings": [],
+  "policyVersion": "1.0.0",
+  "recoveryState": "SETTLED",
+  "artifacts": [],
+  "rootHash": "0xd6d20797c080b216e435d15e172b2862945cf62e1d51de3a134c708476b816d8"
+}

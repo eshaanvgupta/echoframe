@@ -1,0 +1,94 @@
+{
+  "schemaVersion": "1.0.0",
+  "verificationAlgorithm": "echoframe-jcs-keccak-v1",
+  "bundleId": "0x98c962bb02b15f727ab8a25d3e0463d70e76ebecfd71f93c0dc5251f30131cf7",
+  "chainId": 11142220,
+  "protocolKind": "local",
+  "environment": "SIMULATED",
+  "createdAt": "2026-01-01T00:00:00.000Z",
+  "observedAt": "2026-01-01T00:00:00.108Z",
+  "redactionProfile": "boundary-allowlist-v1",
+  "title": "The recipient switch",
+  "claims": [
+    {
+      "id": "simulation",
+      "statement": "Deterministic local fixture; no public transaction",
+      "quality": "TEST_REPRODUCED"
+    }
+  ],
+  "actors": [],
+  "events": [
+    {
+      "id": "event-0",
+      "index": 0,
+      "type": "replay.intent",
+      "at": "2026-01-01T00:00:00.027Z",
+      "timestampProvenance": "VIRTUAL_CLOCK",
+      "data": {
+        "action": "Discovered exact quote",
+        "details": {
+          "chainId": 11142220,
+          "amount": "1000",
+          "quoteCommitment": "0x6b84edc84b53c3085cd35ca2e68a7a4b69e5ba4cddf7da4589f7235bd81f78ec"
+        }
+      },
+      "previousHash": null,
+      "hash": "0xcaaaeee82e1f56e8d45bd23eafc97fca17bc7ecc5ffbeb23bca7b7558188ee3c"
+    },
+    {
+      "id": "event-1",
+      "index": 1,
+      "type": "replay.intent",
+      "at": "2026-01-01T00:00:00.045Z",
+      "timestampProvenance": "VIRTUAL_CLOCK",
+      "data": {
+        "action": "Offer changed after discovery",
+        "details": {
+          "field": "payTo",
+          "original": "payee-A",
+          "observed": "payee-B"
+        }
+      },
+      "previousHash": "0xcaaaeee82e1f56e8d45bd23eafc97fca17bc7ecc5ffbeb23bca7b7558188ee3c",
+      "hash": "0x8eb4fd7805164a49554d09a4a20fdd8bbb14544fb2792daac31fc2ccace9929e"
+    },
+    {
+      "id": "event-2",
+      "index": 2,
+      "type": "replay.authority",
+      "at": "2026-01-01T00:00:00.108Z",
+      "timestampProvenance": "VIRTUAL_CLOCK",
+      "data": {
+        "action": "Commitment mismatch: authorization blocked",
+        "details": null
+      },
+      "previousHash": "0x8eb4fd7805164a49554d09a4a20fdd8bbb14544fb2792daac31fc2ccace9929e",
+      "hash": "0xf7b0c98b6049dbb0832843f220b24cefebfea20547f00c8a8be38e03274b7cf5"
+    },
+    {
+      "id": "event-3",
+      "index": 3,
+      "type": "financial.observation",
+      "at": "2026-01-01T00:00:00.108Z",
+      "timestampProvenance": "VIRTUAL_CLOCK",
+      "data": {
+        "status": "NOT_INITIATED",
+        "source": "deterministic simulation"
+      },
+      "previousHash": "0xf7b0c98b6049dbb0832843f220b24cefebfea20547f00c8a8be38e03274b7cf5",
+      "hash": "0xe43a3708e5d0d98453862a597f997f862256c3549ff29c49c5491161b4f8ece4"
+    }
+  ],
+  "paymentOffers": [],
+  "requestContextHash": "0x858fb793faab09a7f9d0f8c4bc91a07acb5001b270c52eb9b87361fdc4cbf348",
+  "facilitatorResponse": null,
+  "transactionHashes": [],
+  "rpcObservations": [],
+  "contentHashes": [],
+  "outcomes": [],
+  "warnings": [],
+  "policyVersion": "1.0.0",
+  "recoveryState": "NOT_INITIATED",
+  "artifacts": [],
+  "rootHash": "0x7d5d0771e374279a1c6ff6603b34db26dda0d86847a378cf1e72c7d2700c7b2e"
+}

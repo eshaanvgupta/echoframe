@@ -1,0 +1,26 @@
+{
+  "schemaVersion": "1.0.0",
+  "asOfClientDate": "2026-11-19",
+  "product": "ECHOFRAME",
+  "sourceRepository": "https://github.com/eshaanvgupta/echoframe",
+  "evidenceScope": "Local software implementation and reproducible synthetic tests; no adoption or consenting mainnet-use evidence inferred",
+  "implementedPackages": ["core", "x402", "mpp", "erc8183", "celo", "node", "cli", "mcp", "react"],
+  "syntheticScenarioCollection": {"count": 16, "environment": "SIMULATED", "source": "scenarios/"},
+  "metrics": {
+    "independentPackagesInstrumented": "not_yet_observed",
+    "consentingMainnetPaymentTraces": "not_yet_observed",
+    "validatedProductionSettlementDriftIncidents": "not_yet_observed",
+    "productionDuplicatePayAttemptsPrevented": "not_yet_observed",
+    "independentVerifierRuns": "not_yet_observed",
+    "externalIssuesReproducedAndFixed": "not_yet_observed",
+    "externallyContributedPublicCases": "not_yet_observed",
+    "ecosystemIntegrations": "not_yet_observed",
+    "externalFeedbackSessions": "not_yet_observed"
+  },
+  "mainnetGrantPrerequisite": "not_yet_satisfied_by_observed_evidence",
+  "websiteDeployment": "not_published",
+  "npmPublication": "not_published",
+  "frontierCap": {"amount": 15000, "unit": "USDm", "subjectToCurrentTerms": true, "source": "https://celo.org/builders"},
+  "outreachPlan": "docs/prezenti-grant-dossier.md",
+  "localReleaseChecks": "docs/release-verification.json"
+}

@@ -1,0 +1,163 @@
+{
+  "schemaVersion": "1.0.0",
+  "verificationAlgorithm": "echoframe-jcs-keccak-v1",
+  "bundleId": "0x649f434e50c9ec860c29404bd9cd24f175774705869e27dfd01b444f4f458dba",
+  "chainId": 11142220,
+  "protocolKind": "local",
+  "environment": "SIMULATED",
+  "createdAt": "2026-01-01T00:00:00.000Z",
+  "observedAt": "2026-01-01T00:00:00.366Z",
+  "redactionProfile": "boundary-allowlist-v1",
+  "title": "Settled, but the response was lost",
+  "claims": [
+    {
+      "id": "simulation",
+      "statement": "Deterministic local fixture; no public transaction",
+      "quality": "TEST_REPRODUCED"
+    }
+  ],
+  "actors": [],
+  "events": [
+    {
+      "id": "event-0",
+      "index": 0,
+      "type": "replay.intent",
+      "at": "2026-01-01T00:00:00.027Z",
+      "timestampProvenance": "VIRTUAL_CLOCK",
+      "data": {
+        "action": "Discovered exact quote",
+        "details": {
+          "chainId": 11142220,
+          "amount": "1000",
+          "quoteCommitment": "0x6b84edc84b53c3085cd35ca2e68a7a4b69e5ba4cddf7da4589f7235bd81f78ec"
+        }
+      },
+      "previousHash": null,
+      "hash": "0xcaaaeee82e1f56e8d45bd23eafc97fca17bc7ecc5ffbeb23bca7b7558188ee3c"
+    },
+    {
+      "id": "event-1",
+      "index": 1,
+      "type": "replay.authority",
+      "at": "2026-01-01T00:00:00.045Z",
+      "timestampProvenance": "VIRTUAL_CLOCK",
+      "data": {
+        "action": "Recorded a simulated authorization; no signature produced",
+        "details": null
+      },
+      "previousHash": "0xcaaaeee82e1f56e8d45bd23eafc97fca17bc7ecc5ffbeb23bca7b7558188ee3c",
+      "hash": "0x7d4de74486c4c24f9f17160e006e3f7d0e4b5ca8cda4059bedb1eea62780cc48"
+    },
+    {
+      "id": "event-2",
+      "index": 2,
+      "type": "replay.payment",
+      "at": "2026-01-01T00:00:00.108Z",
+      "timestampProvenance": "VIRTUAL_CLOCK",
+      "data": {
+        "action": "Simulated broadcast",
+        "details": {
+          "attemptKey": "0xbe5ae878a5e28dc0df4e8ccb91f443eb83c7072b52b72ad152ebf9bf4822dd39"
+        }
+      },
+      "previousHash": "0x7d4de74486c4c24f9f17160e006e3f7d0e4b5ca8cda4059bedb1eea62780cc48",
+      "hash": "0x37dbd0ba5faffcfde85270b1470993a5095c2294f8a9da16a592ee99a8235230"
+    },
+    {
+      "id": "event-3",
+      "index": 3,
+      "type": "replay.payment",
+      "at": "2026-01-01T00:00:00.194Z",
+      "timestampProvenance": "VIRTUAL_CLOCK",
+      "data": {
+        "action": "Response unavailable; broadcast outcome unknown",
+        "details": null
+      },
+      "previousHash": "0x37dbd0ba5faffcfde85270b1470993a5095c2294f8a9da16a592ee99a8235230",
+      "hash": "0xb6d1cd01e5ee64639ea3957455210b903c636c54aa5c4b05cc7832dcd01ac4f9"
+    },
+    {
+      "id": "event-4",
+      "index": 4,
+      "type": "replay.payment",
+      "at": "2026-01-01T00:00:00.283Z",
+      "timestampProvenance": "VIRTUAL_CLOCK",
+      "data": {
+        "action": "Reconcile first; no fresh authorization",
+        "details": {
+          "recommendation": "RECONCILE_FIRST"
+        }
+      },
+      "previousHash": "0xb6d1cd01e5ee64639ea3957455210b903c636c54aa5c4b05cc7832dcd01ac4f9",
+      "hash": "0xd311135b0c36854a01a72d5d734fa6776d1ae30a6ad1439d9d8521add84fe2e8"
+    },
+    {
+      "id": "event-5",
+      "index": 5,
+      "type": "replay.payment",
+      "at": "2026-01-01T00:00:00.317Z",
+      "timestampProvenance": "VIRTUAL_CLOCK",
+      "data": {
+        "action": "Simulated receipt recovered; same attempt reconciled",
+        "details": null
+      },
+      "previousHash": "0xd311135b0c36854a01a72d5d734fa6776d1ae30a6ad1439d9d8521add84fe2e8",
+      "hash": "0x7fb276f2998aaf2aa94686421581357d8c5b0f0783a48f2ab8833f126fb72b03"
+    },
+    {
+      "id": "event-6",
+      "index": 6,
+      "type": "replay.delivery",
+      "at": "2026-01-01T00:00:00.348Z",
+      "timestampProvenance": "VIRTUAL_CLOCK",
+      "data": {
+        "action": "Synthetic structured rate response returned",
+        "details": {
+          "pair": "CELO/USD",
+          "rate": 0.41,
+          "asOf": "2026-01-01T11:59:00.000Z"
+        }
+      },
+      "previousHash": "0x7fb276f2998aaf2aa94686421581357d8c5b0f0783a48f2ab8833f126fb72b03",
+      "hash": "0x24eff4092bc793e41f2556bb81c6c7d1960373381e35d1660040d6dd830d22b4"
+    },
+    {
+      "id": "event-7",
+      "index": 7,
+      "type": "replay.proof",
+      "at": "2026-01-01T00:00:00.366Z",
+      "timestampProvenance": "VIRTUAL_CLOCK",
+      "data": {
+        "action": "Built-in structure and numeric bounds satisfied",
+        "details": null
+      },
+      "previousHash": "0x24eff4092bc793e41f2556bb81c6c7d1960373381e35d1660040d6dd830d22b4",
+      "hash": "0x95dfcbde00fd0934bf793e7532ec3d9b04dcde11fa2e61f36f530011721beb56"
+    },
+    {
+      "id": "event-8",
+      "index": 8,
+      "type": "financial.observation",
+      "at": "2026-01-01T00:00:00.366Z",
+      "timestampProvenance": "VIRTUAL_CLOCK",
+      "data": {
+        "status": "SETTLED",
+        "source": "deterministic simulation"
+      },
+      "previousHash": "0x95dfcbde00fd0934bf793e7532ec3d9b04dcde11fa2e61f36f530011721beb56",
+      "hash": "0x032e72f8c10b3b37980d64221a3ba3cb9cd4d4b1726a5fbbda5f1cedc29ad73b"
+    }
+  ],
+  "paymentOffers": [],
+  "requestContextHash": "0x0a5f9b89432657cbe1b3731b6e35e8b5198b3ebf1b9825e86ea03f4b5eb19cef",
+  "facilitatorResponse": null,
+  "transactionHashes": [],
+  "rpcObservations": [],
+  "contentHashes": [],
+  "outcomes": [],
+  "warnings": [],
+  "policyVersion": "1.0.0",
+  "recoveryState": "SETTLED",
+  "artifacts": [],
+  "rootHash": "0x3237b02a430cdac5373320b4c9538b5d2f024bfa930ec98a3737b6ba84e1310c"
+}

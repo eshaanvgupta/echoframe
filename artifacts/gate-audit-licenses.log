@@ -1,0 +1,5 @@
+
+> echoframe-workspace@1.0.0 audit:licenses C:\Users\eshaa\OneDrive\Desktop\Hackathons\Prezenti Grant (Celo)
+> node scripts/licenses.mjs
+
+{"status":"passed","packageCount":360,"incompatible":[],"unknown":[]}

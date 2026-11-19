@@ -1,0 +1,205 @@
+{
+  "environment": "SIMULATED",
+  "before": {
+    "version": "1.0.0",
+    "scenarioId": "chain-mismatch",
+    "seed": 42220,
+    "variant": "vulnerable",
+    "policy": {
+      "commitQuote": true,
+      "bindRequest": true,
+      "reconcileUnknown": true,
+      "requireOutcome": true,
+      "matchChain": false,
+      "selectTransfer": true,
+      "separateEvaluator": true,
+      "persistentJournal": true,
+      "exactDecimals": true,
+      "mandateAtSettlement": true,
+      "independentClaims": true,
+      "rpcAgreement": true
+    },
+    "preconditions": [
+      "SIMULATED Celo Sepolia; no wallet or network calls",
+      "One exact quote: 1000 atomic units, known token and payee",
+      "A virtual clock and fixed seed control all fault timing",
+      "Injected condition: Signing chain differs from the quoted Celo chain."
+    ],
+    "timeline": [
+      {
+        "index": 0,
+        "at": 27,
+        "stage": "INTENT",
+        "action": "Discovered exact quote",
+        "data": {
+          "chainId": 11142220,
+          "amount": "1000",
+          "quoteCommitment": "0x6b84edc84b53c3085cd35ca2e68a7a4b69e5ba4cddf7da4589f7235bd81f78ec"
+        },
+        "financialStatus": "NOT_INITIATED"
+      },
+      {
+        "index": 1,
+        "at": 45,
+        "stage": "AUTHORITY",
+        "action": "Wrong signing chain accepted",
+        "data": {
+          "quoted": 11142220,
+          "signing": 42220
+        },
+        "financialStatus": "NOT_INITIATED"
+      },
+      {
+        "index": 2,
+        "at": 108,
+        "stage": "AUTHORITY",
+        "action": "Recorded a simulated authorization; no signature produced",
+        "data": null,
+        "financialStatus": "AUTHORIZED"
+      },
+      {
+        "index": 3,
+        "at": 194,
+        "stage": "PAYMENT",
+        "action": "Simulated broadcast",
+        "data": {
+          "attemptKey": "0xbe5ae878a5e28dc0df4e8ccb91f443eb83c7072b52b72ad152ebf9bf4822dd39"
+        },
+        "financialStatus": "SUBMITTED"
+      },
+      {
+        "index": 4,
+        "at": 283,
+        "stage": "PAYMENT",
+        "action": "Simulated successful receipt; not a public chain receipt",
+        "data": null,
+        "financialStatus": "SETTLED"
+      },
+      {
+        "index": 5,
+        "at": 317,
+        "stage": "DELIVERY",
+        "action": "Synthetic structured rate response returned",
+        "data": {
+          "pair": "CELO/USD",
+          "rate": 0.41,
+          "asOf": "2026-01-01T11:59:00.000Z"
+        },
+        "financialStatus": "SETTLED"
+      },
+      {
+        "index": 6,
+        "at": 348,
+        "stage": "PROOF",
+        "action": "Built-in structure and numeric bounds satisfied",
+        "data": null,
+        "financialStatus": "SETTLED"
+      }
+    ],
+    "invariants": [
+      {
+        "id": "matchChain",
+        "satisfied": false,
+        "detail": "Reject chain mismatch before authorization."
+      },
+      {
+        "id": "append-only-state",
+        "satisfied": true,
+        "detail": "All journal transitions follow the declared state machine"
+      },
+      {
+        "id": "no-real-payment",
+        "satisfied": true,
+        "detail": "The replay engine has no transport, key or wallet dependency"
+      }
+    ],
+    "missingEvidence": [],
+    "safeNextAction": "Export the evidence and reproduce the declared checks",
+    "assertions": {
+      "passed": 2,
+      "failed": 1
+    },
+    "financialStatus": "SETTLED",
+    "deliveryStatus": "TESTED_PASS",
+    "authorizations": 1,
+    "resultHash": "0x7ff04acee33d8afb5e292234494b401058fa47f935064952b5f0af8386d5b573"
+  },
+  "after": {
+    "version": "1.0.0",
+    "scenarioId": "chain-mismatch",
+    "seed": 42220,
+    "variant": "honest",
+    "policy": {
+      "commitQuote": true,
+      "bindRequest": true,
+      "reconcileUnknown": true,
+      "requireOutcome": true,
+      "matchChain": true,
+      "selectTransfer": true,
+      "separateEvaluator": true,
+      "persistentJournal": true,
+      "exactDecimals": true,
+      "mandateAtSettlement": true,
+      "independentClaims": true,
+      "rpcAgreement": true
+    },
+    "preconditions": [
+      "SIMULATED Celo Sepolia; no wallet or network calls",
+      "One exact quote: 1000 atomic units, known token and payee",
+      "A virtual clock and fixed seed control all fault timing",
+      "Injected condition: Signing chain differs from the quoted Celo chain."
+    ],
+    "timeline": [
+      {
+        "index": 0,
+        "at": 27,
+        "stage": "INTENT",
+        "action": "Discovered exact quote",
+        "data": {
+          "chainId": 11142220,
+          "amount": "1000",
+          "quoteCommitment": "0x6b84edc84b53c3085cd35ca2e68a7a4b69e5ba4cddf7da4589f7235bd81f78ec"
+        },
+        "financialStatus": "NOT_INITIATED"
+      },
+      {
+        "index": 1,
+        "at": 45,
+        "stage": "AUTHORITY",
+        "action": "Chain mismatch: authorization blocked",
+        "data": {
+          "quoted": 11142220,
+          "signing": 42220
+        },
+        "financialStatus": "NOT_INITIATED"
+      }
+    ],
+    "invariants": [
+      {
+        "id": "matchChain",
+        "satisfied": true,
+        "detail": "Reject chain mismatch before authorization."
+      },
+      {
+        "id": "append-only-state",
+        "satisfied": true,
+        "detail": "All journal transitions follow the declared state machine"
+      },
+      {
+        "id": "no-real-payment",
+        "satisfied": true,
+        "detail": "The replay engine has no transport, key or wallet dependency"
+      }
+    ],
+    "missingEvidence": [],
+    "safeNextAction": "Stop and manually inspect the changed quote",
+    "assertions": {
+      "passed": 3,
+      "failed": 0
+    },
+    "financialStatus": "NOT_INITIATED",
+    "deliveryStatus": "UNKNOWN",
+    "authorizations": 0,
+    "resultHash": "0x0296ace90f06c417b3fba624c0de94ba89a8f869ba4638182faa93f0dbdd0f30"
+  }
+}

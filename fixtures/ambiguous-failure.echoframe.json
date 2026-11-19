@@ -1,0 +1,120 @@
+{
+  "schemaVersion": "1.0.0",
+  "verificationAlgorithm": "echoframe-jcs-keccak-v1",
+  "bundleId": "0x3989ecf897b07223c8a95fd60f71fd1d830bbe397ca10f6d42ae19a704b2a615",
+  "chainId": 11142220,
+  "protocolKind": "local",
+  "environment": "SIMULATED",
+  "createdAt": "2026-01-01T00:00:00.000Z",
+  "observedAt": "2026-01-01T00:00:00.283Z",
+  "redactionProfile": "boundary-allowlist-v1",
+  "title": "The dangerous pay-again loop",
+  "claims": [
+    {
+      "id": "simulation",
+      "statement": "Deterministic local fixture; no public transaction",
+      "quality": "TEST_REPRODUCED"
+    }
+  ],
+  "actors": [],
+  "events": [
+    {
+      "id": "event-0",
+      "index": 0,
+      "type": "replay.intent",
+      "at": "2026-01-01T00:00:00.027Z",
+      "timestampProvenance": "VIRTUAL_CLOCK",
+      "data": {
+        "action": "Discovered exact quote",
+        "details": {
+          "chainId": 11142220,
+          "amount": "1000",
+          "quoteCommitment": "0x6b84edc84b53c3085cd35ca2e68a7a4b69e5ba4cddf7da4589f7235bd81f78ec"
+        }
+      },
+      "previousHash": null,
+      "hash": "0xcaaaeee82e1f56e8d45bd23eafc97fca17bc7ecc5ffbeb23bca7b7558188ee3c"
+    },
+    {
+      "id": "event-1",
+      "index": 1,
+      "type": "replay.authority",
+      "at": "2026-01-01T00:00:00.045Z",
+      "timestampProvenance": "VIRTUAL_CLOCK",
+      "data": {
+        "action": "Recorded a simulated authorization; no signature produced",
+        "details": null
+      },
+      "previousHash": "0xcaaaeee82e1f56e8d45bd23eafc97fca17bc7ecc5ffbeb23bca7b7558188ee3c",
+      "hash": "0x7d4de74486c4c24f9f17160e006e3f7d0e4b5ca8cda4059bedb1eea62780cc48"
+    },
+    {
+      "id": "event-2",
+      "index": 2,
+      "type": "replay.payment",
+      "at": "2026-01-01T00:00:00.108Z",
+      "timestampProvenance": "VIRTUAL_CLOCK",
+      "data": {
+        "action": "Simulated broadcast",
+        "details": {
+          "attemptKey": "0xbe5ae878a5e28dc0df4e8ccb91f443eb83c7072b52b72ad152ebf9bf4822dd39"
+        }
+      },
+      "previousHash": "0x7d4de74486c4c24f9f17160e006e3f7d0e4b5ca8cda4059bedb1eea62780cc48",
+      "hash": "0x37dbd0ba5faffcfde85270b1470993a5095c2294f8a9da16a592ee99a8235230"
+    },
+    {
+      "id": "event-3",
+      "index": 3,
+      "type": "replay.payment",
+      "at": "2026-01-01T00:00:00.194Z",
+      "timestampProvenance": "VIRTUAL_CLOCK",
+      "data": {
+        "action": "Response unavailable; broadcast outcome unknown",
+        "details": null
+      },
+      "previousHash": "0x37dbd0ba5faffcfde85270b1470993a5095c2294f8a9da16a592ee99a8235230",
+      "hash": "0xb6d1cd01e5ee64639ea3957455210b903c636c54aa5c4b05cc7832dcd01ac4f9"
+    },
+    {
+      "id": "event-4",
+      "index": 4,
+      "type": "replay.payment",
+      "at": "2026-01-01T00:00:00.283Z",
+      "timestampProvenance": "VIRTUAL_CLOCK",
+      "data": {
+        "action": "Reconcile first; no fresh authorization",
+        "details": {
+          "recommendation": "RECONCILE_FIRST"
+        }
+      },
+      "previousHash": "0xb6d1cd01e5ee64639ea3957455210b903c636c54aa5c4b05cc7832dcd01ac4f9",
+      "hash": "0xd311135b0c36854a01a72d5d734fa6776d1ae30a6ad1439d9d8521add84fe2e8"
+    },
+    {
+      "id": "event-5",
+      "index": 5,
+      "type": "financial.observation",
+      "at": "2026-01-01T00:00:00.283Z",
+      "timestampProvenance": "VIRTUAL_CLOCK",
+      "data": {
+        "status": "UNKNOWN",
+        "source": "deterministic simulation"
+      },
+      "previousHash": "0xd311135b0c36854a01a72d5d734fa6776d1ae30a6ad1439d9d8521add84fe2e8",
+      "hash": "0x0d76a0aa01ab9dc6812f1d63151e6342f7c6b117e239ff2559bf7baae6eb340e"
+    }
+  ],
+  "paymentOffers": [],
+  "requestContextHash": "0xbbe4c5c92243e4715028b86de72220c7c694e7da3049bca7a04125217bbb37a0",
+  "facilitatorResponse": null,
+  "transactionHashes": [],
+  "rpcObservations": [],
+  "contentHashes": [],
+  "outcomes": [],
+  "warnings": [],
+  "policyVersion": "1.0.0",
+  "recoveryState": "UNKNOWN",
+  "artifacts": [],
+  "rootHash": "0xcbd71387343b7fd13368a238de8192707e91c8845ffdf913e860e1c45e75ca57"
+}

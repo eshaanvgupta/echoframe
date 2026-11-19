@@ -1,0 +1,10 @@
+{
+  "javascriptGzipBytes": 220449,
+  "cssGzipBytes": 8067,
+  "totalAssetBytes": 902610,
+  "budgets": {
+    "javascriptGzipBytes": 350000,
+    "cssGzipBytes": 40000
+  },
+  "reason": "Includes offline cryptography, safe DSL, strict adapters and IndexedDB. No network font or image dependencies."
+}

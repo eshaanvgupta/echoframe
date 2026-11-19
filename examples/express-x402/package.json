@@ -1,0 +1,16 @@
+{
+  "name": "@echoframe/example-express-x402",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "tsx index.ts"
+  },
+  "dependencies": {
+    "express": "5.3.0",
+    "@x402/core": "2.31.0",
+    "@echoframe/node": "workspace:*",
+    "@echoframe/x402": "workspace:*",
+    "@echoframe/core": "workspace:*"
+  }
+}

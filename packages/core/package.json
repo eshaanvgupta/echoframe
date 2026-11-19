@@ -1,0 +1,26 @@
+{
+  "name": "@echoframe/core",
+  "version": "1.0.0",
+  "description": "ECHOFRAME core: read-only evidence infrastructure",
+  "type": "module",
+  "license": "MIT",
+  "engines": {
+    "node": ">=24"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "dependencies": {
+    "viem": "2.58.1",
+    "zod": "4.6.7",
+    "ajv": "8.20.0"
+  }
+}

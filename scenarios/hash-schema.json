@@ -1,0 +1,221 @@
+{
+  "environment": "SIMULATED",
+  "before": {
+    "version": "1.0.0",
+    "scenarioId": "hash-schema",
+    "seed": 42220,
+    "variant": "vulnerable",
+    "policy": {
+      "commitQuote": true,
+      "bindRequest": true,
+      "reconcileUnknown": true,
+      "requireOutcome": false,
+      "matchChain": true,
+      "selectTransfer": true,
+      "separateEvaluator": true,
+      "persistentJournal": true,
+      "exactDecimals": true,
+      "mandateAtSettlement": true,
+      "independentClaims": true,
+      "rpcAgreement": true
+    },
+    "preconditions": [
+      "SIMULATED Celo Sepolia; no wallet or network calls",
+      "One exact quote: 1000 atomic units, known token and payee",
+      "A virtual clock and fixed seed control all fault timing",
+      "Injected condition: The bytes match their hash but contain an invalid market rate."
+    ],
+    "timeline": [
+      {
+        "index": 0,
+        "at": 27,
+        "stage": "INTENT",
+        "action": "Discovered exact quote",
+        "data": {
+          "chainId": 11142220,
+          "amount": "1000",
+          "quoteCommitment": "0x6b84edc84b53c3085cd35ca2e68a7a4b69e5ba4cddf7da4589f7235bd81f78ec"
+        },
+        "financialStatus": "NOT_INITIATED"
+      },
+      {
+        "index": 1,
+        "at": 45,
+        "stage": "AUTHORITY",
+        "action": "Recorded a simulated authorization; no signature produced",
+        "data": null,
+        "financialStatus": "AUTHORIZED"
+      },
+      {
+        "index": 2,
+        "at": 108,
+        "stage": "PAYMENT",
+        "action": "Simulated broadcast",
+        "data": {
+          "attemptKey": "0xbe5ae878a5e28dc0df4e8ccb91f443eb83c7072b52b72ad152ebf9bf4822dd39"
+        },
+        "financialStatus": "SUBMITTED"
+      },
+      {
+        "index": 3,
+        "at": 194,
+        "stage": "PAYMENT",
+        "action": "Simulated successful receipt; not a public chain receipt",
+        "data": null,
+        "financialStatus": "SETTLED"
+      },
+      {
+        "index": 4,
+        "at": 283,
+        "stage": "DELIVERY",
+        "action": "Content hash matched an invalid negative rate",
+        "data": null,
+        "financialStatus": "SETTLED"
+      },
+      {
+        "index": 5,
+        "at": 317,
+        "stage": "PROOF",
+        "action": "Vulnerable policy promoted HTTP/hash to delivery proof",
+        "data": null,
+        "financialStatus": "SETTLED"
+      }
+    ],
+    "invariants": [
+      {
+        "id": "requireOutcome",
+        "satisfied": false,
+        "detail": "Run semantic schema bounds after checking integrity."
+      },
+      {
+        "id": "append-only-state",
+        "satisfied": true,
+        "detail": "All journal transitions follow the declared state machine"
+      },
+      {
+        "id": "no-real-payment",
+        "satisfied": true,
+        "detail": "The replay engine has no transport, key or wallet dependency"
+      }
+    ],
+    "missingEvidence": [],
+    "safeNextAction": "Export the evidence and reproduce the declared checks",
+    "assertions": {
+      "passed": 2,
+      "failed": 1
+    },
+    "financialStatus": "SETTLED",
+    "deliveryStatus": "TESTED_PASS",
+    "authorizations": 1,
+    "resultHash": "0xaff92c8d9ce0a961a2571746c2531f97a27a2120faa31ffc25fbfe9297ae909c"
+  },
+  "after": {
+    "version": "1.0.0",
+    "scenarioId": "hash-schema",
+    "seed": 42220,
+    "variant": "honest",
+    "policy": {
+      "commitQuote": true,
+      "bindRequest": true,
+      "reconcileUnknown": true,
+      "requireOutcome": true,
+      "matchChain": true,
+      "selectTransfer": true,
+      "separateEvaluator": true,
+      "persistentJournal": true,
+      "exactDecimals": true,
+      "mandateAtSettlement": true,
+      "independentClaims": true,
+      "rpcAgreement": true
+    },
+    "preconditions": [
+      "SIMULATED Celo Sepolia; no wallet or network calls",
+      "One exact quote: 1000 atomic units, known token and payee",
+      "A virtual clock and fixed seed control all fault timing",
+      "Injected condition: The bytes match their hash but contain an invalid market rate."
+    ],
+    "timeline": [
+      {
+        "index": 0,
+        "at": 27,
+        "stage": "INTENT",
+        "action": "Discovered exact quote",
+        "data": {
+          "chainId": 11142220,
+          "amount": "1000",
+          "quoteCommitment": "0x6b84edc84b53c3085cd35ca2e68a7a4b69e5ba4cddf7da4589f7235bd81f78ec"
+        },
+        "financialStatus": "NOT_INITIATED"
+      },
+      {
+        "index": 1,
+        "at": 45,
+        "stage": "AUTHORITY",
+        "action": "Recorded a simulated authorization; no signature produced",
+        "data": null,
+        "financialStatus": "AUTHORIZED"
+      },
+      {
+        "index": 2,
+        "at": 108,
+        "stage": "PAYMENT",
+        "action": "Simulated broadcast",
+        "data": {
+          "attemptKey": "0xbe5ae878a5e28dc0df4e8ccb91f443eb83c7072b52b72ad152ebf9bf4822dd39"
+        },
+        "financialStatus": "SUBMITTED"
+      },
+      {
+        "index": 3,
+        "at": 194,
+        "stage": "PAYMENT",
+        "action": "Simulated successful receipt; not a public chain receipt",
+        "data": null,
+        "financialStatus": "SETTLED"
+      },
+      {
+        "index": 4,
+        "at": 283,
+        "stage": "DELIVERY",
+        "action": "Content hash matched an invalid negative rate",
+        "data": null,
+        "financialStatus": "SETTLED"
+      },
+      {
+        "index": 5,
+        "at": 317,
+        "stage": "PROOF",
+        "action": "Outcome validation failed",
+        "data": null,
+        "financialStatus": "SETTLED"
+      }
+    ],
+    "invariants": [
+      {
+        "id": "requireOutcome",
+        "satisfied": true,
+        "detail": "Run semantic schema bounds after checking integrity."
+      },
+      {
+        "id": "append-only-state",
+        "satisfied": true,
+        "detail": "All journal transitions follow the declared state machine"
+      },
+      {
+        "id": "no-real-payment",
+        "satisfied": true,
+        "detail": "The replay engine has no transport, key or wallet dependency"
+      }
+    ],
+    "missingEvidence": [],
+    "safeNextAction": "Retain failed outcome evidence; contact provider manually",
+    "assertions": {
+      "passed": 3,
+      "failed": 0
+    },
+    "financialStatus": "SETTLED",
+    "deliveryStatus": "TESTED_FAIL",
+    "authorizations": 1,
+    "resultHash": "0x88e8e043d5856709fc9f3a292bec0acd5c68fe5d61601c70b5ff7eac4360dcbb"
+  }
+}

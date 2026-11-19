@@ -1,0 +1,118 @@
+{
+  "schemaVersion": "1.0.0",
+  "verificationAlgorithm": "echoframe-jcs-keccak-v1",
+  "bundleId": "0x8b578964c7fe92685ee7f3aaa3884cef05169f1a4d56019aa1fe5d235b3d51ed",
+  "chainId": 11142220,
+  "protocolKind": "local",
+  "environment": "SIMULATED",
+  "createdAt": "2026-01-01T00:00:00.000Z",
+  "observedAt": "2026-01-01T00:00:00.283Z",
+  "redactionProfile": "boundary-allowlist-v1",
+  "title": "Permission expires in flight",
+  "claims": [
+    {
+      "id": "simulation",
+      "statement": "Deterministic local fixture; no public transaction",
+      "quality": "TEST_REPRODUCED"
+    }
+  ],
+  "actors": [],
+  "events": [
+    {
+      "id": "event-0",
+      "index": 0,
+      "type": "replay.intent",
+      "at": "2026-01-01T00:00:00.027Z",
+      "timestampProvenance": "VIRTUAL_CLOCK",
+      "data": {
+        "action": "Discovered exact quote",
+        "details": {
+          "chainId": 11142220,
+          "amount": "1000",
+          "quoteCommitment": "0x6b84edc84b53c3085cd35ca2e68a7a4b69e5ba4cddf7da4589f7235bd81f78ec"
+        }
+      },
+      "previousHash": null,
+      "hash": "0xcaaaeee82e1f56e8d45bd23eafc97fca17bc7ecc5ffbeb23bca7b7558188ee3c"
+    },
+    {
+      "id": "event-1",
+      "index": 1,
+      "type": "replay.authority",
+      "at": "2026-01-01T00:00:00.045Z",
+      "timestampProvenance": "VIRTUAL_CLOCK",
+      "data": {
+        "action": "Recorded a simulated authorization; no signature produced",
+        "details": null
+      },
+      "previousHash": "0xcaaaeee82e1f56e8d45bd23eafc97fca17bc7ecc5ffbeb23bca7b7558188ee3c",
+      "hash": "0x7d4de74486c4c24f9f17160e006e3f7d0e4b5ca8cda4059bedb1eea62780cc48"
+    },
+    {
+      "id": "event-2",
+      "index": 2,
+      "type": "replay.payment",
+      "at": "2026-01-01T00:00:00.108Z",
+      "timestampProvenance": "VIRTUAL_CLOCK",
+      "data": {
+        "action": "Simulated broadcast",
+        "details": {
+          "attemptKey": "0xbe5ae878a5e28dc0df4e8ccb91f443eb83c7072b52b72ad152ebf9bf4822dd39"
+        }
+      },
+      "previousHash": "0x7d4de74486c4c24f9f17160e006e3f7d0e4b5ca8cda4059bedb1eea62780cc48",
+      "hash": "0x37dbd0ba5faffcfde85270b1470993a5095c2294f8a9da16a592ee99a8235230"
+    },
+    {
+      "id": "event-3",
+      "index": 3,
+      "type": "replay.authority",
+      "at": "2026-01-01T00:00:00.194Z",
+      "timestampProvenance": "VIRTUAL_CLOCK",
+      "data": {
+        "action": "Mandate expired before settlement observation",
+        "details": null
+      },
+      "previousHash": "0x37dbd0ba5faffcfde85270b1470993a5095c2294f8a9da16a592ee99a8235230",
+      "hash": "0x0c12495cbf956c76a948ce73c1c7e5b02dfd3dbeceae864c54fc3b30849d0bf1"
+    },
+    {
+      "id": "event-4",
+      "index": 4,
+      "type": "replay.payment",
+      "at": "2026-01-01T00:00:00.283Z",
+      "timestampProvenance": "VIRTUAL_CLOCK",
+      "data": {
+        "action": "Existing payment pending; continuation stopped",
+        "details": null
+      },
+      "previousHash": "0x0c12495cbf956c76a948ce73c1c7e5b02dfd3dbeceae864c54fc3b30849d0bf1",
+      "hash": "0x7ffb0aa0012e250f27e5ae43d08085d2f0344e7a7b60a61df90a1e438a63ebfc"
+    },
+    {
+      "id": "event-5",
+      "index": 5,
+      "type": "financial.observation",
+      "at": "2026-01-01T00:00:00.283Z",
+      "timestampProvenance": "VIRTUAL_CLOCK",
+      "data": {
+        "status": "PENDING",
+        "source": "deterministic simulation"
+      },
+      "previousHash": "0x7ffb0aa0012e250f27e5ae43d08085d2f0344e7a7b60a61df90a1e438a63ebfc",
+      "hash": "0x5355ba7253ec89ae93d1de9e28bc907be987a76bdd827a101593f7aa8591cee4"
+    }
+  ],
+  "paymentOffers": [],
+  "requestContextHash": "0x09ee852e22418a26d21e7564b01eec54429bdbd297168e10e8b9945898675202",
+  "facilitatorResponse": null,
+  "transactionHashes": [],
+  "rpcObservations": [],
+  "contentHashes": [],
+  "outcomes": [],
+  "warnings": [],
+  "policyVersion": "1.0.0",
+  "recoveryState": "PENDING",
+  "artifacts": [],
+  "rootHash": "0x969fca3d129806e82b731b3f2c3c53ab695a59dfe62ebb3e75ca571f35a702e9"
+}

@@ -1,0 +1,131 @@
+{
+  "schemaVersion": "1.0.0",
+  "verificationAlgorithm": "echoframe-jcs-keccak-v1",
+  "bundleId": "0xab0149fdfcc1b4e65cd533c3144c3072c83353fadf48bcc77e97641caccba320",
+  "chainId": 11142220,
+  "protocolKind": "local",
+  "environment": "SIMULATED",
+  "createdAt": "2026-01-01T00:00:00.000Z",
+  "observedAt": "2026-01-01T00:00:00.317Z",
+  "redactionProfile": "boundary-allowlist-v1",
+  "title": "Completed is an evaluator statement",
+  "claims": [
+    {
+      "id": "simulation",
+      "statement": "Deterministic local fixture; no public transaction",
+      "quality": "TEST_REPRODUCED"
+    }
+  ],
+  "actors": [],
+  "events": [
+    {
+      "id": "event-0",
+      "index": 0,
+      "type": "replay.intent",
+      "at": "2026-01-01T00:00:00.027Z",
+      "timestampProvenance": "VIRTUAL_CLOCK",
+      "data": {
+        "action": "Discovered exact quote",
+        "details": {
+          "chainId": 11142220,
+          "amount": "1000",
+          "quoteCommitment": "0x6b84edc84b53c3085cd35ca2e68a7a4b69e5ba4cddf7da4589f7235bd81f78ec"
+        }
+      },
+      "previousHash": null,
+      "hash": "0xcaaaeee82e1f56e8d45bd23eafc97fca17bc7ecc5ffbeb23bca7b7558188ee3c"
+    },
+    {
+      "id": "event-1",
+      "index": 1,
+      "type": "replay.authority",
+      "at": "2026-01-01T00:00:00.045Z",
+      "timestampProvenance": "VIRTUAL_CLOCK",
+      "data": {
+        "action": "Recorded a simulated authorization; no signature produced",
+        "details": null
+      },
+      "previousHash": "0xcaaaeee82e1f56e8d45bd23eafc97fca17bc7ecc5ffbeb23bca7b7558188ee3c",
+      "hash": "0x7d4de74486c4c24f9f17160e006e3f7d0e4b5ca8cda4059bedb1eea62780cc48"
+    },
+    {
+      "id": "event-2",
+      "index": 2,
+      "type": "replay.payment",
+      "at": "2026-01-01T00:00:00.108Z",
+      "timestampProvenance": "VIRTUAL_CLOCK",
+      "data": {
+        "action": "Simulated broadcast",
+        "details": {
+          "attemptKey": "0xbe5ae878a5e28dc0df4e8ccb91f443eb83c7072b52b72ad152ebf9bf4822dd39"
+        }
+      },
+      "previousHash": "0x7d4de74486c4c24f9f17160e006e3f7d0e4b5ca8cda4059bedb1eea62780cc48",
+      "hash": "0x37dbd0ba5faffcfde85270b1470993a5095c2294f8a9da16a592ee99a8235230"
+    },
+    {
+      "id": "event-3",
+      "index": 3,
+      "type": "replay.payment",
+      "at": "2026-01-01T00:00:00.194Z",
+      "timestampProvenance": "VIRTUAL_CLOCK",
+      "data": {
+        "action": "Simulated successful receipt; not a public chain receipt",
+        "details": null
+      },
+      "previousHash": "0x37dbd0ba5faffcfde85270b1470993a5095c2294f8a9da16a592ee99a8235230",
+      "hash": "0xd81979a17cf1d7a763289489eceeee16061c3309a7f0f08d2d3608444d06cb4e"
+    },
+    {
+      "id": "event-4",
+      "index": 4,
+      "type": "replay.delivery",
+      "at": "2026-01-01T00:00:00.283Z",
+      "timestampProvenance": "VIRTUAL_CLOCK",
+      "data": {
+        "action": "Configured evaluator marked job Completed",
+        "details": null
+      },
+      "previousHash": "0xd81979a17cf1d7a763289489eceeee16061c3309a7f0f08d2d3608444d06cb4e",
+      "hash": "0xd3280e17e9b98425219bb82cd208b5846b2aeaf2e9496b4214bc0d9d2c16948d"
+    },
+    {
+      "id": "event-5",
+      "index": 5,
+      "type": "replay.proof",
+      "at": "2026-01-01T00:00:00.317Z",
+      "timestampProvenance": "VIRTUAL_CLOCK",
+      "data": {
+        "action": "No independent result evidence: delivery UNKNOWN",
+        "details": null
+      },
+      "previousHash": "0xd3280e17e9b98425219bb82cd208b5846b2aeaf2e9496b4214bc0d9d2c16948d",
+      "hash": "0x66f62b9fcaebd9f76e8a2304ecc853a2c0d14ec3c0e56a94fe704cf5925b201a"
+    },
+    {
+      "id": "event-6",
+      "index": 6,
+      "type": "financial.observation",
+      "at": "2026-01-01T00:00:00.317Z",
+      "timestampProvenance": "VIRTUAL_CLOCK",
+      "data": {
+        "status": "SETTLED",
+        "source": "deterministic simulation"
+      },
+      "previousHash": "0x66f62b9fcaebd9f76e8a2304ecc853a2c0d14ec3c0e56a94fe704cf5925b201a",
+      "hash": "0x47cb9f1558e11c892041c6e7ce4bd8f59e86fa09da40ce899b605fe374fdac20"
+    }
+  ],
+  "paymentOffers": [],
+  "requestContextHash": "0x98f8a74ad365afb29e97863c06c5583625894d853c26226cf6b2e4863e872ec5",
+  "facilitatorResponse": null,
+  "transactionHashes": [],
+  "rpcObservations": [],
+  "contentHashes": [],
+  "outcomes": [],
+  "warnings": [],
+  "policyVersion": "1.0.0",
+  "recoveryState": "SETTLED",
+  "artifacts": [],
+  "rootHash": "0xdc65b1301ab22486c1285e33d4a383a3182215b88b2b74588cfda5712b0a35ef"
+}

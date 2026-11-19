@@ -1,0 +1,30 @@
+{
+  "name": "@echoframe/mcp",
+  "version": "1.0.0",
+  "description": "ECHOFRAME mcp: read-only evidence infrastructure",
+  "type": "module",
+  "license": "MIT",
+  "engines": {
+    "node": ">=24"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "dependencies": {
+    "@echoframe/core": "workspace:*",
+    "@echoframe/celo": "workspace:*",
+    "@modelcontextprotocol/sdk": "1.32.2",
+    "zod": "4.6.7"
+  },
+  "bin": {
+    "echoframe-mcp": "./dist/index.js"
+  }
+}

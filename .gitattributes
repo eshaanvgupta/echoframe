@@ -1,0 +1,7 @@
+* text=auto eol=lf
+*.png binary
+*.woff binary
+*.woff2 binary
+# Preserve generated upstream license notices and raw execution logs verbatim.
+THIRD_PARTY_NOTICES.txt -whitespace
+artifacts/** -whitespace

@@ -1,0 +1,123 @@
+{
+  "schemaVersion": "1.0.0",
+  "verificationAlgorithm": "echoframe-jcs-keccak-v1",
+  "bundleId": "0x3a1e6b731030ecb4839a29dba9f42222b3d7f9bd34a2c9b2fa7f9345fea4b129",
+  "chainId": 11142220,
+  "protocolKind": "local",
+  "environment": "SIMULATED",
+  "createdAt": "2026-01-01T00:00:00.000Z",
+  "observedAt": "2026-01-01T00:00:00.283Z",
+  "redactionProfile": "boundary-allowlist-v1",
+  "title": "Two RPCs. Two stories.",
+  "claims": [
+    {
+      "id": "simulation",
+      "statement": "Deterministic local fixture; no public transaction",
+      "quality": "TEST_REPRODUCED"
+    }
+  ],
+  "actors": [],
+  "events": [
+    {
+      "id": "event-0",
+      "index": 0,
+      "type": "replay.intent",
+      "at": "2026-01-01T00:00:00.027Z",
+      "timestampProvenance": "VIRTUAL_CLOCK",
+      "data": {
+        "action": "Discovered exact quote",
+        "details": {
+          "chainId": 11142220,
+          "amount": "1000",
+          "quoteCommitment": "0x6b84edc84b53c3085cd35ca2e68a7a4b69e5ba4cddf7da4589f7235bd81f78ec"
+        }
+      },
+      "previousHash": null,
+      "hash": "0xcaaaeee82e1f56e8d45bd23eafc97fca17bc7ecc5ffbeb23bca7b7558188ee3c"
+    },
+    {
+      "id": "event-1",
+      "index": 1,
+      "type": "replay.authority",
+      "at": "2026-01-01T00:00:00.045Z",
+      "timestampProvenance": "VIRTUAL_CLOCK",
+      "data": {
+        "action": "Recorded a simulated authorization; no signature produced",
+        "details": null
+      },
+      "previousHash": "0xcaaaeee82e1f56e8d45bd23eafc97fca17bc7ecc5ffbeb23bca7b7558188ee3c",
+      "hash": "0x7d4de74486c4c24f9f17160e006e3f7d0e4b5ca8cda4059bedb1eea62780cc48"
+    },
+    {
+      "id": "event-2",
+      "index": 2,
+      "type": "replay.payment",
+      "at": "2026-01-01T00:00:00.108Z",
+      "timestampProvenance": "VIRTUAL_CLOCK",
+      "data": {
+        "action": "Simulated broadcast",
+        "details": {
+          "attemptKey": "0xbe5ae878a5e28dc0df4e8ccb91f443eb83c7072b52b72ad152ebf9bf4822dd39"
+        }
+      },
+      "previousHash": "0x7d4de74486c4c24f9f17160e006e3f7d0e4b5ca8cda4059bedb1eea62780cc48",
+      "hash": "0x37dbd0ba5faffcfde85270b1470993a5095c2294f8a9da16a592ee99a8235230"
+    },
+    {
+      "id": "event-3",
+      "index": 3,
+      "type": "replay.payment",
+      "at": "2026-01-01T00:00:00.194Z",
+      "timestampProvenance": "VIRTUAL_CLOCK",
+      "data": {
+        "action": "Simulated 429; bounded retry with virtual backoff",
+        "details": {
+          "retryAfterMs": 200
+        }
+      },
+      "previousHash": "0x37dbd0ba5faffcfde85270b1470993a5095c2294f8a9da16a592ee99a8235230",
+      "hash": "0xdf7f4f379a4dfd8dc95f2ca484147e8a1db1d79e4ac43fe88b9a64cdcc35b7ca"
+    },
+    {
+      "id": "event-4",
+      "index": 4,
+      "type": "replay.payment",
+      "at": "2026-01-01T00:00:00.283Z",
+      "timestampProvenance": "VIRTUAL_CLOCK",
+      "data": {
+        "action": "RPC observations disagree",
+        "details": {
+          "primary": "SETTLED",
+          "secondary": "REVERTED"
+        }
+      },
+      "previousHash": "0xdf7f4f379a4dfd8dc95f2ca484147e8a1db1d79e4ac43fe88b9a64cdcc35b7ca",
+      "hash": "0xb79367d675a283fe237c8b7ef1559054b7b40083bce788e99ea492cf16e36a2d"
+    },
+    {
+      "id": "event-5",
+      "index": 5,
+      "type": "financial.observation",
+      "at": "2026-01-01T00:00:00.283Z",
+      "timestampProvenance": "VIRTUAL_CLOCK",
+      "data": {
+        "status": "UNKNOWN",
+        "source": "deterministic simulation"
+      },
+      "previousHash": "0xb79367d675a283fe237c8b7ef1559054b7b40083bce788e99ea492cf16e36a2d",
+      "hash": "0x2e36e2a914c5ba595f29a9ddd41ef5f1797c54537b3aa0d6d62ed4c95fff691c"
+    }
+  ],
+  "paymentOffers": [],
+  "requestContextHash": "0x47ae7abde24cf9606f038e8181ac8ca83f6f34ded382f79b7ae00d5007012437",
+  "facilitatorResponse": null,
+  "transactionHashes": [],
+  "rpcObservations": [],
+  "contentHashes": [],
+  "outcomes": [],
+  "warnings": [],
+  "policyVersion": "1.0.0",
+  "recoveryState": "UNKNOWN",
+  "artifacts": [],
+  "rootHash": "0xfa696d53217837053484b6c2087fb57fac116b51b1a0b4b34307243b8e5ecd47"
+}

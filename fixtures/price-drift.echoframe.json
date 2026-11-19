@@ -1,0 +1,94 @@
+{
+  "schemaVersion": "1.0.0",
+  "verificationAlgorithm": "echoframe-jcs-keccak-v1",
+  "bundleId": "0x7d0236cefde36c4a59a4d8133af85b5307f7aa3c8a25413512afe6184fcb4e85",
+  "chainId": 11142220,
+  "protocolKind": "local",
+  "environment": "SIMULATED",
+  "createdAt": "2026-01-01T00:00:00.000Z",
+  "observedAt": "2026-01-01T00:00:00.108Z",
+  "redactionProfile": "boundary-allowlist-v1",
+  "title": "A price with three extra zeros",
+  "claims": [
+    {
+      "id": "simulation",
+      "statement": "Deterministic local fixture; no public transaction",
+      "quality": "TEST_REPRODUCED"
+    }
+  ],
+  "actors": [],
+  "events": [
+    {
+      "id": "event-0",
+      "index": 0,
+      "type": "replay.intent",
+      "at": "2026-01-01T00:00:00.027Z",
+      "timestampProvenance": "VIRTUAL_CLOCK",
+      "data": {
+        "action": "Discovered exact quote",
+        "details": {
+          "chainId": 11142220,
+          "amount": "1000",
+          "quoteCommitment": "0x6b84edc84b53c3085cd35ca2e68a7a4b69e5ba4cddf7da4589f7235bd81f78ec"
+        }
+      },
+      "previousHash": null,
+      "hash": "0xcaaaeee82e1f56e8d45bd23eafc97fca17bc7ecc5ffbeb23bca7b7558188ee3c"
+    },
+    {
+      "id": "event-1",
+      "index": 1,
+      "type": "replay.intent",
+      "at": "2026-01-01T00:00:00.045Z",
+      "timestampProvenance": "VIRTUAL_CLOCK",
+      "data": {
+        "action": "Offer changed after discovery",
+        "details": {
+          "field": "amount",
+          "original": "1000",
+          "observed": "1000000"
+        }
+      },
+      "previousHash": "0xcaaaeee82e1f56e8d45bd23eafc97fca17bc7ecc5ffbeb23bca7b7558188ee3c",
+      "hash": "0xb837cefdf29bdf593dd404bfa6b8eed510fce8542ded431747a761a2f280497e"
+    },
+    {
+      "id": "event-2",
+      "index": 2,
+      "type": "replay.authority",
+      "at": "2026-01-01T00:00:00.108Z",
+      "timestampProvenance": "VIRTUAL_CLOCK",
+      "data": {
+        "action": "Commitment mismatch: authorization blocked",
+        "details": null
+      },
+      "previousHash": "0xb837cefdf29bdf593dd404bfa6b8eed510fce8542ded431747a761a2f280497e",
+      "hash": "0x93cf98d0cbe7d00aeffe42acf3d48e4c4c9c0a1ab0f6ed66a1bfcb5678ccae07"
+    },
+    {
+      "id": "event-3",
+      "index": 3,
+      "type": "financial.observation",
+      "at": "2026-01-01T00:00:00.108Z",
+      "timestampProvenance": "VIRTUAL_CLOCK",
+      "data": {
+        "status": "NOT_INITIATED",
+        "source": "deterministic simulation"
+      },
+      "previousHash": "0x93cf98d0cbe7d00aeffe42acf3d48e4c4c9c0a1ab0f6ed66a1bfcb5678ccae07",
+      "hash": "0x3a3cd34129a81979d33ad4a2ba252499eb4947e784a283ca792ffc2837443b99"
+    }
+  ],
+  "paymentOffers": [],
+  "requestContextHash": "0x3f36900c283ff970234e54781435704c33bffb34f406410b7d52af4715f35b47",
+  "facilitatorResponse": null,
+  "transactionHashes": [],
+  "rpcObservations": [],
+  "contentHashes": [],
+  "outcomes": [],
+  "warnings": [],
+  "policyVersion": "1.0.0",
+  "recoveryState": "NOT_INITIATED",
+  "artifacts": [],
+  "rootHash": "0x666f90bab9221c743302c2b1d6fcc44eac8421597f21f30e2defb7c11f8d14b6"
+}

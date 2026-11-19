@@ -1,0 +1,4 @@
+
+> echoframe-workspace@1.0.0 typecheck C:\Users\eshaa\OneDrive\Desktop\Hackathons\Prezenti Grant (Celo)
+> node scripts/build.mjs && tsc -p apps/web/tsconfig.json && tsc -p test/tsconfig.json
+

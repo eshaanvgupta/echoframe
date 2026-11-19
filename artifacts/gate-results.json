@@ -1,0 +1,67 @@
+{
+  "node": "v24.16.0",
+  "platform": "win32",
+  "checkedAt": "2026-11-19T05:05:48.267Z",
+  "gates": [
+    {
+      "command": "pnpm install --frozen-lockfile",
+      "exitCode": 0,
+      "elapsedMs": 649,
+      "status": "passed"
+    },
+    {
+      "command": "pnpm typecheck",
+      "exitCode": 0,
+      "elapsedMs": 16834,
+      "status": "passed"
+    },
+    {
+      "command": "pnpm lint",
+      "exitCode": 0,
+      "elapsedMs": 1853,
+      "status": "passed"
+    },
+    {
+      "command": "pnpm test",
+      "exitCode": 0,
+      "elapsedMs": 7726,
+      "status": "passed"
+    },
+    {
+      "command": "pnpm audit:licenses",
+      "exitCode": 0,
+      "elapsedMs": 829,
+      "status": "passed"
+    },
+    {
+      "command": "pnpm build",
+      "exitCode": 0,
+      "elapsedMs": 15802,
+      "status": "passed"
+    },
+    {
+      "command": "pnpm test:consumer",
+      "exitCode": 0,
+      "elapsedMs": 61474,
+      "status": "passed"
+    },
+    {
+      "command": "pnpm test:e2e",
+      "exitCode": 0,
+      "elapsedMs": 42398,
+      "status": "passed"
+    },
+    {
+      "command": "pnpm test:performance",
+      "exitCode": 0,
+      "elapsedMs": 12821,
+      "status": "passed"
+    },
+    {
+      "command": "pnpm audit --json",
+      "exitCode": 0,
+      "elapsedMs": 881,
+      "status": "passed"
+    }
+  ]
+}

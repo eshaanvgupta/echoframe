@@ -1,0 +1,152 @@
+{
+  "schemaVersion": "1.0.0",
+  "verificationAlgorithm": "echoframe-jcs-keccak-v1",
+  "bundleId": "0x443447f32207a61c39edf230d276d410105d20d06f3dcf3828352af3352db1ba",
+  "chainId": 11142220,
+  "protocolKind": "local",
+  "environment": "SIMULATED",
+  "createdAt": "2026-01-01T00:00:00.000Z",
+  "observedAt": "2026-01-01T00:00:00.348Z",
+  "redactionProfile": "boundary-allowlist-v1",
+  "title": "The decimal illusion",
+  "claims": [
+    {
+      "id": "simulation",
+      "statement": "Deterministic local fixture; no public transaction",
+      "quality": "TEST_REPRODUCED"
+    }
+  ],
+  "actors": [],
+  "events": [
+    {
+      "id": "event-0",
+      "index": 0,
+      "type": "replay.intent",
+      "at": "2026-01-01T00:00:00.027Z",
+      "timestampProvenance": "VIRTUAL_CLOCK",
+      "data": {
+        "action": "Discovered exact quote",
+        "details": {
+          "chainId": 11142220,
+          "amount": "1000",
+          "quoteCommitment": "0x6b84edc84b53c3085cd35ca2e68a7a4b69e5ba4cddf7da4589f7235bd81f78ec"
+        }
+      },
+      "previousHash": null,
+      "hash": "0xcaaaeee82e1f56e8d45bd23eafc97fca17bc7ecc5ffbeb23bca7b7558188ee3c"
+    },
+    {
+      "id": "event-1",
+      "index": 1,
+      "type": "replay.intent",
+      "at": "2026-01-01T00:00:00.045Z",
+      "timestampProvenance": "VIRTUAL_CLOCK",
+      "data": {
+        "action": "Preserved units and configured decimals",
+        "details": {
+          "amount": "1000",
+          "actualDecimals": 6,
+          "display": "0.001"
+        }
+      },
+      "previousHash": "0xcaaaeee82e1f56e8d45bd23eafc97fca17bc7ecc5ffbeb23bca7b7558188ee3c",
+      "hash": "0x73ca51cd21970f3c02a247222109918cd8f421a4a48b89661d2c360b005b0fbb"
+    },
+    {
+      "id": "event-2",
+      "index": 2,
+      "type": "replay.authority",
+      "at": "2026-01-01T00:00:00.108Z",
+      "timestampProvenance": "VIRTUAL_CLOCK",
+      "data": {
+        "action": "Recorded a simulated authorization; no signature produced",
+        "details": null
+      },
+      "previousHash": "0x73ca51cd21970f3c02a247222109918cd8f421a4a48b89661d2c360b005b0fbb",
+      "hash": "0x959cc619de1fc90cea9db72b6db0e916f407f2a026ca33b6d725c1ce262173aa"
+    },
+    {
+      "id": "event-3",
+      "index": 3,
+      "type": "replay.payment",
+      "at": "2026-01-01T00:00:00.194Z",
+      "timestampProvenance": "VIRTUAL_CLOCK",
+      "data": {
+        "action": "Simulated broadcast",
+        "details": {
+          "attemptKey": "0xbe5ae878a5e28dc0df4e8ccb91f443eb83c7072b52b72ad152ebf9bf4822dd39"
+        }
+      },
+      "previousHash": "0x959cc619de1fc90cea9db72b6db0e916f407f2a026ca33b6d725c1ce262173aa",
+      "hash": "0x878c4a55a3bd59813755f503806f123623f444f296e831d85d350078746af6fd"
+    },
+    {
+      "id": "event-4",
+      "index": 4,
+      "type": "replay.payment",
+      "at": "2026-01-01T00:00:00.283Z",
+      "timestampProvenance": "VIRTUAL_CLOCK",
+      "data": {
+        "action": "Simulated successful receipt; not a public chain receipt",
+        "details": null
+      },
+      "previousHash": "0x878c4a55a3bd59813755f503806f123623f444f296e831d85d350078746af6fd",
+      "hash": "0x35ac8f679c64503aa2a7060de891a05a959c45cbcfdc823dc9a9ac710c757b7f"
+    },
+    {
+      "id": "event-5",
+      "index": 5,
+      "type": "replay.delivery",
+      "at": "2026-01-01T00:00:00.317Z",
+      "timestampProvenance": "VIRTUAL_CLOCK",
+      "data": {
+        "action": "Synthetic structured rate response returned",
+        "details": {
+          "pair": "CELO/USD",
+          "rate": 0.41,
+          "asOf": "2026-01-01T11:59:00.000Z"
+        }
+      },
+      "previousHash": "0x35ac8f679c64503aa2a7060de891a05a959c45cbcfdc823dc9a9ac710c757b7f",
+      "hash": "0x03ae447af48f571a93d604e4cf9aed020e9b3e34d2c34949ac1a428c7b69cbee"
+    },
+    {
+      "id": "event-6",
+      "index": 6,
+      "type": "replay.proof",
+      "at": "2026-01-01T00:00:00.348Z",
+      "timestampProvenance": "VIRTUAL_CLOCK",
+      "data": {
+        "action": "Built-in structure and numeric bounds satisfied",
+        "details": null
+      },
+      "previousHash": "0x03ae447af48f571a93d604e4cf9aed020e9b3e34d2c34949ac1a428c7b69cbee",
+      "hash": "0x82d169d64c42568b5831f5a3d00c88fe1c6aa0ddbcc3a7fa74280b9cab4e098e"
+    },
+    {
+      "id": "event-7",
+      "index": 7,
+      "type": "financial.observation",
+      "at": "2026-01-01T00:00:00.348Z",
+      "timestampProvenance": "VIRTUAL_CLOCK",
+      "data": {
+        "status": "SETTLED",
+        "source": "deterministic simulation"
+      },
+      "previousHash": "0x82d169d64c42568b5831f5a3d00c88fe1c6aa0ddbcc3a7fa74280b9cab4e098e",
+      "hash": "0xe0c3b98b778394771e00c55237d32f982827fa976d261781fc098c548e714864"
+    }
+  ],
+  "paymentOffers": [],
+  "requestContextHash": "0x006ef2b55e8fa150833eda3154a7359d2af253865f42aa3eecc81d9add519e9b",
+  "facilitatorResponse": null,
+  "transactionHashes": [],
+  "rpcObservations": [],
+  "contentHashes": [],
+  "outcomes": [],
+  "warnings": [],
+  "policyVersion": "1.0.0",
+  "recoveryState": "SETTLED",
+  "artifacts": [],
+  "rootHash": "0xaa0c1730f1854f4d55e39b4f0b949eae080564afde5a3d72b8a74e5e184f7a1e"
+}

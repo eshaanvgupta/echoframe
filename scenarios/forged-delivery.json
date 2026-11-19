@@ -1,0 +1,225 @@
+{
+  "environment": "SIMULATED",
+  "before": {
+    "version": "1.0.0",
+    "scenarioId": "forged-delivery",
+    "seed": 42220,
+    "variant": "vulnerable",
+    "policy": {
+      "commitQuote": true,
+      "bindRequest": true,
+      "reconcileUnknown": true,
+      "requireOutcome": true,
+      "matchChain": true,
+      "selectTransfer": true,
+      "separateEvaluator": true,
+      "persistentJournal": true,
+      "exactDecimals": true,
+      "mandateAtSettlement": true,
+      "independentClaims": false,
+      "rpcAgreement": true
+    },
+    "preconditions": [
+      "SIMULATED Celo Sepolia; no wallet or network calls",
+      "One exact quote: 1000 atomic units, known token and payee",
+      "A virtual clock and fixed seed control all fault timing",
+      "Injected condition: Seller inserts a delivery badge without result evidence."
+    ],
+    "timeline": [
+      {
+        "index": 0,
+        "at": 27,
+        "stage": "INTENT",
+        "action": "Discovered exact quote",
+        "data": {
+          "chainId": 11142220,
+          "amount": "1000",
+          "quoteCommitment": "0x6b84edc84b53c3085cd35ca2e68a7a4b69e5ba4cddf7da4589f7235bd81f78ec"
+        },
+        "financialStatus": "NOT_INITIATED"
+      },
+      {
+        "index": 1,
+        "at": 45,
+        "stage": "AUTHORITY",
+        "action": "Recorded a simulated authorization; no signature produced",
+        "data": null,
+        "financialStatus": "AUTHORIZED"
+      },
+      {
+        "index": 2,
+        "at": 108,
+        "stage": "PAYMENT",
+        "action": "Simulated broadcast",
+        "data": {
+          "attemptKey": "0xbe5ae878a5e28dc0df4e8ccb91f443eb83c7072b52b72ad152ebf9bf4822dd39"
+        },
+        "financialStatus": "SUBMITTED"
+      },
+      {
+        "index": 3,
+        "at": 194,
+        "stage": "PAYMENT",
+        "action": "Simulated successful receipt; not a public chain receipt",
+        "data": null,
+        "financialStatus": "SETTLED"
+      },
+      {
+        "index": 4,
+        "at": 283,
+        "stage": "DELIVERY",
+        "action": "Merchant self-reported delivered",
+        "data": null,
+        "financialStatus": "SETTLED"
+      },
+      {
+        "index": 5,
+        "at": 317,
+        "stage": "PROOF",
+        "action": "Vulnerable policy promoted a claim to proof",
+        "data": null,
+        "financialStatus": "SETTLED"
+      }
+    ],
+    "invariants": [
+      {
+        "id": "independentClaims",
+        "satisfied": false,
+        "detail": "Treat seller claims as APP_REPORTED and leave delivery UNKNOWN."
+      },
+      {
+        "id": "append-only-state",
+        "satisfied": true,
+        "detail": "All journal transitions follow the declared state machine"
+      },
+      {
+        "id": "no-real-payment",
+        "satisfied": true,
+        "detail": "The replay engine has no transport, key or wallet dependency"
+      }
+    ],
+    "missingEvidence": [
+      "Independent deliverable and deterministic outcome checks"
+    ],
+    "safeNextAction": "Export the evidence and reproduce the declared checks",
+    "assertions": {
+      "passed": 2,
+      "failed": 1
+    },
+    "financialStatus": "SETTLED",
+    "deliveryStatus": "TESTED_PASS",
+    "authorizations": 1,
+    "resultHash": "0x05f66fbe80895d3eb45305d47617851d568db4c91140519c228e576f3342ae67"
+  },
+  "after": {
+    "version": "1.0.0",
+    "scenarioId": "forged-delivery",
+    "seed": 42220,
+    "variant": "honest",
+    "policy": {
+      "commitQuote": true,
+      "bindRequest": true,
+      "reconcileUnknown": true,
+      "requireOutcome": true,
+      "matchChain": true,
+      "selectTransfer": true,
+      "separateEvaluator": true,
+      "persistentJournal": true,
+      "exactDecimals": true,
+      "mandateAtSettlement": true,
+      "independentClaims": true,
+      "rpcAgreement": true
+    },
+    "preconditions": [
+      "SIMULATED Celo Sepolia; no wallet or network calls",
+      "One exact quote: 1000 atomic units, known token and payee",
+      "A virtual clock and fixed seed control all fault timing",
+      "Injected condition: Seller inserts a delivery badge without result evidence."
+    ],
+    "timeline": [
+      {
+        "index": 0,
+        "at": 27,
+        "stage": "INTENT",
+        "action": "Discovered exact quote",
+        "data": {
+          "chainId": 11142220,
+          "amount": "1000",
+          "quoteCommitment": "0x6b84edc84b53c3085cd35ca2e68a7a4b69e5ba4cddf7da4589f7235bd81f78ec"
+        },
+        "financialStatus": "NOT_INITIATED"
+      },
+      {
+        "index": 1,
+        "at": 45,
+        "stage": "AUTHORITY",
+        "action": "Recorded a simulated authorization; no signature produced",
+        "data": null,
+        "financialStatus": "AUTHORIZED"
+      },
+      {
+        "index": 2,
+        "at": 108,
+        "stage": "PAYMENT",
+        "action": "Simulated broadcast",
+        "data": {
+          "attemptKey": "0xbe5ae878a5e28dc0df4e8ccb91f443eb83c7072b52b72ad152ebf9bf4822dd39"
+        },
+        "financialStatus": "SUBMITTED"
+      },
+      {
+        "index": 3,
+        "at": 194,
+        "stage": "PAYMENT",
+        "action": "Simulated successful receipt; not a public chain receipt",
+        "data": null,
+        "financialStatus": "SETTLED"
+      },
+      {
+        "index": 4,
+        "at": 283,
+        "stage": "DELIVERY",
+        "action": "Merchant self-reported delivered",
+        "data": null,
+        "financialStatus": "SETTLED"
+      },
+      {
+        "index": 5,
+        "at": 317,
+        "stage": "PROOF",
+        "action": "No independent result evidence: delivery UNKNOWN",
+        "data": null,
+        "financialStatus": "SETTLED"
+      }
+    ],
+    "invariants": [
+      {
+        "id": "independentClaims",
+        "satisfied": true,
+        "detail": "Treat seller claims as APP_REPORTED and leave delivery UNKNOWN."
+      },
+      {
+        "id": "append-only-state",
+        "satisfied": true,
+        "detail": "All journal transitions follow the declared state machine"
+      },
+      {
+        "id": "no-real-payment",
+        "satisfied": true,
+        "detail": "The replay engine has no transport, key or wallet dependency"
+      }
+    ],
+    "missingEvidence": [
+      "Independent deliverable and deterministic outcome checks"
+    ],
+    "safeNextAction": "Request independent delivery evidence; no automatic payment",
+    "assertions": {
+      "passed": 3,
+      "failed": 0
+    },
+    "financialStatus": "SETTLED",
+    "deliveryStatus": "UNKNOWN",
+    "authorizations": 1,
+    "resultHash": "0xbc78e6af4ab1173f135fa929468186eba0c7741ba411c9629cd35fb660c36fd7"
+  }
+}

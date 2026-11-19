@@ -1,0 +1,9 @@
+{
+  "scope": "Local production static build, mobile simulated throttling; RPC health URLs blocked for repeatability",
+  "scores": {
+    "performance": 1,
+    "accessibility": 1,
+    "best-practices": 1,
+    "seo": 1
+  }
+}

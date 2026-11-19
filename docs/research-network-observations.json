@@ -1,0 +1,16 @@
+{
+  "checkedOnClientDate": "2026-11-19",
+  "purpose": "Independent read-only research; not product transaction evidence",
+  "networkReads": [
+    { "rpc": "https://forno.celo.org", "method": "eth_chainId", "result": "0xa4ec", "expectedChainId": 42220, "matched": true },
+    { "rpc": "https://forno.celo-sepolia.celo-testnet.org", "method": "eth_chainId", "result": "0xaa044c", "expectedChainId": 11142220, "matched": true }
+  ],
+  "registryCodeReads": [
+    { "chainId": 42220, "address": "0xaC3DF9ABf80d0F5c020C06B04Cced27763355944", "method": "eth_getCode", "blockTag": "latest", "codeBytes": 135, "independentImplementationVerification": "not_performed" },
+    { "chainId": 42220, "address": "0x8004A169FB4a3325136EB29fA0ceB6D2e539a432", "method": "eth_getCode", "blockTag": "latest", "codeBytes": 130, "independentImplementationVerification": "not_performed" },
+    { "chainId": 11142220, "address": "0x043DaCac8b0771DD5b444bCC88f2f8BBDBEdd379", "method": "eth_getCode", "blockTag": "latest", "codeBytes": 135, "independentImplementationVerification": "not_performed" }
+  ],
+  "transactionsBroadcast": false,
+  "paymentsObserved": "not_yet_observed",
+  "echoframeMainnetDeployment": "not_yet_observed"
+}

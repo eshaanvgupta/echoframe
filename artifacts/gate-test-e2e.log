@@ -1,0 +1,78 @@
+
+> echoframe-workspace@1.0.0 test:e2e C:\Users\eshaa\OneDrive\Desktop\Hackathons\Prezenti Grant (Celo)
+> playwright test
+
+
+Running 48 tests using 3 workers
+
+(node:2116) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:13872) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:26600) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  1 [desktop] › test\e2e\product.spec.ts:21:1 › same-seed policy patch reruns and exports a runnable regression (1.1s)
+  ok  2 [desktop] › test\e2e\product.spec.ts:16:1 › sample trace separates money, work and authority and exports exact evidence (1.2s)
+  ok  5 [desktop] › test\e2e\product.spec.ts:32:1 › import rejects tampering, safely renders hostile names and matches CLI-compatible verifier (501ms)
+  ok  4 [desktop] › test\e2e\product.spec.ts:27:1 › no-code policy compilation and independent verification work (927ms)
+  ok  3 [desktop] › test\e2e\product.spec.ts:7:1 › all product routes work without overflow or page exceptions (2.1s)
+  ok  7 [desktop] › test\e2e\product.spec.ts:43:1 › real transaction input handles RPC failure without fabricated delivery (1.3s)
+  ok  8 [desktop] › test\e2e\product.spec.ts:46:1 › keyboard access, mobile drawer and reduced motion (1.2s)
+  ok  6 [desktop] › test\e2e\product.spec.ts:37:1 › public vault and unknown journal survive reload and work offline (2.4s)
+  ok 10 [desktop] › test\e2e\product.spec.ts:60:1 › encrypted private export reopens only with the correct passphrase (2.4s)
+  ok 11 [desktop] › test\e2e\product.spec.ts:66:1 › protocol challenge parser, public story and offline report download work (1.7s)
+(node:15400) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 13 [tablet] › test\e2e\product.spec.ts:7:1 › all product routes work without overflow or page exceptions (3.5s)
+  ok 12 [desktop] › test\e2e\product.spec.ts:70:1 › every scenario runs through the interactive fix control (6.0s)
+(node:20716) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 14 [tablet] › test\e2e\product.spec.ts:16:1 › sample trace separates money, work and authority and exports exact evidence (2.0s)
+  ok 15 [tablet] › test\e2e\product.spec.ts:27:1 › no-code policy compilation and independent verification work (1.1s)
+  ok 16 [tablet] › test\e2e\product.spec.ts:21:1 › same-seed policy patch reruns and exports a runnable regression (1.1s)
+  ok 17 [tablet] › test\e2e\product.spec.ts:32:1 › import rejects tampering, safely renders hostile names and matches CLI-compatible verifier (763ms)
+  ok 19 [tablet] › test\e2e\product.spec.ts:43:1 › real transaction input handles RPC failure without fabricated delivery (1.2s)
+  ok 18 [tablet] › test\e2e\product.spec.ts:37:1 › public vault and unknown journal survive reload and work offline (2.2s)
+  ok 20 [tablet] › test\e2e\product.spec.ts:46:1 › keyboard access, mobile drawer and reduced motion (892ms)
+  -  21 [tablet] › test\e2e\product.spec.ts:51:1 › WCAG automated checks pass in both themes
+  ok 23 [tablet] › test\e2e\product.spec.ts:66:1 › protocol challenge parser, public story and offline report download work (1.7s)
+  ok 22 [tablet] › test\e2e\product.spec.ts:60:1 › encrypted private export reopens only with the correct passphrase (1.8s)
+  -  24 [tablet] › test\e2e\product.spec.ts:70:1 › every scenario runs through the interactive fix control
+(node:24788) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:23404) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 26 [phone] › test\e2e\product.spec.ts:16:1 › sample trace separates money, work and authority and exports exact evidence (1.9s)
+  ok 25 [phone] › test\e2e\product.spec.ts:7:1 › all product routes work without overflow or page exceptions (3.8s)
+  ok 27 [phone] › test\e2e\product.spec.ts:21:1 › same-seed policy patch reruns and exports a runnable regression (2.2s)
+  ok 28 [phone] › test\e2e\product.spec.ts:27:1 › no-code policy compilation and independent verification work (2.0s)
+  ok 29 [phone] › test\e2e\product.spec.ts:32:1 › import rejects tampering, safely renders hostile names and matches CLI-compatible verifier (1.7s)
+  ok 31 [phone] › test\e2e\product.spec.ts:43:1 › real transaction input handles RPC failure without fabricated delivery (1.4s)
+  ok 30 [phone] › test\e2e\product.spec.ts:37:1 › public vault and unknown journal survive reload and work offline (2.2s)
+  ok 32 [phone] › test\e2e\product.spec.ts:46:1 › keyboard access, mobile drawer and reduced motion (762ms)
+  -  33 [phone] › test\e2e\product.spec.ts:51:1 › WCAG automated checks pass in both themes
+  ok 34 [phone] › test\e2e\product.spec.ts:60:1 › encrypted private export reopens only with the correct passphrase (1.7s)
+  ok 35 [phone] › test\e2e\product.spec.ts:66:1 › protocol challenge parser, public story and offline report download work (1.7s)
+  -  36 [phone] › test\e2e\product.spec.ts:70:1 › every scenario runs through the interactive fix control
+(node:8556) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:13936) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  9 [desktop] › test\e2e\product.spec.ts:51:1 › WCAG automated checks pass in both themes (29.8s)
+(node:12384) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 38 [narrow] › test\e2e\product.spec.ts:16:1 › sample trace separates money, work and authority and exports exact evidence (1.5s)
+  ok 37 [narrow] › test\e2e\product.spec.ts:7:1 › all product routes work without overflow or page exceptions (2.6s)
+  ok 40 [narrow] › test\e2e\product.spec.ts:27:1 › no-code policy compilation and independent verification work (1.2s)
+  ok 39 [narrow] › test\e2e\product.spec.ts:21:1 › same-seed policy patch reruns and exports a runnable regression (1.4s)
+  ok 41 [narrow] › test\e2e\product.spec.ts:32:1 › import rejects tampering, safely renders hostile names and matches CLI-compatible verifier (792ms)
+  ok 43 [narrow] › test\e2e\product.spec.ts:43:1 › real transaction input handles RPC failure without fabricated delivery (1.1s)
+  -  45 [narrow] › test\e2e\product.spec.ts:51:1 › WCAG automated checks pass in both themes
+  ok 44 [narrow] › test\e2e\product.spec.ts:46:1 › keyboard access, mobile drawer and reduced motion (950ms)
+  ok 42 [narrow] › test\e2e\product.spec.ts:37:1 › public vault and unknown journal survive reload and work offline (2.3s)
+  -  48 [narrow] › test\e2e\product.spec.ts:70:1 › every scenario runs through the interactive fix control
+  ok 47 [narrow] › test\e2e\product.spec.ts:66:1 › protocol challenge parser, public story and offline report download work (1.8s)
+  ok 46 [narrow] › test\e2e\product.spec.ts:60:1 › encrypted private export reopens only with the correct passphrase (1.9s)
+
+  6 skipped
+  42 passed (41.5s)

@@ -1,0 +1,26 @@
+{
+  "name": "@echoframe/erc8183",
+  "version": "1.0.0",
+  "description": "ECHOFRAME erc8183: read-only evidence infrastructure",
+  "type": "module",
+  "license": "MIT",
+  "engines": {
+    "node": ">=24"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "dependencies": {
+    "@echoframe/core": "workspace:*",
+    "@echoframe/celo": "workspace:*",
+    "viem": "2.58.1"
+  }
+}

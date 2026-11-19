@@ -1,0 +1,6 @@
+
+> echoframe-workspace@1.0.0 test:consumer C:\Users\eshaa\OneDrive\Desktop\Hackathons\Prezenti Grant (Celo)
+> node scripts/consumer.mjs
+
+All nine installed ESM packages imported and exercised.
+{"status":"passed","packages":["@echoframe/core","@echoframe/celo","@echoframe/x402","@echoframe/mpp","@echoframe/erc8183","@echoframe/node","@echoframe/react","@echoframe/cli","@echoframe/mcp"],"installedCliVerdict":"VALID","installedGeneratedRegressionTests":16,"temporaryConsumer":true,"noNpmPublication":true}

@@ -1,0 +1,13 @@
+node_modules/
+dist/
+coverage/
+test-results/
+playwright-report/
+*.sqlite*
+*.db*
+.env
+.pnpm-store/
+**/local-evidence/
+artifacts/*preview.png
+artifacts/*.tgz
+docs/screenshots/*-actual.png
