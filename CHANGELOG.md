@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.1.1 ? 2026-11-19
+
+- Canonicalize GitHub Pages trailing-slash deep links before router initialization, preserving search/hash and restoring navigation labels and active markers.
+- Add active-navigation assertions to every Pages route/viewport check.
+- Align all nine package versions and installation snippets at 1.1.1. Evidence/proof/report formats are unchanged.
+
 ## 1.1.0 — 2026-11-19
 
 First packaged public release of the implemented ECHOFRAME infrastructure platform.

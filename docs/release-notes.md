@@ -1,4 +1,6 @@
-ECHOFRAME 1.1.0 is the first packaged public release of **The Verification Layer for Autonomous Commerce**.
+Patch 1.1.1 preserves the verified 1.1.0 implementation and fixes GitHub Pages trailing-slash navigation labels/active markers. All nine packages and installation instructions use 1.1.1; evidence/proof/report formats remain unchanged.
+
+ECHOFRAME 1.1.1 is the first packaged public release of **The Verification Layer for Autonomous Commerce**.
 
 Nine ESM/TypeScript packages connect real Express/Hono recording, durable payment-attempt recovery, independent deterministic outcome verification, Celo receipt/Transfer reconciliation, trace-aware diagnosis, CLI/MCP tools and 16 reproducible failure scenarios. The static frontend preserves local IndexedDB storage, offline operation and separate payment, authority and delivery verdicts.
 

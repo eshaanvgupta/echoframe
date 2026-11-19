@@ -8,12 +8,12 @@ Registry publication is not claimed. From a checkout, `pnpm install --frozen-loc
 
 ```powershell
 npm.cmd init -y
-$packages = Get-ChildItem ./echoframe-*-1.1.0.tgz | ForEach-Object { $_.FullName }
+$packages = Get-ChildItem ./echoframe-*-1.1.1.tgz | ForEach-Object { $_.FullName }
 npm.cmd install --ignore-scripts $packages express@5.3.0 hono@4.13.19
 node --input-type=module -e "import {runRecorderSelfTest} from '@echoframe/node'; console.log(await runRecorderSelfTest());"
 ```
 
-On POSIX shells: `npm init -y && npm install --ignore-scripts ./echoframe-*-1.1.0.tgz express@5.3.0 hono@4.13.19`, followed by the same Node self-test. The test runs real loopback HTTP, official SDK codecs and a synthetic facilitator, Hono dispatch, SQLite close/reopen, complete export/import, and independent outcome checks. It never contacts a chain or signs anything. Package artifacts contain their own `dist`, declarations, MIT license and README.
+On POSIX shells: `npm init -y && npm install --ignore-scripts ./echoframe-*-1.1.1.tgz express@5.3.0 hono@4.13.19`, followed by the same Node self-test. The test runs real loopback HTTP, official SDK codecs and a synthetic facilitator, Hono dispatch, SQLite close/reopen, complete export/import, and independent outcome checks. It never contacts a chain or signs anything. Package artifacts contain their own `dist`, declarations, MIT license and README.
 
 ## Executable local merchant
 

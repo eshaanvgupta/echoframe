@@ -1,6 +1,6 @@
 {
-  "version": "1.1.0",
-  "status": "PREPARED_FOR_PUBLICATION",
+  "version": "1.1.1",
+  "status": "PATCH_PREPARED_PRIOR_RELEASE_CONFIRMED",
   "repository": "https://github.com/eshaanvgupta/echoframe",
   "defaultBranch": "main",
   "priorVerifiedCI": {
@@ -10,13 +10,14 @@
     "scope": "Previous implementation baseline; final release CI is verified separately."
   },
   "website": {
-    "status": "PAGES_CONFIGURED_AWAITING_DEPLOYMENT",
+    "status": "DEPLOYMENT_PROVIDER_CONFIRMED_PUBLIC_BROWSER_CHECK_PENDING",
     "plannedUrl": "https://eshaanvgupta.github.io/echoframe/",
-    "verifiedUrl": null
+    "verifiedUrl": null,
+    "verificationLimitation": "Initial local browser and HTTP fetch returned connection reset; no successful public-site smoke test is claimed yet. Patch CI will test from GitHub after deployment."
   },
   "release": {
     "status": "NOT_YET_PUBLISHED",
-    "plannedTag": "v1.1.0",
+    "plannedTag": "v1.1.1",
     "verifiedUrl": null
   },
   "npm": {
@@ -29,5 +30,13 @@
     "publicationConsent": "Owner explicitly approved the five redacted Downloads files",
     "independentAdoption": false,
     "mainnet": false
+  },
+  "previousRelease": {
+    "version": "1.1.0",
+    "url": "https://github.com/eshaanvgupta/echoframe/releases/tag/v1.1.0",
+    "sourceCommit": "a01a750ea817a6921307cfbfa93b89535a3abf2b",
+    "qualityRun": "https://github.com/eshaanvgupta/echoframe/actions/runs/44505344558",
+    "conclusion": "success",
+    "assets": 18
   }
 }

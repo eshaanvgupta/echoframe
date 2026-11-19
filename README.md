@@ -2,7 +2,7 @@
 
 [![Quality gates](https://github.com/eshaanvgupta/echoframe/actions/workflows/ci.yml/badge.svg)](https://github.com/eshaanvgupta/echoframe/actions/workflows/ci.yml) [![MIT](https://img.shields.io/badge/license-MIT-c6ff4d?labelColor=09101a)](LICENSE) [![Node 24](https://img.shields.io/badge/Node-24%2B-4de4ef?labelColor=09101a)](.node-version)
 
-**[Open the application](https://eshaanvgupta.github.io/echoframe/) · [Release & package downloads](https://github.com/eshaanvgupta/echoframe/releases/tag/v1.1.0) · [Integration guide](docs/integration.md) · [Technical evidence](docs/technical-evidence.md) · [Grant dossier](docs/prezenti-grant-dossier.md)**
+**[Open the application](https://eshaanvgupta.github.io/echoframe/) · [Release & package downloads](https://github.com/eshaanvgupta/echoframe/releases/tag/v1.1.1) · [Integration guide](docs/integration.md) · [Technical evidence](docs/technical-evidence.md) · [Grant dossier](docs/prezenti-grant-dossier.md)**
 
 A payment receipt answers one question: did a payment event occur? It does not tell a buyer whether the merchant returned the promised result, whether the result passed its declared checks, or whether a timed-out request is safe to repeat.
 

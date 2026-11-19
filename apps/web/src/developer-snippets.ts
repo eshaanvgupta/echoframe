@@ -13,9 +13,9 @@ pnpm --filter @echoframe/example-hono-mpp start
 # No wallet, keys, funds or external processor required.`],
   ['Independent installed SDK / PowerShell',`# Build and pack in the repository:
 pnpm test:consumer
-# Copy artifacts/echoframe-*-1.1.0.tgz into a NEW directory.
+# Copy artifacts/echoframe-*-1.1.1.tgz into a NEW directory.
 npm.cmd init -y
-$packages = Get-ChildItem ./echoframe-*-1.1.0.tgz | ForEach-Object { $_.FullName }
+$packages = Get-ChildItem ./echoframe-*-1.1.1.tgz | ForEach-Object { $_.FullName }
 npm.cmd install --ignore-scripts $packages
 node --input-type=module -e "import {runRecorderSelfTest} from '@echoframe/node'; console.log(await runRecorderSelfTest());"`],
   ['Installed local merchant / merchant.mjs',`import {startLocalMerchantSimulation, syntheticLocalCredential} from '@echoframe/node';

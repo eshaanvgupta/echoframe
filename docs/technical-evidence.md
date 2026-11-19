@@ -1,4 +1,4 @@
-# ECHOFRAME 1.1.0 technical evidence
+# ECHOFRAME 1.1.1 technical evidence
 
 This release separates three evidence classes: deterministic local simulations, a genuine user-authorized Celo Sepolia purchase, and public read-only mainnet observations. None is counted as independent adoption or production economic usage.
 

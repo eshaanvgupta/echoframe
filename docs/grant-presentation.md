@@ -46,6 +46,6 @@ Maintain pinned protocol profiles, monthly advisory reviews, full release checks
 
 ## 10 — Review the product
 
-[Repository](https://github.com/eshaanvgupta/echoframe) · [Public application](https://eshaanvgupta.github.io/echoframe/) · [Release](https://github.com/eshaanvgupta/echoframe/releases/tag/v1.1.0) · [Technical evidence](technical-evidence.md) · [Complete dossier](prezenti-grant-dossier.md) · [Demonstration](demo.md)
+[Repository](https://github.com/eshaanvgupta/echoframe) · [Public application](https://eshaanvgupta.github.io/echoframe/) · [Release](https://github.com/eshaanvgupta/echoframe/releases/tag/v1.1.1) · [Technical evidence](technical-evidence.md) · [Complete dossier](prezenti-grant-dossier.md) · [Demonstration](demo.md)
 
 Publication URLs must be checked against publication.json and the actual remote response. Program sources: [official Season 3 criteria and November 12 clarification](https://forum.celo.org/t/prezenti-season-3-is-open-frontier-anchor-and-boost-grants-for-celo/13714), [executed Season 3 governance budget](https://github.com/celo-org/governance/blob/main/CGPs/cgp-0249.md). The budget proposal does not guarantee remaining funds or eligibility.

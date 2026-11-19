@@ -1,7 +1,7 @@
 import {readdir,readFile,writeFile,cp,mkdir} from 'node:fs/promises';
 import {resolve,relative} from 'node:path';
 import {createHash} from 'node:crypto';
-const root=resolve(import.meta.dirname,'..'),pages=process.argv.includes('--pages'),base=pages?'/echoframe/':'/',dist=resolve(root,'apps/web',pages?'dist-pages':'dist');
+const root=resolve(import.meta.dirname,'..'),versionNumber=JSON.parse(await readFile(resolve(root,'package.json'),'utf8')).version,pages=process.argv.includes('--pages'),base=pages?'/echoframe/':'/',dist=resolve(root,'apps/web',pages?'dist-pages':'dist');
 await mkdir(resolve(dist,'docs'),{recursive:true});
 await cp(resolve(root,'THIRD_PARTY_NOTICES.txt'),resolve(dist,'THIRD_PARTY_NOTICES.txt'));
 for(const file of await readdir(resolve(root,'docs')))if(file.endsWith('.md'))await cp(resolve(root,'docs',file),resolve(dist,'docs',file));
@@ -19,7 +19,7 @@ for(const route of ['explorer','lab','studio','journal','vault','developers','gr
 }
 const manifest=JSON.parse(await readFile(resolve(dist,'manifest.webmanifest'),'utf8'));
 Object.assign(manifest,{id:base,start_url:base,scope:base});manifest.icons=manifest.icons.map(icon=>({...icon,src:base+icon.src.replace(/^\//,'')}));await writeFile(resolve(dist,'manifest.webmanifest'),JSON.stringify(manifest));
-try{await cp(resolve(root,'artifacts/echoframe-grant-1.1.0.html'),resolve(dist,'docs/grant-presentation.html'));}catch(error){if(error.code!=='ENOENT')throw error;}
+try{await cp(resolve(root,`artifacts/echoframe-grant-${versionNumber}.html`),resolve(dist,'docs/grant-presentation.html'));}catch(error){if(error.code!=='ENOENT')throw error;}
 const entries=[];
 async function walk(path){for(const file of (await readdir(path,{withFileTypes:true})).sort((a,b)=>a.name.localeCompare(b.name))){const p=resolve(path,file.name);if(file.isDirectory())await walk(p);else if(!['_headers','_redirects','sw.js','.nojekyll'].includes(file.name))entries.push(base+relative(dist,p).replaceAll('\\','/'));}}
 await walk(dist);const version=createHash('sha256').update(base).update((await Promise.all(entries.map(file=>readFile(resolve(dist,file.slice(base.length)))))).map(b=>b.toString('base64')).join('')).digest('hex').slice(0,16);

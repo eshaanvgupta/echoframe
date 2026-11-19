@@ -36,5 +36,7 @@ class ErrorBoundary extends React.Component<{children:React.ReactNode},{error:st
   state:{error:string|null}={error:null};static getDerivedStateFromError(error:Error){return {error:error.message};}
   render(){return this.state.error?<div className="empty"><h1>Evidence workspace interrupted</h1><p>{this.state.error}</p><p>Stored evidence remains local. Reload to reopen the workspace.</p><button onClick={()=>window.location.reload()}>Reload workspace</button></div>:this.props.children;}
 }
+// GitHub Pages redirects physical entry documents to a trailing slash. Canonicalize before routing.
+if(window.location.pathname.endsWith('/')&&window.location.pathname!==import.meta.env.BASE_URL)window.history.replaceState(window.history.state,'',window.location.pathname.replace(/\/+$/,'')+window.location.search+window.location.hash);
 createRoot(document.getElementById('root')!).render(<React.StrictMode><ErrorBoundary><BrowserRouter basename={import.meta.env.BASE_URL}><AppProvider><Shell/></AppProvider></BrowserRouter></ErrorBoundary></React.StrictMode>);
 if('serviceWorker'in navigator&&import.meta.env.PROD)void navigator.serviceWorker.register(import.meta.env.BASE_URL+'sw.js',{scope:import.meta.env.BASE_URL}).catch(()=>{});

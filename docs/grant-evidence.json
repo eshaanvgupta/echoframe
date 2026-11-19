@@ -42,7 +42,7 @@
   },
   "outreachPlan": "docs/prezenti-grant-dossier.md",
   "localReleaseChecks": "docs/release-verification.json",
-  "softwareVersion": "1.1.0",
+  "softwareVersion": "1.1.1",
   "publicReadOnlyObservations": {
     "record": "docs/live-rpc-observations.json",
     "category": "PUBLIC_MAINNET_AND_TESTNET_READS",

@@ -55,6 +55,25 @@ jobs:
       - name: Deploy verified static application
         id: deployment
         uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e # v4
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version: '24'
+      - run: corepack enable && pnpm install --frozen-lockfile
+      - run: pnpm exec playwright install --with-deps chromium
+      - name: Wait for the public host
+        env:
+          SITE_URL: ${{ steps.deployment.outputs.page_url }}
+        run: curl --fail --retry 12 --retry-delay 5 --retry-all-errors --max-time 15 "$SITE_URL"
+      - name: Verify actual public routes, downloads and offline recovery
+        env:
+          ECHOFRAME_SITE_URL: ${{ steps.deployment.outputs.page_url }}
+        run: pnpm test:pages
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+        if: always()
+        with:
+          name: public-site-verification
+          path: artifacts/public-site-results.json
   publish-release:
     if: startsWith(github.ref, 'refs/tags/v')
     needs: release-checks

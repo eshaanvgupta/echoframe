@@ -1,6 +1,6 @@
 {
   "name": "@echoframe/cli",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "ECHOFRAME cli: read-only evidence infrastructure",
   "type": "module",
   "license": "MIT",
