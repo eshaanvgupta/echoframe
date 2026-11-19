@@ -11,7 +11,7 @@ export const delivery = z.enum(['NOT_EXPECTED','NOT_STARTED','STARTED','RETURNED
 export const quality = z.enum(['CHAIN_PROVEN','SIGNATURE_VERIFIED','TEST_REPRODUCED','APP_REPORTED','INFERRED','MISSING']);
 export type FinancialStatus = z.infer<typeof financial>;
 export type EvidenceQuality = z.infer<typeof quality>;
-export const jsonValue: z.ZodType<Json> = z.lazy(()=>z.union([z.null(),z.boolean(),z.number().finite(),z.string().max(1_000_000),z.array(jsonValue).max(10000),z.record(z.string(),jsonValue)]));
+export const jsonValue: z.ZodType<Json> = z.lazy(()=>z.union([z.null(),z.boolean(),z.number().finite(),z.string().max(2_700_000),z.array(jsonValue).max(10000),z.record(z.string(),jsonValue)]));
 const iso = z.iso.datetime();
 export const offerSchema = z.object({id:z.string().max(100),chainId:chain,scheme:z.literal('exact'),token:address,payer:address.optional(),payee:address,amount:atomic,decimals:z.number().int().min(0).max(36).optional(),decimalsSource:z.enum(['RPC','CONFIGURED','NOT_PROVIDED']),quoteHash:hex32}).strict();
 export type PaymentOffer = z.infer<typeof offerSchema>;
@@ -37,6 +37,12 @@ export const bundleSchema = z.object({
 }).strict();
 export type EvidenceBundle = z.infer<typeof bundleSchema>;
 export interface VerificationReport {
+  reportVersion:'1.1.0';recordedFinancialStatus:FinancialStatus;
+  transactionExecution:'SUCCESS'|'REVERTED'|'PENDING'|'UNKNOWN';
+  transferObservation:'OBSERVED'|'NOT_OBSERVED'|'UNKNOWN';
+  paymentAttribution:'SIMULATED'|'RECORDED_UNTRUSTED'|'UNKNOWN';
+  deliveryObservation:'RETURNED_REPORTED'|'EMPTY_REPORTED'|'COMMITMENT_ONLY'|'UNKNOWN';
+  outcomeStatus:'TESTED_PASS'|'TESTED_FAIL'|'NOT_MACHINE_VERIFIABLE'|'NOT_RUN';
   algorithm:string; bundleId:string|null; integrity:'VALID'|'INVALID'; errors:string[]; warnings:string[];
   authorityStatus:z.infer<typeof authority>; financialStatus:FinancialStatus; deliveryStatus:z.infer<typeof delivery>;
   environment:string; claims:Array<{statement:string;quality:EvidenceQuality;reason:string}>;

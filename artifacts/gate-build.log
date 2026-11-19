@@ -1,14 +1,14 @@
 
-> echoframe-workspace@1.0.0 build C:\Users\eshaa\OneDrive\Desktop\Hackathons\Prezenti Grant (Celo)
+> echoframe-workspace@1.1.0 build C:\Users\eshaa\OneDrive\Desktop\Hackathons\Prezenti Grant (Celo)
 > node scripts/build.mjs && corepack pnpm --filter @echoframe/web build && node scripts/budget.mjs
 
 
-> @echoframe/web@1.0.0 build C:\Users\eshaa\OneDrive\Desktop\Hackathons\Prezenti Grant (Celo)\apps\web
+> @echoframe/web@1.1.0 build C:\Users\eshaa\OneDrive\Desktop\Hackathons\Prezenti Grant (Celo)\apps\web
 > vite build && node ../../scripts/pwa.mjs
 
 vite v8.3.8 building client environment for production...
 transforming...
-✓ 778 modules transformed.
+✓ 782 modules transformed.
 rendering chunks...
 computing gzip size...
 dist/index.html                                              0.92 kB │ gzip:   0.49 kB
@@ -20,23 +20,23 @@ dist/assets/inter-latin-400-normal-C38fXH4l.woff2           23.66 kB
 dist/assets/inter-latin-500-normal-Cerq10X2.woff2           24.27 kB
 dist/assets/inter-latin-400-normal-CyCys3Eg.woff            30.69 kB
 dist/assets/inter-latin-500-normal-BL9OpVg8.woff            31.28 kB
-dist/assets/index-D33rf7qi.css                              36.37 kB │ gzip:   8.11 kB
+dist/assets/index-DTuhHXAy.css                              37.26 kB │ gzip:   8.30 kB
 dist/assets/rolldown-runtime-XKyaHtl9.js                     0.72 kB │ gzip:   0.42 kB
 dist/assets/utils-Bpv4vmSW.js                                2.19 kB │ gzip:   0.97 kB
-dist/assets/dist-DNPu21uQ.js                                 4.56 kB │ gzip:   1.75 kB
+dist/assets/dist-Ic-UEqku.js                                 4.62 kB │ gzip:   1.77 kB
 dist/assets/hmac-CCofjpRN.js                                 4.82 kB │ gzip:   2.23 kB
-dist/assets/dist-Ce5F70WF.js                                 6.97 kB │ gzip:   2.97 kB
-dist/assets/dist-D9bpdqI5.js                                14.49 kB │ gzip:   5.38 kB
+dist/assets/dist-DSL_8o_P.js                                 6.97 kB │ gzip:   2.97 kB
+dist/assets/dist-BDCaHK6t.js                                15.97 kB │ gzip:   5.83 kB
 dist/assets/secp256k1-45PJDJHu.js                           25.05 kB │ gzip:   9.80 kB
-dist/assets/crypto-IxmKkDoF.js                             131.28 kB │ gzip:  39.46 kB
-dist/assets/index-DqyYeslN.js                              508.18 kB │ gzip: 159.32 kB
+dist/assets/crypto-PqJvI8XV.js                             132.75 kB │ gzip:  39.94 kB
+dist/assets/index-D-KrzxAi.js                              538.34 kB │ gzip: 168.04 kB
 
-✓ built in 336ms
-Offline shell 8c0c871cbd97991d: 39 static assets. RPC/evidence requests are never cached by the service worker.
+✓ built in 634ms
+Offline shell 1997361603db0540: 44 static assets. RPC/evidence requests are never cached by the service worker.
 {
-  javascriptGzipBytes: 220449,
-  cssGzipBytes: 8067,
-  totalAssetBytes: 902610,
+  javascriptGzipBytes: 230021,
+  cssGzipBytes: 8256,
+  totalAssetBytes: 936667,
   budgets: { javascriptGzipBytes: 350000, cssGzipBytes: 40000 },
   reason: 'Includes offline cryptography, safe DSL, strict adapters and IndexedDB. No network font or image dependencies.'
 }

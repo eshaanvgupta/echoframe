@@ -1,6 +1,6 @@
 import {z} from 'zod';
 import {decodePaymentRequiredHeader,decodePaymentSignatureHeader,decodePaymentResponseHeader} from '@x402/core/http';
-import {address,atomic,hex32,commitment,canonicalize,decodeBase64,EvidenceError,type Json,type PaymentOffer} from '@echoframe/core';
+import {address,atomic,hex32,commitment,canonicalize,decodeBase64,parseJson,EvidenceError,type Json,type PaymentOffer} from '@echoframe/core';
 
 const network=z.enum(['eip155:42220','eip155:11142220']);
 export const requirementsSchema=z.object({scheme:z.literal('exact'),network,amount:atomic,asset:address,payTo:address,maxTimeoutSeconds:z.number().int().positive().max(86400),extra:z.object({name:z.string().min(1).max(100),version:z.string().min(1).max(20),assetTransferMethod:z.literal('eip3009').optional(),paymentFlow:z.literal('authorization').optional()}).strict()}).strict();
@@ -12,7 +12,7 @@ const signatureSchema=z.object({x402Version:z.literal(2),accepted:requirementsSc
 const settlementSchema=z.object({success:z.boolean(),transaction:z.string().max(66),network,payer:address.optional(),amount:atomic.optional(),errorReason:z.string().max(100).optional(),errorMessage:z.string().max(500).optional(),extensions:z.record(z.string(),z.unknown()).optional()}).strict();
 function bounded(header:string|undefined):string{
   if(!header)throw new EvidenceError('UNSUPPORTED_X402','Canonical v2 header is required; no body/legacy fallback');
-  decodeBase64(header,32768);return header;
+  parseJson(new TextDecoder('utf-8',{fatal:true}).decode(decodeBase64(header,32768)),32768);return header;
 }
 function noExtensions(value:{extensions?:Record<string,unknown>|undefined}):void{
   if(value.extensions&&Object.keys(value.extensions).length)throw new EvidenceError('UNSUPPORTED_X402','Extensions require an explicitly supported profile');
@@ -24,6 +24,12 @@ export function parseX402Challenge(header:string|undefined):z.infer<typeof chall
 export function quoteCommitment(requirements:X402Requirements):string{return commitment('x402-quote-v2',requirementsSchema.parse(requirements));}
 export function normalizeX402Offer(requirements:X402Requirements,id='offer-0'):PaymentOffer{
   const q=requirementsSchema.parse(requirements);return {id,chainId:Number(q.network.split(':')[1]) as 42220|11142220,scheme:'exact',token:q.asset,payee:q.payTo,amount:q.amount,decimalsSource:'NOT_PROVIDED',quoteHash:quoteCommitment(q)};
+}
+/** Transient credential normalization; never exposes signature or nonce in its return value. */
+export function readX402CredentialMetadata(header:string){
+  const value=signatureSchema.parse(decodePaymentSignatureHeader(bounded(header)));noExtensions(value);
+  const auth=value.payload.authorization;
+  return {requirements:value.accepted,offer:normalizeX402Offer(value.accepted),payer:auth.from.toLowerCase(),payee:auth.to.toLowerCase(),amount:auth.value,validAfter:auth.validAfter,validBefore:auth.validBefore,authorizationFingerprint:commitment('eip3009-reference-v1',{chain:value.accepted.network,token:value.accepted.asset.toLowerCase(),payer:auth.from.toLowerCase(),nonce:auth.nonce})};
 }
 /** Consumes credential transiently. The return value contains no replayable signature/nonce. */
 export function inspectX402Signature(header:string|undefined,selected:X402Requirements,options:{nowSeconds?:number;expectedPayer?:string;expectedResourceUrl?:string}={}):Json{
@@ -38,7 +44,7 @@ export function inspectX402Signature(header:string|undefined,selected:X402Requir
   if(options.expectedResourceUrl&&value.resource?.url!==options.expectedResourceUrl)throw new EvidenceError('RESOURCE','Resource context changed');
   return {protocol:'x402',version:2,quoteHash:quoteCommitment(expected),payer:auth.from.toLowerCase(),payee:auth.to.toLowerCase(),amount:auth.value,network:expected.network,signatureStatus:'STRUCTURALLY_CONSISTENT_NOT_CRYPTOGRAPHICALLY_VERIFIED',credentialRetained:false,warning:'EIP-3009 does not intrinsically bind arbitrary request IDs; local journal attribution is separate.'};
 }
-export function parseX402Settlement(header:string|undefined,selected:X402Requirements):Json{
+export function parseX402Settlement(header:string|undefined,selected:Pick<X402Requirements,'network'|'amount'>):Json{
   const value=settlementSchema.parse(decodePaymentResponseHeader(bounded(header)));noExtensions(value);
   if(value.network!==selected.network||value.amount!==undefined&&value.amount!==selected.amount)throw new EvidenceError('SETTLEMENT_MISMATCH','Settlement network or amount differs from quote');
   if(value.transaction&&!hex32.safeParse(value.transaction).success)throw new EvidenceError('TRANSACTION','Invalid transaction reference');

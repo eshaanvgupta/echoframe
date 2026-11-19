@@ -1,6 +1,6 @@
 {
   "name": "@echoframe/node",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "ECHOFRAME node: read-only evidence infrastructure",
   "type": "module",
   "license": "MIT",
@@ -20,6 +20,11 @@
   },
   "dependencies": {
     "@echoframe/core": "workspace:*",
-    "@echoframe/x402": "workspace:*"
+    "@echoframe/x402": "workspace:*",
+    "@echoframe/mpp": "workspace:*",
+    "@echoframe/celo": "workspace:*",
+    "hono": "4.13.19",
+    "@x402/core": "2.31.0",
+    "mppx": "0.21.0"
   }
 }

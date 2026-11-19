@@ -1,45 +1,54 @@
 
-> echoframe-workspace@1.0.0 test C:\Users\eshaa\OneDrive\Desktop\Hackathons\Prezenti Grant (Celo)
+> echoframe-workspace@1.1.0 test C:\Users\eshaa\OneDrive\Desktop\Hackathons\Prezenti Grant (Celo)
 > vitest run
 
 
  RUN  v5.1.1 C:/Users/eshaa/OneDrive/Desktop/Hackathons/Prezenti Grant (Celo)
 
- ✓ test/adapters.test.ts (53 tests) 263ms
- ✓ test/core.test.ts (74 tests) 666ms
- ✓ test/cli-mcp.test.ts (14 tests) 1210ms
-   ✓ official MCP read-only integration (4)
-     ✓ serves a real stdio MCP client from the built entrypoint 1008ms
- ✓ test/recorder.test.ts (3 tests) 49ms
- ✓ test/outcomes.test.ts (51 tests) 148ms
- ✓ test/celo.test.ts (40 tests) 55ms
- ✓ scenarios/decimals.test.ts (1 test) 14ms
- ✓ scenarios/response-lost.test.ts (1 test) 18ms
- ✓ scenarios/valid.test.ts (1 test) 15ms
- ✓ scenarios/mandate-expiry.test.ts (1 test) 16ms
- ✓ scenarios/request-reuse.test.ts (1 test) 14ms
- ✓ scenarios/multi-transfer.test.ts (1 test) 14ms
- ✓ scenarios/empty-body.test.ts (1 test) 13ms
- ✓ scenarios/recipient-switch.test.ts (1 test) 13ms
- ✓ scenarios/rpc-conflict.test.ts (1 test) 16ms
- ✓ scenarios/evaluator-only.test.ts (1 test) 13ms
- ✓ test/journal-replay.test.ts (47 tests) 4757ms
+ ✓ test/payment-recorder.test.ts (27 tests) 2015ms
+   ✓ drop-in recorder and independent consumer self-test (18)
+     ✓ exercises HTTP, official simulated facilitator, Hono, persistence and outcome reproduction 688ms
+ ✓ test/cli-mcp.test.ts (16 tests) 2204ms
+   ✓ installed CLI command semantics (11)
+     ✓ executes crash/restart integration check 594ms
+   ✓ official MCP read-only integration (5)
+     ✓ serves a real stdio MCP client from the built entrypoint 1264ms
+ ✓ test/production-security.test.ts (64 tests) 3120ms
+   ✓ canonical and outcome boundaries (21)
+     ✓ supports the declared attachment size in bundled outcome proofs 1040ms
+     ✓ decrypts valid envelopes above the plaintext JSON boundary 1859ms
+ ✓ test/adapters.test.ts (53 tests) 483ms
+ ✓ test/core.test.ts (74 tests) 893ms
+ ✓ test/journal-replay.test.ts (47 tests) 5073ms
    ✓ fixed-seed state-machine properties (2)
-     ✓ checks 2500 generated action sequences: immutable history, legal transitions and no false settlement 4156ms
-     ✓ idempotency keys distinguish identities 334ms
- ✓ scenarios/ambiguous-failure.test.ts (1 test) 13ms
- ✓ scenarios/price-drift.test.ts (1 test) 15ms
- ✓ scenarios/chain-mismatch.test.ts (1 test) 15ms
- ✓ scenarios/crash-recovery.test.ts (1 test) 16ms
- ✓ scenarios/hash-schema.test.ts (1 test) 16ms
- ✓ scenarios/forged-delivery.test.ts (1 test) 16ms
+     ✓ checks 2500 generated action sequences: immutable history, legal transitions and no false settlement 4362ms
+     ✓ idempotency keys distinguish identities 308ms
+ ✓ test/outcomes.test.ts (51 tests) 220ms
+ ✓ scenarios/evaluator-only.test.ts (1 test) 24ms
+ ✓ scenarios/multi-transfer.test.ts (1 test) 23ms
+ ✓ test/celo.test.ts (40 tests) 84ms
+ ✓ test/recorder.test.ts (3 tests) 52ms
+ ✓ scenarios/request-reuse.test.ts (1 test) 25ms
+ ✓ scenarios/rpc-conflict.test.ts (1 test) 27ms
+ ✓ scenarios/hash-schema.test.ts (1 test) 25ms
+ ✓ scenarios/valid.test.ts (1 test) 24ms
+ ✓ scenarios/decimals.test.ts (1 test) 23ms
+ ✓ scenarios/empty-body.test.ts (1 test) 25ms
+ ✓ scenarios/ambiguous-failure.test.ts (1 test) 25ms
+ ✓ scenarios/price-drift.test.ts (1 test) 22ms
+ ✓ scenarios/crash-recovery.test.ts (1 test) 25ms
+ ✓ scenarios/chain-mismatch.test.ts (1 test) 22ms
+ ✓ scenarios/forged-delivery.test.ts (1 test) 25ms
+ ✓ scenarios/response-lost.test.ts (1 test) 24ms
+ ✓ scenarios/recipient-switch.test.ts (1 test) 24ms
+ ✓ scenarios/mandate-expiry.test.ts (1 test) 26ms
 
- Test Files  23 passed (23)
-      Tests  298 passed (298)
-   Start at  10:32:40
-   Duration  6.90s (import 66%, tests 32%, transform 1%, worker 1%)
+ Test Files  25 passed (25)
+      Tests  391 passed (391)
+   Start at  12:18:26
+   Duration  13.35s (import 65%, tests 33%, transform 1%, worker 1%)
 
-    Isolate  23 workers spawned · ~164ms startup each (spawn + environment, per file)
-             at least ~777ms faster with isolate: false — reuses workers across files instead of one per file
+    Isolate  25 workers spawned · ~257ms startup each (spawn + environment, per file)
+             at least ~1.35s faster with isolate: false — reuses workers across files instead of one per file
 
 JSON report written to C:/Users/eshaa/OneDrive/Desktop/Hackathons/Prezenti Grant (Celo)/artifacts/unit-results.json

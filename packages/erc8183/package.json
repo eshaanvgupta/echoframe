@@ -1,6 +1,6 @@
 {
   "name": "@echoframe/erc8183",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "ECHOFRAME erc8183: read-only evidence infrastructure",
   "type": "module",
   "license": "MIT",

@@ -1,6 +1,6 @@
 # @echoframe/core
 
-ECHOFRAME 1.0.0. MIT. Explicit ESM exports and TypeScript declarations.
+ECHOFRAME 1.1.0. MIT. Explicit ESM exports and TypeScript declarations.
 
 Read the API and exact trust boundaries: https://github.com/eshaanvgupta/echoframe/blob/main/docs/api.md#core
 

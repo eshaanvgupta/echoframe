@@ -2,6 +2,7 @@ import {test,expect} from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 import {readFile,mkdir} from 'node:fs/promises';
 import {scenarioBundle,verifyBundle} from '../../packages/core/src/index.js';
+import {receipt,A,B,TOKEN,TX,BLOCK} from '../fixtures.js';
 
 test.beforeEach(async({page})=>{await page.route('https://forno.celo-sepolia.celo-testnet.org/**',route=>route.abort());await page.route('https://forno.celo.org/**',route=>route.abort());});
 test('all product routes work without overflow or page exceptions',async({page},info)=>{
@@ -17,6 +18,26 @@ test('sample trace separates money, work and authority and exports exact evidenc
   await page.goto('/');await page.getByRole('button',{name:'Open paid-but-not-delivered case'}).click();await expect(page).toHaveURL(/explorer/);
   const workspace=page.locator('.trace-workspace');await expect(workspace).toContainText('SETTLED');await expect(workspace).toContainText('TESTED FAIL');await expect(workspace).toContainText('NOT PROVIDED');
   const event=await Promise.all([page.waitForEvent('download'),workspace.getByRole('button',{name:'Download manifest'}).click()]);const path=await event[0].path();const bundle=JSON.parse(await readFile(path!,'utf8'));expect((await verifyBundle(bundle)).integrity).toBe('VALID');
+});
+
+test('trace findings select relevant simulations and export an explicit complete regression',async({page},info)=>{
+  await page.goto('/explorer');await page.getByRole('button',{name:'Load the paid-but-not-delivered sample'}).click();
+  const diagnosis=page.getByRole('region',{name:'Trace diagnostics'});await expect(diagnosis).toContainText('DELIVERY_MISSING');await expect(diagnosis).toContainText('REPRODUCED CHECK');
+  await diagnosis.locator('.finding-references button').first().click();await expect(page.getByRole('status')).toContainText('Selected supporting event');
+  await expect(diagnosis.getByRole('button',{name:'Download trace regression'})).not.toBeVisible();await diagnosis.getByText('Export a regression for this evidence',{exact:true}).click();await expect(diagnosis.getByRole('button',{name:'Download trace regression'})).toBeDisabled();
+  await diagnosis.getByLabel('Include complete active evidence in the regression file').check();const [file]=await Promise.all([page.waitForEvent('download'),diagnosis.getByRole('button',{name:'Download trace regression'}).click()]);expect(await readFile((await file.path())!,'utf8')).toContain('diagnoseBundle');
+  await page.evaluate(()=>window.scrollTo(0,0));await page.screenshot({path:`docs/screenshots/trace-${info.project.name}.png`,fullPage:true});
+  await diagnosis.getByRole('link',{name:'Explore related simulation'}).click();await expect(page).toHaveURL(/scenario=empty-body&source=trace/);await expect(page.locator('.lab-case-heading')).toContainText('Paid but not delivered');await expect(page.getByRole('region',{name:'Trace diagnostics'})).toContainText('DELIVERY_MISSING');expect(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth)).toBe(true);
+});
+
+test('a sole successful Transfer needs complete trusted context and explicit selection',async({page})=>{
+  await page.route('https://forno.celo-sepolia.celo-testnet.org/**',async route=>{const request=route.request().postDataJSON() as {method:string;id:number};const block={hash:BLOCK,number:'0x10',timestamp:'0x1000',transactions:[TX]};const results:Record<string,unknown>={eth_chainId:'0xaa044c',eth_getTransactionReceipt:receipt(),eth_getBlockByHash:block,eth_getBlockByNumber:block,eth_call:'0x'+'6'.padStart(64,'0')};await route.fulfill({json:{jsonrpc:'2.0',id:request.id,result:results[request.method]??null}});});
+  await page.goto('/explorer');await page.getByLabel('Transaction hash',{exact:true}).fill(TX);await page.getByRole('button',{name:'Inspect on Celo',exact:true}).click();const result=page.locator('.rpc-result');await expect(result).toContainText('Transaction execution: SUCCESS');await expect(result).toContainText('MISSING_EXPECTATIONS');await expect(result.locator('.transfer')).toHaveCount(1);
+  await page.getByText('Intended-payment expectations',{exact:true}).click();await page.getByLabel('Expected asset',{exact:true}).fill(TOKEN);await page.getByLabel('Expected recipient',{exact:true}).fill(B);await page.getByLabel('Expected sender',{exact:true}).fill(A);await page.getByLabel('Exact integer amount',{exact:true}).fill('1000');await page.getByLabel('I independently confirm these payment expectations, the selected chain and transaction, and standard ERC-20 token semantics.').check();await page.getByLabel('Select the Transfer log to attribute').selectOption('2');await expect(result).toContainText('Payment attribution: MATCHED');await expect(result).toContainText('SETTLED');await expect(page.locator('.trace-workspace .axes')).toContainText('Import cannot confer trusted purchase context');await expect(page.locator('.trace-workspace .axes')).toContainText('UNKNOWN');
+});
+
+test('editing policy inputs invalidates stale displayed proofs',async({page})=>{
+  await page.goto('/studio');await page.getByRole('button',{name:'Compile outcome proof',exact:true}).click();await expect(page.locator('.proof-output')).toContainText('TESTED PASS');await page.getByRole('textbox',{name:/Response body JSON/}).fill('{"rate":-1}');await expect(page.locator('.proof-output')).toHaveCount(0);await page.getByRole('button',{name:'Compile outcome proof',exact:true}).click();await expect(page.locator('.proof-output')).toContainText('TESTED FAIL');
 });
 test('same-seed policy patch reruns and exports a runnable regression',async({page})=>{
   await page.goto('/lab?scenario=response-lost');await page.getByRole('button',{name:'Fix & Re-run',exact:true}).click();await expect(page.locator('.notice.cyan')).toContainText('Seed 42220 preserved');await expect(page.locator('.run-comparison').locator('div').nth(1)).toContainText('0');

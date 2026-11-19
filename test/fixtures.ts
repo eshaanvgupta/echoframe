@@ -12,7 +12,7 @@ const topic=(a:string)=>'0x'+'0'.repeat(24)+a.slice(2);
 export function receipt():RpcReceipt{return {transactionHash:TX,blockHash:BLOCK,blockNumber:'0x10',from:A,to:TOKEN,status:'0x1',logs:[{address:TOKEN,topics:[TRANSFER_TOPIC,topic(A),topic(B)],data:'0x'+(1000n).toString(16).padStart(64,'0'),logIndex:'0x2',transactionHash:TX,blockHash:BLOCK,blockNumber:'0x10',removed:false}]};}
 export function transport(overrides:Partial<Record<string,unknown>>={},hook?:(endpoint:string,method:string)=>void):RpcTransport{
   return async(endpoint,method,_params,signal)=>{signal.throwIfAborted();hook?.(endpoint,method);if(Object.hasOwn(overrides,method)){const value=overrides[method];if(value instanceof Error)throw value;return value;}
-    if(method==='eth_chainId')return '0xaa044c';if(method==='eth_getTransactionReceipt')return receipt();if(method==='eth_getBlockByHash')return {hash:BLOCK,number:'0x10',timestamp:'0x1000',transactions:[TX]};if(method==='eth_call')return '0x'+'6'.padStart(64,'0');if(method==='eth_getCode')return '0x6000';return null;};
+    if(method==='eth_chainId')return '0xaa044c';if(method==='eth_getTransactionReceipt')return receipt();if(method==='eth_getBlockByHash'||method==='eth_getBlockByNumber')return {hash:BLOCK,number:'0x10',timestamp:'0x1000',transactions:[TX]};if(method==='eth_call')return '0x'+'6'.padStart(64,'0');if(method==='eth_getCode')return '0x6000';return null;};
 }
 export const identity:AttemptIdentity={chainId:11142220,protocol:'x402',requestId:'test-request',payer:A,payee:B,token:TOKEN,amount:'1000',quoteHash:commitment('test-quote',null)};
 export const challenge={x402Version:2,resource:{url:'https://example.invalid/rates'},accepts:[requirements]};

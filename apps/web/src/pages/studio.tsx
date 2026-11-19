@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useEffect,useState} from 'react';
 import {outcomeExamples,manifestSchema,ruleSchema,parseJson,createOutcomeProof,verifyOutcomeProof,appendEvent,sealBundle,canonicalize,commitment,deterministicDiff,redact,encodeBase64,type ValidatorManifest,type OutcomeInput,type OutcomeProof,type Json} from '@echoframe/core';
 import {StatusBadge} from '@echoframe/react';
 import {useApp,useTask} from '../context.js';
@@ -8,6 +8,7 @@ const defaultRules:Record<string,Json>={presence:{kind:'presence'},http:{kind:'h
 export function OutcomeStudio(){
   const first=outcomeExamples.rates!;const [manifest,setManifest]=useState<ValidatorManifest>(first.manifest),[body,setBody]=useState(pretty(first.input.body)),[status,setStatus]=useState(200),[cross,setCross]=useState(''),[signature,setSignature]=useState(''),[file,setFile]=useState<OutcomeInput['file']>(),[kind,setKind]=useState('presence'),[proof,setProof]=useState<OutcomeProof|null>(null),[verification,setVerification]=useState<unknown>(null),[expected,setExpected]=useState(''),[diff,setDiff]=useState<unknown>(null),[advanced,setAdvanced]=useState(pretty(first.manifest)),[ruleErrors,setRuleErrors]=useState<Record<number,string>>({});
   const {bundle,load,notify}=useApp(),{busy,run}=useTask();
+  useEffect(()=>{setProof(null);setVerification(null);},[manifest,body,status,cross,signature,file,ruleErrors]);
   const compile=async()=>{
     if(Object.values(ruleErrors).some(Boolean))throw new Error('Correct invalid rule fields before compiling');
     const selected=manifestSchema.parse(manifest),input:OutcomeInput={body:parseJson(body),status,...(file?{file}:{}),...(cross?{crossCheck:parseJson(cross)}:{}),...(signature?{sourceSignature:signature}:{})};

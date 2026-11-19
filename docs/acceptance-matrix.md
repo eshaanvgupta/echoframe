@@ -18,3 +18,21 @@ The binding build prompt remains at the repository root. This matrix maps its jo
 | Real outreach/mainnet use only if observed | grant dossier and factual ledger | Not yet observed; explicit opt-in outreach and sponsored integration plan |
 
 Local, synthetic and Sepolia data are explicitly separated. No real payment or registration is necessary to run the software. No website or npm publication is claimed. The GitHub repository is the requested source publication target; confirm its actual remote commit independently.
+
+
+## Production upgrade acceptance path
+
+| Independent developer step | Reviewable implementation / executable evidence |
+| --- | --- |
+| Install without registry credentials | Nine 1.1.0 packed artifacts, temporary external consumer installation |
+| Instrument supported Express/Hono workflow | `PaymentRecorder.express()` / `.hono()`, actual Express integration tests and installed HTTP/Hono self-test |
+| Capture real HTTP requests and relevant supported observations | Correlated challenge/credential/response lifecycle, official codecs, synthetic facilitator explicitly isolated; genuine merchant opt-in documented |
+| Export portable complete evidence intentionally | `exportEvidence(key,path,{mode:'complete'})`, installed export/import checks; default public-minimal |
+| Open in static app | Explorer file/drop/text import with independent schema/hash/proof verification |
+| Separate payment/authority/delivery | Expanded report/UI axes and strict attribution tests; imports never inherit trusted purchase context |
+| Reproduce configured checks | Explicit allowlisted projection policy, installed verifier, CLI/browser report parity |
+| Understand failure and missing evidence | Shared typed diagnosis, supporting events, missing evidence, safe action; trace-aware scenario selection |
+| Export and run regression | Explicit complete-evidence trace tests, installed Vitest execution plus all 16 scenario regressions |
+| Use free/local infrastructure | No keys, custody, hosted DB or paid service; plaintext local SQLite/IndexedDB and optional encrypted portable exports |
+
+A consenting genuine ecosystem merchant usage milestone remains uncompleted. This is not substituted with simulations or public chain inspection. Exact final counts come from the release report, not the planned checklist.

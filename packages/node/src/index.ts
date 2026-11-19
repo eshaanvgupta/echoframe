@@ -1,6 +1,8 @@
 import {DatabaseSync} from 'node:sqlite';
 import {initialAttempt,appendJournal,attemptKey,validateJournal,canonicalize,safeHttpMetadata,createBundle,appendEvent,type AttemptJournal,type AttemptIdentity,type AttemptRecord,type FinancialStatus,type EvidenceBundle,type Json,EvidenceError} from '@echoframe/core';
 import {parseX402Challenge,normalizeX402Offer,headerValue} from '@echoframe/x402';
+export {PaymentRecorder,type PaymentRecorderOptions,type JsonCapture} from './payment-recorder.js';
+export {runRecorderSelfTest,startLocalMerchantSimulation,syntheticLocalCredential} from './self-test.js';
 
 export class SqliteAttemptJournal implements AttemptJournal{
   private readonly db:DatabaseSync;

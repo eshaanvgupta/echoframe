@@ -1,6 +1,6 @@
 import {z} from 'zod';
 import {verifyMessage,type Hex} from 'viem';
-import {address,hex32,jsonValue,type Json,EvidenceError} from './types.js';
+import {address,chain,hex32,jsonValue,type Json,EvidenceError} from './types.js';
 import {canonicalize,commitment,decodeBase64,sha256,utf8,verifyCommitmentSignature} from './crypto.js';
 
 const path=z.string().regex(/^(\$|[A-Za-z_][A-Za-z0-9_]*(\.[A-Za-z_][A-Za-z0-9_]*|\.[0-9]+)*)$/).max(200);
@@ -28,6 +28,7 @@ export type OutcomeInput=z.infer<typeof outcomeInputSchema>;
 export interface CheckResult{index:number;kind:string;status:'PASS'|'FAIL'|'NOT_MACHINE_VERIFIABLE';detail:string;}
 export interface OutcomeResult{verdict:'TESTED_PASS'|'TESTED_FAIL'|'NOT_MACHINE_VERIFIABLE';checks:CheckResult[];manifestHash:Hex;contentHash:Hex;inputHash:Hex;}
 export interface OutcomeProof{version:'1.0.0';eventId:string;chainId:42220|11142220;manifest:ValidatorManifest;input:OutcomeInput;result:OutcomeResult;proofHash:Hex;signature?:{signer:Hex;value:Hex};}
+const proofSchema=z.object({version:z.literal('1.0.0'),eventId:z.string().regex(/^[\w.-]{1,100}$/),chainId:chain,manifest:manifestSchema,input:outcomeInputSchema,result:z.object({verdict:z.enum(['TESTED_PASS','TESTED_FAIL','NOT_MACHINE_VERIFIABLE']),checks:z.array(z.object({index:z.number().int().nonnegative(),kind:z.string().max(100),status:z.enum(['PASS','FAIL','NOT_MACHINE_VERIFIABLE']),detail:z.string().max(1000)}).strict()).max(100),manifestHash:hex32,contentHash:hex32,inputHash:hex32}).strict(),proofHash:hex32,signature:z.object({signer:address,value:z.string().regex(/^0x[0-9a-fA-F]{130}$/)}).strict().optional()}).strict();
 export const field=(value:Json,key:string):Json|undefined=>{
   if(key==='$')return value;let current:Json|undefined=value;
   for(const part of key.split('.')){
@@ -41,6 +42,13 @@ const schemaKeys=new Set(['type','properties','required','additionalProperties',
 function validateSchemaDefinition(schema:Record<string,Json>,depth=0):void{
   if(depth>12)throw new EvidenceError('SCHEMA_LIMIT','Schema nesting exceeds 12');
   for(const key of Object.keys(schema))if(!schemaKeys.has(key))throw new EvidenceError('UNSUPPORTED_SCHEMA',`Keyword ${key} is outside the safe subset`);
+  if(schema.type!==undefined&&!['object','array','number','integer','string','boolean','null'].includes(String(schema.type)))throw new EvidenceError('SCHEMA','Invalid schema type');
+  for(const key of ['minimum','maximum','minLength','maxLength','minItems','maxItems']){
+    const limit=schema[key];if(limit!==undefined&&(typeof limit!=='number'||!Number.isFinite(limit)||(/Length|Items/.test(key)&&(!Number.isSafeInteger(limit)||limit<0))))throw new EvidenceError('SCHEMA',`Invalid ${key} constraint`);
+  }
+  if(schema.required!==undefined&&(!Array.isArray(schema.required)||!schema.required.every(k=>typeof k==='string')||new Set(schema.required).size!==schema.required.length))throw new EvidenceError('SCHEMA','required must be unique strings');
+  if(schema.additionalProperties!==undefined&&typeof schema.additionalProperties!=='boolean')throw new EvidenceError('SCHEMA','Only boolean additionalProperties is supported');
+  if(schema.enum!==undefined&&(!Array.isArray(schema.enum)||!schema.enum.length))throw new EvidenceError('SCHEMA','enum must be a non-empty array');
   const props=schema.properties;
   if(props!==undefined){if(!props||typeof props!=='object'||Array.isArray(props))throw new EvidenceError('SCHEMA','properties must be an object');for(const sub of Object.values(props)){if(!sub||typeof sub!=='object'||Array.isArray(sub))throw new EvidenceError('SCHEMA','Property definition must be a schema');validateSchemaDefinition(sub,depth+1);}}
   if(schema.items!==undefined){if(!schema.items||typeof schema.items!=='object'||Array.isArray(schema.items))throw new EvidenceError('SCHEMA','items must be a schema');validateSchemaDefinition(schema.items,depth+1);}
@@ -80,12 +88,16 @@ export async function runOutcome(manifestInput:unknown,inputValue:unknown):Promi
   const manifest=manifestSchema.parse(manifestInput),input=outcomeInputSchema.parse(inputValue);
   if(utf8(canonicalize(input)).length>3_000_000)throw new EvidenceError('LIMIT','Outcome input too large');
   const bytes=input.file?decodeBase64(input.file.bytesBase64):utf8(canonicalize(input.body));
+  if(input.file&&manifest.rules.some(r=>['schema','required','type','equals','range','freshness','crossCheck','math','regex'].includes(r.kind))){
+    let fileBody:Json;try{const {parseJson}=await import('./crypto.js');fileBody=parseJson(new TextDecoder('utf-8',{fatal:true}).decode(bytes),2_000_000);}catch{throw new EvidenceError('CONTENT_BINDING','Body constraints with a selected file require valid JSON bytes matching the supplied body');}
+    if(canonicalize(fileBody)!==canonicalize(input.body))throw new EvidenceError('CONTENT_BINDING','Selected file bytes do not match the body evaluated by schema/numeric checks');
+  }
   const contentHash=await sha256(bytes);const checks:CheckResult[]=[];
   for(const [index,rule]of manifest.rules.entries()){
     let ok=false;let detail='Deterministic condition not satisfied';
     const get=(p:string)=>field(input.body,p);
     switch(rule.kind){
-      case 'presence':ok=hasResponse(input.body);break;
+      case 'presence':ok=input.file?bytes.length>0:hasResponse(input.body);break;
       case 'http':ok=input.status>=rule.min&&input.status<=rule.max;break;
       case 'required':ok=rule.paths.every(p=>get(p)!==undefined);break;
       case 'type':ok=typeOf(get(rule.path))===rule.type;break;
@@ -110,6 +122,7 @@ export async function runOutcome(manifestInput:unknown,inputValue:unknown):Promi
   return {verdict:checks.some(c=>c.status==='FAIL')?'TESTED_FAIL':checks.some(c=>c.status==='NOT_MACHINE_VERIFIABLE')?'NOT_MACHINE_VERIFIABLE':'TESTED_PASS',checks,manifestHash:commitment('validator-manifest-v1',manifest),contentHash,inputHash:commitment('outcome-input-v1',input)};
 }
 export async function createOutcomeProof(eventId:string,chainId:42220|11142220,manifest:ValidatorManifest,input:OutcomeInput):Promise<OutcomeProof>{
+  chain.parse(chainId);
   if(!/^[\w.-]{1,100}$/.test(eventId))throw new EvidenceError('EVENT','Invalid event identifier');
   const base={version:'1.0.0' as const,eventId,chainId,manifest:manifestSchema.parse(manifest),input:outcomeInputSchema.parse(input),result:await runOutcome(manifest,input)};
   return {...base,proofHash:commitment('outcome-proof-v1',base)};
@@ -117,7 +130,7 @@ export async function createOutcomeProof(eventId:string,chainId:42220|11142220,m
 export async function verifyOutcomeProof(value:unknown):Promise<{valid:boolean;errors:string[]}>{
   const errors:string[]=[];
   try{
-    canonicalize(value);const p=value as OutcomeProof;
+    canonicalize(value);const p=proofSchema.parse(value) as OutcomeProof;
     if(p.version!=='1.0.0'||![42220,11142220].includes(p.chainId))throw new EvidenceError('PROOF','Unsupported version or chain');
     const fresh=await createOutcomeProof(p.eventId,p.chainId,p.manifest,p.input);
     if(canonicalize(fresh.result)!==canonicalize(p.result)||fresh.proofHash!==p.proofHash)errors.push('Outcome proof does not reproduce');

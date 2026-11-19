@@ -1,6 +1,6 @@
 {
   "name": "@echoframe/mcp",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "ECHOFRAME mcp: read-only evidence infrastructure",
   "type": "module",
   "license": "MIT",

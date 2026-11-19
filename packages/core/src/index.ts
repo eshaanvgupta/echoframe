@@ -5,3 +5,5 @@ export * from './bundle.js';
 export * from './outcomes.js';
 export * from './journal.js';
 export * from './replay.js';
+export * from './attribution.js';
+export * from './diagnostics.js';

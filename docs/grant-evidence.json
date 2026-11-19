@@ -4,8 +4,22 @@
   "product": "ECHOFRAME",
   "sourceRepository": "https://github.com/eshaanvgupta/echoframe",
   "evidenceScope": "Local software implementation and reproducible synthetic tests; no adoption or consenting mainnet-use evidence inferred",
-  "implementedPackages": ["core", "x402", "mpp", "erc8183", "celo", "node", "cli", "mcp", "react"],
-  "syntheticScenarioCollection": {"count": 16, "environment": "SIMULATED", "source": "scenarios/"},
+  "implementedPackages": [
+    "core",
+    "x402",
+    "mpp",
+    "erc8183",
+    "celo",
+    "node",
+    "cli",
+    "mcp",
+    "react"
+  ],
+  "syntheticScenarioCollection": {
+    "count": 16,
+    "environment": "SIMULATED",
+    "source": "scenarios/"
+  },
   "metrics": {
     "independentPackagesInstrumented": "not_yet_observed",
     "consentingMainnetPaymentTraces": "not_yet_observed",
@@ -20,7 +34,21 @@
   "mainnetGrantPrerequisite": "not_yet_satisfied_by_observed_evidence",
   "websiteDeployment": "not_published",
   "npmPublication": "not_published",
-  "frontierCap": {"amount": 15000, "unit": "USDm", "subjectToCurrentTerms": true, "source": "https://celo.org/builders"},
+  "frontierCap": {
+    "amount": 15000,
+    "unit": "USDm",
+    "subjectToCurrentTerms": true,
+    "source": "https://celo.org/builders"
+  },
   "outreachPlan": "docs/prezenti-grant-dossier.md",
-  "localReleaseChecks": "docs/release-verification.json"
+  "localReleaseChecks": "docs/release-verification.json",
+  "softwareVersion": "1.1.0",
+  "publicReadOnlyObservations": {
+    "record": "docs/live-rpc-observations.json",
+    "category": "PUBLIC_MAINNET_AND_TESTNET_READS",
+    "countsAsAdoption": false,
+    "countsAsConsentingPurchase": false
+  },
+  "selfAgentId": "read-only inspection supported; full integration commitment requires applicant agreement",
+  "erc8004Eligibility": "infrastructure exception must be confirmed; no registration performed"
 }

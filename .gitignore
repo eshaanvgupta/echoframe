@@ -11,3 +11,5 @@ playwright-report/
 artifacts/*preview.png
 artifacts/*.tgz
 docs/screenshots/*-actual.png
+
+artifacts/*.zip

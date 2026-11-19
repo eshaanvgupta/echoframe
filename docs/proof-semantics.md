@@ -23,3 +23,14 @@ Canonical JSON uses the RFC 8785-compatible finite I-JSON subset: JSON string es
 EIP-712 domain is `{name:"ECHOFRAME",version:"1",chainId}`, type `Evidence(bytes32 rootHash)`. Bundle signatures bind the bundle root; optional verifier proof signatures bind the proof hash. No signing UI or keys are needed. Verify signer trust externally.
 
 `UNKNOWN`, `PENDING` and `NOT_MACHINE_VERIFIABLE` are honest answers. A failed policy is an objective failure of the declared conditions; it is never automatically labeled fraud. No timeout creates a recommendation to sign a fresh payment.
+
+
+## Attribution and report 1.1.0
+
+Evidence schema and proof algorithms remain 1.0.0. Reports add `recordedFinancialStatus`, `transactionExecution`, `transferObservation`, `paymentAttribution`, `deliveryObservation` and `outcomeStatus`. A real imported MAINNET/TESTNET bundle always has current `financialStatus:UNKNOWN`: its stored expectation-trust label cannot promote itself. Its recorded financial statement is shown separately. Explicitly SIMULATED bundles retain their virtual financial states and are labeled as such.
+
+Live `reconcile` can produce SETTLED only when all six expected payment fields (chainId, transactionHash, asset, sender, recipient, exact atomic amount) match the explicitly selected Transfer log, expectation origin is APPLICATION_CONFIGURED or USER_CONFIRMED, and token behavior is CONFIGURED_ERC20. Even one log requires explicit selection. Optional decimals expectations must also match if supplied. Receipt success, standard-looking events and partial/missing expectations do not pass purchase attribution. A reverted transaction describes execution and leaves intended-payment attribution UNKNOWN. A missing receipt is pending; a contradictory cross-check is UNKNOWN. Block hash inclusion and canonical height are checked at observation, not consensus finality.
+
+Returned HTTP bytes are application-reported observations, not proof the end client received them. An optional retained allowlist projection can have independently reproduced checks; its relationship to hidden original response bytes remains recorder-reported. Public-minimal bundles withhold policy inputs and event payloads: event names alone cannot establish returned/empty delivery. Source authenticity, mandate authority, economic settlement and work checks remain separate.
+
+Canonicalization additionally rejects duplicate JSON member names, sparse/accessor/subclass arrays, accessor/non-enumerable/symbol object members and invalid commitment domains. Body constraints used with a selected JSON file require the evaluated body to match the committed file bytes. Invalid schema definitions fail even on absent branches.

@@ -30,23 +30,26 @@ All packages are ESM 1.0.0, Node >=24 where Node is needed, with explicit `expor
 import {ReadonlyRpc,reconcile} from '@echoframe/celo';
 const rpc = new ReadonlyRpc({chainId:11142220});
 const observation = await reconcile(rpc,transactionHash,{
-  expected:{asset:tokenAddress,recipient:payee,amount:'1000'},
+  expected:{chainId:11142220,transactionHash,asset:tokenAddress,sender:payer,recipient:payee,amount:'1000'},
+  expectationTrust:'USER_CONFIRMED', tokenBehavior:'CONFIGURED_ERC20',
   selectedLogIndex:2,
   signal:abortController.signal
 });
 ```
 
-Optional expected asset, recipient, sender, atomic amount and decimals are explicit. Configure `endpoints` (one to three) and an explicit `trustedOrigins` HTTPS allowlist for nondefault endpoints. MCP never accepts user-supplied endpoints. Browser CSP must be updated manually if deploying a trusted additional RPC origin. `crossCheck:true` needs a distinct second endpoint; disagreement/unavailability remains UNKNOWN. Retries are bounded (at most three additional attempts), cancellation is honored, and responses are capped at 4MB. `decodeTransfers` and `formatUnitsExact` never guess token decimals. `inspectIdentity` offers minimal read-only Self/ERC-8004 observations and never fetches metadata URLs.
+Chain, transaction, asset, recipient, sender, atomic amount, trusted expectation origin, configured ERC-20 semantics and explicit selected log are all required for positive intended-payment attribution. Partial expectations remain missing evidence. Optional decimals must match if supplied. Configure `endpoints` (one to three) and an explicit `trustedOrigins` HTTPS allowlist for nondefault endpoints. MCP never accepts user-supplied endpoints. Browser CSP must be updated manually if deploying a trusted additional RPC origin. `crossCheck:true` needs a distinct second endpoint; disagreement/unavailability remains UNKNOWN. Retries are bounded (at most three additional attempts), cancellation is honored, and responses are capped at 4MB. `decodeTransfers` and `formatUnitsExact` never guess token decimals. `inspectIdentity` offers minimal read-only Self/ERC-8004 observations and never fetches metadata URLs.
 
 ## node
 
-`new SqliteAttemptJournal(path)` exposes async `create`, `append`, `get`, `list`, plus synchronous `close`. Appends are atomic and terminal financial observations require an evidence commitment. A repeated state is idempotent. SQLite uniqueness prevents one settlement evidence hash being attributed to two attempts. The application is responsible for supplying a meaningful verified receipt+selected-log commitment; a hash alone cannot certify a receipt.
+`new SqliteAttemptJournal(path)` exposes async `create`, `append`, `get`, `list`, plus synchronous `close`. Appends are atomic and terminal financial observations require an evidence commitment. A repeated state is idempotent. SQLite uniqueness prevents one settlement evidence hash being attributed to two attempts. The application is responsible for supplying `settlementAttributionKey(chainId,txHash,logIndex)` after successful exact reconciliation; a hash alone cannot certify a receipt.
 
-`recorderMiddleware(onBundle,onError?)` is Express-compatible, boundary-redacts request metadata, observes response status/challenges and never signs. `recordHonoExchange(request,response)` records bounded safe metadata. Examples demonstrate actual framework integration. Databases and traces should remain in user-controlled storage.
+`PaymentRecorder(options)` is the durable recorder: `.express()` and `.hono()` observe real framework lifecycles, `.drain()` awaits capture, `.recover()` records restart recovery, `.reconcile(contextKey,rpc,txHash,{selectedLogIndex,tokenBehavior})` performs explicit read-only attribution, `.list()`/`.getBundle(key)` inspect state and `.exportEvidence(key,path,{mode})` exports public by default or intentionally complete. `.close()` requires responses to finish first. `runRecorderSelfTest()` exercises installed workflows without keys. See [complete configuration and examples](integration.md).
+
+Legacy `recorderMiddleware(onBundle,onError?)` is Express-compatible, boundary-redacts request metadata, observes response status/challenges and never signs. `recordHonoExchange(request,response)` records bounded safe metadata. Examples demonstrate actual framework integration. Databases and traces should remain in user-controlled storage.
 
 ## cli
 
-`echoframe doctor [--live]`, `inspect-tx`, `verify`, `replay`, `export`, `init`, `check-config`, `integration-test`; run `pnpm cli help` for exact flags. File outputs use exclusive creation and never overwrite existing evidence. `export` defaults to public-minimal; add `--complete` for private full evidence and `--html` for contained reports. Verification exit 0 means integrity valid, not subjective work quality. Invalid data exits 1; stale network inspection exits 2. An injected failure replay exits 0 because it successfully ran the requested experiment and reports assertion failures in its structured result.
+`echoframe doctor [--live]`, `inspect-tx`, `verify`, `diagnose`, `replay`, `export`, `init`, `check-config`, `integration-test`; run `pnpm cli help` for exact flags. File outputs use exclusive creation and never overwrite existing evidence. `export` defaults to public-minimal; add `--complete` for private full evidence and `--html` for contained reports. Verification exit 0 means integrity valid, not subjective work quality. Invalid data exits 1; stale network inspection exits 2. An injected failure replay exits 0 because it successfully ran the requested experiment and reports assertion failures in its structured result.
 
 ## mcp
 
@@ -55,3 +58,5 @@ Start `node /absolute/path/packages/mcp/dist/index.js`. Tools: inspect_bundle, v
 ## react
 
 `StatusBadge({status,label?})`, `VerdictAxes({report})` and `EvidenceTimeline({events,selectedId?,onSelect?})`. Statuses use symbols plus text, never color alone. Timeline buttons are keyboard accessible. Components are intentionally style-class based so hosts can apply accessible tokens from the web stylesheet.
+
+`diagnoseBundle(value)` verifies first and returns deterministic typed findings, supporting event references, missing evidence, safe actions, relevant scenario, reproducibility and suggested coverage. `generateTraceRegression(bundle,{includeCompleteEvidence:true})` emits safely quoted runnable Vitest, never executes imported code. `assessPaymentAttribution` is the pure explicit expectation checker; `settlementAttributionKey` binds one chain/transaction/log identity. Verifier report 1.1.0 adds observed/recorded/reproduced axes while keeping evidence schema and proof algorithms 1.0.0.

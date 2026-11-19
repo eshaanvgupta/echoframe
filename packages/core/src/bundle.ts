@@ -27,7 +27,7 @@ export async function createArtifact(id:string,mime:string,bytes:Uint8Array):Pro
   return {id,mime,algorithm:'SHA-256',size:bytes.length,sha256:await sha256(bytes),bytesBase64:encodeBase64(bytes)};
 }
 export async function verifyBundle(value:unknown,options:{expectedChainId?:number;now?:string}={}):Promise<VerificationReport>{
-  const report:VerificationReport={algorithm:'echoframe-jcs-keccak-v1',bundleId:null,integrity:'INVALID',errors:[],warnings:[],authorityStatus:'NOT_PROVIDED',financialStatus:'UNKNOWN',deliveryStatus:'UNKNOWN',environment:'UNKNOWN',claims:[],checks:{passed:0,failed:0},signatureVerified:false};
+  const report:VerificationReport={reportVersion:'1.1.0',recordedFinancialStatus:'NOT_INITIATED',transactionExecution:'UNKNOWN',transferObservation:'UNKNOWN',paymentAttribution:'UNKNOWN',deliveryObservation:'UNKNOWN',outcomeStatus:'NOT_RUN',algorithm:'echoframe-jcs-keccak-v1',bundleId:null,integrity:'INVALID',errors:[],warnings:[],authorityStatus:'NOT_PROVIDED',financialStatus:'UNKNOWN',deliveryStatus:'UNKNOWN',environment:'UNKNOWN',claims:[],checks:{passed:0,failed:0},signatureVerified:false};
   const check=(ok:boolean,error:string)=>{if(ok)report.checks.passed++;else{report.checks.failed++;report.errors.push(error);}};
   try{
     if(utf8(canonicalize(value)).length>8_000_000)throw new EvidenceError('LIMIT','Bundle exceeds 8MB');
@@ -60,7 +60,7 @@ export async function verifyBundle(value:unknown,options:{expectedChainId?:numbe
     for(const claim of bundle.claims)check(!claim.sourceEventId||ids.has(claim.sourceEventId),'Claim references missing event');
     if(bundle.signature){report.signatureVerified=await verifyCommitmentSignature(bundle.chainId,bundle.rootHash as Hex,bundle.signature.signer as Hex,bundle.signature.value as Hex);check(report.signatureVerified,'Invalid bundle signature');}
     report.authorityStatus=bundle.mandate?(bundle.mandate.revoked?'REVOKED':Date.parse(bundle.mandate.expiresAt)<Date.parse(options.now??bundle.observedAt)?'EXPIRED':'DECLARED'):'NOT_PROVIDED';
-    let reproduced=0,failed=0;
+    let reproduced=0,failed=0,subjective=0;
     for(const outcome of bundle.outcomes){
       const proof=outcome as unknown as OutcomeProof;const verification=await verifyOutcomeProof(proof);
       check(verification.valid,'Outcome proof invalid: '+verification.errors.join('; '));
@@ -69,16 +69,28 @@ export async function verifyBundle(value:unknown,options:{expectedChainId?:numbe
       // Presence of content commitment in the event prevents attaching unrelated successful tests.
       const data=event?.data;
       check(!!data&&typeof data==='object'&&!Array.isArray(data)&&data.contentHash===proof.result?.contentHash,'Outcome content is not committed by trace event');
-      if(verification.valid){if(proof.result.verdict==='TESTED_PASS')reproduced++;if(proof.result.verdict==='TESTED_FAIL')failed++;}
+      if(verification.valid){if(proof.result.verdict==='TESTED_PASS')reproduced++;if(proof.result.verdict==='TESTED_FAIL')failed++;if(proof.result.verdict==='NOT_MACHINE_VERIFIABLE')subjective++;}
     }
-    report.financialStatus='NOT_INITIATED';
+    report.recordedFinancialStatus='NOT_INITIATED';
     for(const event of bundle.events){
       if(event.type==='financial.observation'&&event.data&&typeof event.data==='object'&&!Array.isArray(event.data)){
-        const state=financial.safeParse(event.data.status);if(state.success)report.financialStatus=state.data;
+        const state=financial.safeParse(event.data.status);if(state.success)report.recordedFinancialStatus=state.data;
+      }
+      if(event.type==='payment.reconciliation'&&event.data&&typeof event.data==='object'&&!Array.isArray(event.data)){
+        const data=event.data;
+        if(['SUCCESS','REVERTED','PENDING','UNKNOWN'].includes(String(data.transactionStatus)))report.transactionExecution=data.transactionStatus as VerificationReport['transactionExecution'];
+        if(Array.isArray(data.transfers))report.transferObservation=data.transfers.length?'OBSERVED':'NOT_OBSERVED';
+        report.paymentAttribution='RECORDED_UNTRUSTED';
       }
     }
-    const returned=bundle.events.some(e=>e.type==='delivery.returned');
-    const empty=bundle.events.some(e=>e.type==='delivery.empty');
+    // An imported observation cannot grant itself trusted purchase context. Simulations retain their explicit virtual states.
+    report.financialStatus=bundle.environment==='SIMULATED'?report.recordedFinancialStatus:'UNKNOWN';
+    if(bundle.environment==='SIMULATED')report.paymentAttribution='SIMULATED';
+    const withheld=bundle.redactionProfile==='public-minimal-v1';
+    const returned=!withheld&&bundle.events.some(e=>e.type==='delivery.returned');
+    const empty=!withheld&&bundle.events.some(e=>e.type==='delivery.empty');
+    report.deliveryObservation=withheld?'COMMITMENT_ONLY':empty?'EMPTY_REPORTED':returned?'RETURNED_REPORTED':'UNKNOWN';
+    report.outcomeStatus=failed?'TESTED_FAIL':subjective?'NOT_MACHINE_VERIFIABLE':reproduced?'TESTED_PASS':'NOT_RUN';
     report.deliveryStatus=failed?'TESTED_FAIL':reproduced?'TESTED_PASS':empty?'NOT_DELIVERED':returned?'RETURNED_UNVERIFIED':'UNKNOWN';
     report.claims=bundle.claims.map(claim=>({statement:claim.statement,quality:'APP_REPORTED',reason:`Imported ${claim.quality} label is an assertion; no trust is inherited from its label.`}));
     if(report.signatureVerified)report.claims.push({statement:'Bundle signature verified',quality:'SIGNATURE_VERIFIED',reason:'A key signed this commitment. Signer identity and work quality remain external.'});
@@ -87,7 +99,7 @@ export async function verifyBundle(value:unknown,options:{expectedChainId?:numbe
     if(reproduced||failed)report.warnings=report.warnings.filter(w=>w!=='Delivery unverified — no evidence imported');
     report.integrity=report.errors.length?'INVALID':'VALID';
   }catch(error){report.errors.push(error instanceof Error?error.message:String(error));report.checks.failed++;}
-  if(report.errors.length){report.integrity='INVALID';report.authorityStatus='UNKNOWN';report.financialStatus='UNKNOWN';report.deliveryStatus='UNKNOWN';report.claims=[];}
+  if(report.errors.length){report.integrity='INVALID';report.authorityStatus='UNKNOWN';report.financialStatus='UNKNOWN';report.deliveryStatus='UNKNOWN';report.transactionExecution='UNKNOWN';report.transferObservation='UNKNOWN';report.paymentAttribution='UNKNOWN';report.deliveryObservation='UNKNOWN';report.outcomeStatus='NOT_RUN';report.claims=[];}
   return report;
 }
 export async function importBundle(text:string,expectedChainId?:number):Promise<EvidenceBundle>{
@@ -103,5 +115,5 @@ export function publicBundle(bundle:EvidenceBundle):EvidenceBundle {
 const escapeHtml=(value:string)=>value.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]!));
 export function htmlReport(bundle:EvidenceBundle,report:VerificationReport):string {
   const json=JSON.stringify(bundle,null,2);
-  return `<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src data:"><title>ECHOFRAME evidence report</title><style>body{background:#09101a;color:#f1f4ea;font:17px/1.7 system-ui;max-width:1000px;margin:auto;padding:32px}a{color:#53e7f2}pre{white-space:pre-wrap;overflow-wrap:anywhere;border:2px solid #536074;padding:20px}h1{color:#c6ff4d}</style><h1>ECHOFRAME // EVIDENCE REPORT</h1><h2>${escapeHtml(bundle.title)}</h2><p>${escapeHtml(bundle.environment)} · Integrity ${report.integrity}</p><p>Authority ${report.authorityStatus} · Financial ${report.financialStatus} (recorded observation) · Delivery ${report.deliveryStatus}</p><p>Integrity proves consistency, not authenticity or service quality. Re-run the independent CLI.</p><a download="evidence.echoframe.json" href="data:application/json;base64,${encodeBase64(utf8(json))}">Download complete evidence manifest</a><h2>Verifier output</h2><pre>${escapeHtml(JSON.stringify(report,null,2))}</pre><details><summary>Complete contained evidence</summary><pre>${escapeHtml(json)}</pre></details></html>`;
+  return `<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src data:"><title>ECHOFRAME evidence report</title><style>body{background:#09101a;color:#f1f4ea;font:17px/1.7 system-ui;max-width:1000px;margin:auto;padding:32px}a{color:#53e7f2}pre{white-space:pre-wrap;overflow-wrap:anywhere;border:2px solid #536074;padding:20px}h1{color:#c6ff4d}</style><h1>ECHOFRAME // EVIDENCE REPORT</h1><h2>${escapeHtml(bundle.title)}</h2><p>${escapeHtml(bundle.environment)} · Integrity ${report.integrity}</p><p>Authority ${report.authorityStatus} · Intended payment ${report.financialStatus} ? Recorded payment ${report.recordedFinancialStatus} ? Execution ${report.transactionExecution} ? Transfer logs ${report.transferObservation} ? Reproduced outcome ${report.outcomeStatus} · Delivery ${report.deliveryStatus}</p><p>Integrity proves consistency, not authenticity or service quality. Re-run the independent CLI.</p><a download="evidence.echoframe.json" href="data:application/json;base64,${encodeBase64(utf8(json))}">Download complete evidence manifest</a><h2>Verifier output</h2><pre>${escapeHtml(JSON.stringify(report,null,2))}</pre><details><summary>Complete contained evidence</summary><pre>${escapeHtml(json)}</pre></details></html>`;
 }

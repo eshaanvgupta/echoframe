@@ -28,3 +28,16 @@ Suggested milestone budget under 15,000 USDm: 4,000 SDK hardening/external integ
 Measure ethically: independent agents/packages instrumented, consenting mainnet traces, validated drift incidents, duplicate-pay attempts prevented (simulation and production counted separately), independent verifier runs, external issues reproduced/fixed, contributed cases and ecosystem teams integrating exported evidence. Missing values stay `not_yet_observed`. No analytics trackers or manufactured activity.
 
 Code is MIT with third-party notices. Exact local release evidence is in release-verification.json and completion-report.md. Website publication, npm publishing and mainnet registration remain explicit separate actions.
+
+
+## Eligibility and delivery checklist refreshed for this upgrade
+
+The [official Season 3 announcement](https://forum.celo.org/t/prezenti-season-3-is-open-frontier-anchor-and-boost-grants-for-celo/13714) requests working Celo mainnet infrastructure and associated verifiable activity. Its November 12 clarification specifies no fixed number of settlements/buyers; self-tests must be distinguished from independent usage. This project's public RPC reads satisfy neither deployment nor demand. ERC-8004 registration has an infrastructure exception; obtain program confirmation of ECHOFRAME's classification. Self Agent ID use or a commitment to integrate is requested; read-only registry support is not claimed as full identity integration.
+
+Before submission the applicant must supply private contact/delivery information, jurisdiction/entity details, grant-policy agreement and KYC, a Celo L2 payment address, applicable tracking addresses and a maintained KarmaGAP profile; a logo is needed if selected. These applicant-specific items are not fabricated or automatically submitted. Applications close December 29, 2026; funding remains subject to rolling availability and reviewer judgment.
+
+## Maintenance and evidence operation
+
+Maintain pinned protocol profiles and their official-source matrix, review upstream drafts/dependency advisories monthly, rerun installed-consumer and full release checks before versions, preserve old proof byte semantics and clearly version deliberate conservative changes. Triage opt-in public reproductions without asking for raw credentials. Retain no usage telemetry by default; collect feedback/activation records only with consent. Budget ongoing effort for framework compatibility, security regressions, accessibility and documentation after the four-month grant. Community cases must be reproducible and clearly distinguish observed incidents from simulations.
+
+Current release adds durable real-framework instrumentation and trace diagnosis; it does not create an external partner. Public mainnet/Sepolia inspection records are linked in live-rpc-observations.json. A consenting genuine supported merchant integration, independently reproduced deliverable, usage/feedback evidence and authorized funded mainnet activity remain outstanding. See integration.md for the exact opt-in path.

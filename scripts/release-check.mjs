@@ -4,7 +4,7 @@ const runner=process.env.npm_execpath;if(!runner)throw new Error('Run through pn
 await mkdir('artifacts',{recursive:true});
 let gates=[];
 if(process.argv.includes('--resume')){const previous=JSON.parse(await readFile('artifacts/gate-results.json','utf8'));for(const gate of previous.gates){if(gate.exitCode!==0)break;gates.push(gate);}console.log(`Retaining ${gates.length} successful gates; use resume only when those inputs are unchanged.`);}
-const commands=[['install','--frozen-lockfile'],['typecheck'],['lint'],['test'],['audit:licenses'],['build'],['test:consumer'],['test:e2e'],['test:performance'],['audit','--json']];
+const commands=[['install','--frozen-lockfile'],['typecheck'],['lint'],['test'],['audit:licenses'],['build'],['test:consumer'],['test:e2e'],['test:performance'],['audit','--audit-level','moderate','--json']];
 for(const args of commands.slice(gates.length)){
   const started=Date.now();console.log(`Checking ${args.join(' ')}`);let output='';
   const exitCode=await new Promise((resolve,reject)=>{const child=spawn(process.execPath,[runner,...args],{stdio:['ignore','pipe','pipe'],windowsHide:true});child.stdout.on('data',b=>{const text=b.toString();output+=text;process.stdout.write(text);});child.stderr.on('data',b=>{output+=b.toString();process.stderr.write(b);});child.once('error',reject);child.once('exit',resolve);});

@@ -1,6 +1,6 @@
 {
   "name": "@echoframe/example-hono-mpp",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "private": true,
   "type": "module",
   "scripts": {
@@ -10,6 +10,7 @@
     "hono": "4.13.19",
     "mppx": "0.21.0",
     "@echoframe/core": "workspace:*",
-    "@echoframe/mpp": "workspace:*"
+    "@echoframe/mpp": "workspace:*",
+    "@echoframe/node": "workspace:*"
   }
 }

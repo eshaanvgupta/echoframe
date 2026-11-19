@@ -3,14 +3,14 @@ import {readFile,writeFile,mkdir,stat,mkdtemp,rm} from 'node:fs/promises';
 import {resolve,join} from 'node:path';
 import {tmpdir} from 'node:os';
 import {pathToFileURL} from 'node:url';
-import {importBundle,verifyBundle,verifyOutcomeProof,parseJson,scenarioBundle,runScenario,fixAndRerun,generateRegression,publicBundle,htmlReport,outcomeExamples,shouldRetry,commitment,hex32,EvidenceError,type Json} from '@echoframe/core';
+import {importBundle,verifyBundle,verifyOutcomeProof,parseJson,scenarioBundle,runScenario,fixAndRerun,generateRegression,publicBundle,htmlReport,outcomeExamples,shouldRetry,commitment,hex32,diagnoseBundle,generateTraceRegression,EvidenceError,type Json} from '@echoframe/core';
 import {ReadonlyRpc,reconcile,networks,type Expectations} from '@echoframe/celo';
-import {SqliteAttemptJournal} from '@echoframe/node';
+import {SqliteAttemptJournal,runRecorderSelfTest} from '@echoframe/node';
 
-const help=`ECHOFRAME 1.0.0 — independent, non-signing evidence tools\n\nCommands:\n  doctor [--live] [--json]\n  inspect-tx <0xhash> [--chain 11142220|42220] [--asset 0x..] [--recipient 0x..] [--sender 0x..] [--amount integer] [--log number] [--json]\n  verify <bundle.echoframe.json|outcome-proof.json> [--json]\n  replay <scenario-id> [--seed 42220] [--safe] [--out result.json] [--test regression.test.ts]\n  export <bundle> --out <file> [--html|--complete] (public minimal by default)\n  init [directory]\n  check-config <echoframe.config.json>\n  integration-test [--json]\n\nNo command signs, sends, refunds, or registers payments. Node >=24 required.`;
+const help=`ECHOFRAME 1.1.0 — independent, non-signing evidence tools\n\nCommands:\n  doctor [--live] [--json]\n  inspect-tx <0xhash> [--chain 11142220|42220] [--asset 0x..] [--recipient 0x..] [--sender 0x..] [--amount integer] [--log number] [--trust-expectations --standard-erc20] [--json]\n  verify <bundle.echoframe.json|outcome-proof.json> [--json]\n  diagnose <bundle> [--json] [--test regression.test.ts --complete]\n  replay <scenario-id> [--seed 42220] [--safe] [--out result.json] [--test regression.test.ts]\n  export <bundle> --out <file> [--html|--complete] (public minimal by default)\n  init [directory]\n  check-config <echoframe.config.json>\n  integration-test [--json]\n\nNo command signs, sends, refunds, or registers payments. Node >=24 required.`;
 function flags(args:string[]):{positionals:string[];options:Record<string,string|boolean>}{
   const positionals:string[]=[],options:Record<string,string|boolean>={};
-  const boolean=new Set(['json','live','safe','html','complete','help']);
+  const boolean=new Set(['json','live','safe','html','complete','help','trust-expectations','standard-erc20']);
   for(let i=0;i<args.length;i++){const a=args[i]!;if(a.startsWith('--')){const key=a.slice(2);if(Object.hasOwn(options,key))throw new EvidenceError('ARGUMENT',`Duplicate --${key}`);if(boolean.has(key))options[key]=true;else{const next=args[++i];if(!next||next.startsWith('--'))throw new EvidenceError('ARGUMENT',`Missing value for --${key}`);options[key]=next;}}else positionals.push(a);}return {positionals,options};
 }
 async function readJson(path:string):Promise<Json>{if((await stat(path)).size>8_000_000)throw new EvidenceError('LIMIT','File exceeds 8MB');return parseJson(await readFile(path,'utf8'));}
@@ -20,13 +20,17 @@ export async function runCli(args:string[],print:(text:string)=>void=console.log
     const {positionals,options}=flags(args);const [command,input]=positionals;const json=options.json===true;
     const out=(value:unknown,text?:string)=>print(json||!text?JSON.stringify(value,null,2):text);
     if(!command||command==='help'||options.help){print(help);return 0;}
-    const validOptions:Record<string,string[]>={doctor:['live','json'],'inspect-tx':['chain','asset','recipient','sender','amount','log','json'],verify:['json'],replay:['seed','safe','out','test','json'],export:['out','html','complete'],init:[],'check-config':['json'],'integration-test':['json']};
+    const validOptions:Record<string,string[]>={doctor:['live','json'],'inspect-tx':['chain','asset','recipient','sender','amount','log','json','trust-expectations','standard-erc20'],verify:['json'],diagnose:['json','test','complete'],replay:['seed','safe','out','test','json'],export:['out','html','complete'],init:[],'check-config':['json'],'integration-test':['json']};
     if(!validOptions[command])throw new EvidenceError('COMMAND','Unknown command');for(const key of Object.keys(options))if(!validOptions[command]!.includes(key))throw new EvidenceError('ARGUMENT',`Unsupported --${key}`);
     switch(command){
       case 'verify':{
         if(!input)throw new EvidenceError('FILE','Provide an evidence file');const value=await readJson(input);
         if(value&&typeof value==='object'&&!Array.isArray(value)&&value.version==='1.0.0'&&'proofHash'in value){const result=await verifyOutcomeProof(value);out(result,`Outcome proof ${result.valid?'VALID':'INVALID'}\n${result.errors.join('\n')}`);return result.valid?0:1;}
-        const report=await verifyBundle(value);out(report,`ECHOFRAME ${report.integrity}\nFinancial: ${report.financialStatus} (recorded observation)\nDelivery: ${report.deliveryStatus}\nAuthority: ${report.authorityStatus}\nChecks: ${report.checks.passed} passed, ${report.checks.failed} failed\n${[...report.errors,...report.warnings].join('\n')}`);return report.integrity==='VALID'?0:1;
+        const report=await verifyBundle(value);out(report,`ECHOFRAME ${report.integrity}\nIntended payment: ${report.financialStatus}\nRecorded payment: ${report.recordedFinancialStatus}\nExecution: ${report.transactionExecution}\nTransfer logs: ${report.transferObservation}\nReproduced outcome: ${report.outcomeStatus}\nDelivery: ${report.deliveryStatus}\nAuthority: ${report.authorityStatus}\nChecks: ${report.checks.passed} passed, ${report.checks.failed} failed\n${[...report.errors,...report.warnings].join('\n')}`);return report.integrity==='VALID'?0:1;
+      }
+      case 'diagnose':{
+        if(!input)throw new EvidenceError('FILE','Provide a complete evidence file');const bundle=await importBundle(await readFile(input,'utf8'));const diagnosis=await diagnoseBundle(bundle);
+        if(typeof options.test==='string'){if(!options.complete)throw new EvidenceError('EXPORT_CONSENT','--test embeds complete evidence and requires --complete');await outputFile(options.test,await generateTraceRegression(bundle,{includeCompleteEvidence:true}));}out(diagnosis);return diagnosis.integrity==='VALID'?0:1;
       }
       case 'replay':{
         const run=runScenario(input??'response-lost',Number(options.seed??42220),options.safe?'honest':'vulnerable');
@@ -40,10 +44,10 @@ export async function runCli(args:string[],print:(text:string)=>void=console.log
       }
       case 'inspect-tx':{
         if(!input)throw new EvidenceError('HASH','Provide transaction hash');const chainId=Number(options.chain??11142220);if(chainId!==42220&&chainId!==11142220)throw new EvidenceError('CHAIN','Unsupported Celo chain');
-        const expected:Expectations={};for(const key of ['asset','recipient','sender','amount']as const)if(typeof options[key]==='string')expected[key]=options[key];
+        const expected:Expectations=options['trust-expectations']?{chainId,transactionHash:input.toLowerCase()}:{};for(const key of ['asset','recipient','sender','amount']as const)if(typeof options[key]==='string')expected[key]=options[key];
         const selected=options.log===undefined?{}:{selectedLogIndex:Number(options.log)};
         if('selectedLogIndex'in selected&&(!Number.isSafeInteger(selected.selectedLogIndex)||selected.selectedLogIndex!<0))throw new EvidenceError('LOG','Invalid log index');
-        const report=await reconcile(new ReadonlyRpc({chainId}),input,{expected,...selected});out(report);return report.stale?2:0;
+        const report=await reconcile(new ReadonlyRpc({chainId}),input,{expected,...selected,expectationTrust:options['trust-expectations']?'USER_CONFIRMED':'NOT_PROVIDED',tokenBehavior:options['standard-erc20']?'CONFIGURED_ERC20':'UNVERIFIED'});out(report);return report.stale?2:0;
       }
       case 'export':{
         if(!input||typeof options.out!=='string')throw new EvidenceError('EXPORT','Provide input and --out');const bundle=await importBundle(await readFile(input,'utf8'));
@@ -60,12 +64,13 @@ export async function runCli(args:string[],print:(text:string)=>void=console.log
         const {manifestSchema}=await import('@echoframe/core');manifestSchema.parse(data.policy);new ReadonlyRpc({chainId:data.chainId,endpoints:[data.rpc]});out({valid:true,networkReads:false});return 0;
       }
       case 'integration-test':{
+        const instrumentation=await runRecorderSelfTest();
         const dir=await mkdtemp(join(tmpdir(),'echoframe-journal-'));let first:SqliteAttemptJournal|undefined,reopened:SqliteAttemptJournal|undefined;
         try{
           first=new SqliteAttemptJournal(join(dir,'attempts.sqlite'));const attempt=await first.create({chainId:11142220,protocol:'x402',requestId:'integration',payer:'0x0000000000000000000000000000000000000001',payee:'0x0000000000000000000000000000000000000002',token:'0x0000000000000000000000000000000000000003',amount:'1000',quoteHash:commitment('integration',null)});
           await first.append(attempt.key,'AUTHORIZED');await first.append(attempt.key,'SUBMITTED');await first.append(attempt.key,'UNKNOWN');first.close();first=undefined;
           reopened=new SqliteAttemptJournal(join(dir,'attempts.sqlite'));const recovered=await reopened.get(attempt.key);const retry=shouldRetry(recovered!.events.at(-1)!.state);hex32.parse(attempt.key);
-          const verified=await verifyBundle(await scenarioBundle());const ok=retry==='RECONCILE_FIRST'&&verified.integrity==='VALID';out({passed:ok,recoveredEvents:recovered!.events.length,recommendation:retry,verifier:verified.integrity,noPaymentSent:true});return ok?0:1;
+          const verified=await verifyBundle(await scenarioBundle());const ok=retry==='RECONCILE_FIRST'&&verified.integrity==='VALID';out({passed:ok,instrumentation,recoveredEvents:recovered!.events.length,recommendation:retry,verifier:verified.integrity,noPaymentSent:true});return ok?0:1;
         }finally{first?.close();reopened?.close();await rm(dir,{recursive:true,force:true});}
       }
     }return 1;

@@ -1,7 +1,7 @@
 {
   "schemaVersion": "1.0.0",
   "clientDate": "2026-11-19",
-  "checkedAt": "2026-11-19T05:05:48.267Z",
+  "checkedAt": "2026-11-19T06:51:31.810Z",
   "platform": "win32",
   "node": "v24.16.0",
   "status": "LOCAL_RELEASE_GATES_PASSED",
@@ -9,68 +9,68 @@
     {
       "command": "pnpm install --frozen-lockfile",
       "exitCode": 0,
-      "elapsedMs": 649,
+      "elapsedMs": 1558,
       "status": "passed"
     },
     {
       "command": "pnpm typecheck",
       "exitCode": 0,
-      "elapsedMs": 16834,
+      "elapsedMs": 43410,
       "status": "passed"
     },
     {
       "command": "pnpm lint",
       "exitCode": 0,
-      "elapsedMs": 1853,
+      "elapsedMs": 4605,
       "status": "passed"
     },
     {
       "command": "pnpm test",
       "exitCode": 0,
-      "elapsedMs": 7726,
+      "elapsedMs": 14938,
       "status": "passed"
     },
     {
       "command": "pnpm audit:licenses",
       "exitCode": 0,
-      "elapsedMs": 829,
+      "elapsedMs": 1816,
       "status": "passed"
     },
     {
       "command": "pnpm build",
       "exitCode": 0,
-      "elapsedMs": 15802,
+      "elapsedMs": 32979,
       "status": "passed"
     },
     {
       "command": "pnpm test:consumer",
       "exitCode": 0,
-      "elapsedMs": 61474,
+      "elapsedMs": 56736,
       "status": "passed"
     },
     {
       "command": "pnpm test:e2e",
       "exitCode": 0,
-      "elapsedMs": 42398,
+      "elapsedMs": 63224,
       "status": "passed"
     },
     {
       "command": "pnpm test:performance",
       "exitCode": 0,
-      "elapsedMs": 12821,
+      "elapsedMs": 15375,
       "status": "passed"
     },
     {
-      "command": "pnpm audit --json",
+      "command": "pnpm audit --audit-level moderate --json",
       "exitCode": 0,
-      "elapsedMs": 881,
+      "elapsedMs": 1466,
       "status": "passed"
     }
   ],
   "unitAndIntegration": {
-    "passed": 298,
+    "passed": 391,
     "failed": 0,
-    "files": 54
+    "files": 25
   },
   "properties": {
     "stateMachineSequences": 2500,
@@ -85,7 +85,7 @@
     "generatedRegressionTests": 16
   },
   "browser": {
-    "passed": 42,
+    "passed": 54,
     "failed": 0,
     "skipped": 6,
     "skipReason": "Full scenario loop and automated two-theme audits run on desktop only; representative interactions run on all four widths.",
@@ -112,23 +112,24 @@
       "@echoframe/mcp"
     ],
     "installedCliVerdict": "VALID",
-    "installedGeneratedRegressionTests": 16,
+    "installedGeneratedRegressionTests": 17,
+    "installedRecorderSelfTest": true,
     "temporaryConsumer": true,
     "noNpmPublication": true
   },
   "lighthouse": {
     "scope": "Local production static build, mobile simulated throttling; RPC health URLs blocked for repeatability",
     "scores": {
-      "performance": 1,
+      "performance": 0.84,
       "accessibility": 1,
       "best-practices": 1,
       "seo": 1
     }
   },
   "bundleBudget": {
-    "javascriptGzipBytes": 220449,
-    "cssGzipBytes": 8067,
-    "totalAssetBytes": 902610,
+    "javascriptGzipBytes": 230021,
+    "cssGzipBytes": 8256,
+    "totalAssetBytes": 936667,
     "budgets": {
       "javascriptGzipBytes": 350000,
       "cssGzipBytes": 40000
@@ -150,13 +151,7 @@
   "publication": {
     "website": "not_published",
     "npm": "not_published",
-    "remoteGithubCi": "in_progress_at_recording",
-    "github": {
-      "status": "published",
-      "sourceCodeCommit": "190898de966ed79281e7ca6170cb3b2116544fbb",
-      "verifiedRemote": "refs/heads/main",
-      "workflowUrl": "https://github.com/eshaanvgupta/echoframe/actions/runs/44463047391"
-    }
+    "remoteGithubCi": "not_yet_observed"
   },
   "limitations": [
     "No cryptographic light client; RPC trust assumptions are explicit",

@@ -15,9 +15,15 @@ export function canonicalize(value:unknown,depth=0):string {
   }
   if(typeof value==='number'){if(!Number.isFinite(value))throw new EvidenceError('NUMBER','Non-finite JSON number');return JSON.stringify(value);}
   if(typeof value==='boolean')return String(value);
-  if(Array.isArray(value))return '['+value.map(v=>canonicalize(v,depth+1)).join(',')+']';
+  if(Array.isArray(value)){
+    if(Object.getPrototypeOf(value)!==Array.prototype||Object.getOwnPropertySymbols(value).length||Object.getOwnPropertyNames(value).length!==value.length+1)throw new EvidenceError('JSON','Only dense JSON arrays without extra properties are supported');
+    for(let i=0;i<value.length;i++){const descriptor=Object.getOwnPropertyDescriptor(value,String(i));if(!descriptor||!('value'in descriptor))throw new EvidenceError('JSON','Sparse or accessor arrays are unsupported');}
+    return '['+value.map(v=>canonicalize(v,depth+1)).join(',')+']';
+  }
   if(typeof value==='object'&&Object.getPrototypeOf(value)===Object.prototype){
     const record=value as Record<string,unknown>;
+    if(Object.getOwnPropertySymbols(record).length)throw new EvidenceError('JSON','Symbol properties are unsupported');
+    for(const descriptor of Object.values(Object.getOwnPropertyDescriptors(record)))if(!('value'in descriptor)||!descriptor.enumerable)throw new EvidenceError('JSON','Accessor/non-enumerable members are unsupported');
     const keys=Object.keys(record).sort();
     if(keys.length>10000)throw new EvidenceError('LIMIT','Too many keys');
     if(keys.some(k=>['__proto__','prototype','constructor'].includes(k)))throw new EvidenceError('KEY','Unsafe object key');
@@ -26,6 +32,7 @@ export function canonicalize(value:unknown,depth=0):string {
   throw new EvidenceError('JSON','Only plain JSON data is supported');
 }
 export function commitment(domain:string,value:unknown):Hex {
+  if(!/^[a-z0-9][a-z0-9._:-]{0,127}$/i.test(domain))throw new EvidenceError('DOMAIN','Invalid commitment domain');
   return keccak256(toBytes(`ECHOFRAME\u0000${domain}\u0000${canonicalize(value)}`));
 }
 export async function sha256(bytes:Uint8Array):Promise<Hex>{
@@ -46,7 +53,25 @@ export function decodeBase64(text:string,max=2_000_000):Uint8Array {
 export function parseJson(text:string,max=8_000_000):Json {
   if(utf8(text).length>max)throw new EvidenceError('LIMIT','JSON exceeds maximum bytes');
   let value:unknown;try{value=JSON.parse(text);}catch{throw new EvidenceError('JSON','Invalid JSON');}
+  rejectDuplicateMembers(text);
   canonicalize(value);return value as Json;
+}
+/** JSON.parse cannot report duplicate member names. Scan validated syntax without executing code. */
+function rejectDuplicateMembers(text:string):void{
+  let index=0;
+  const whitespace=()=>{while(index<text.length&&/\s/.test(text[index]!))index++;};
+  const string=()=>{const start=index++;while(index<text.length){const c=text[index++];if(c==='"')return text.slice(start,index);if(c==='\\')index++;}throw new EvidenceError('JSON','Invalid string');};
+  const value=(depth:number):void=>{
+    if(depth>48)throw new EvidenceError('LIMIT','JSON nesting exceeds 48');whitespace();const c=text[index];
+    if(c==='"'){string();return;}
+    if(c==='{'){
+      index++;whitespace();const names=new Set<string>();if(text[index]==='}'){index++;return;}
+      for(;;){whitespace();const name=JSON.parse(string()) as string;if(names.has(name))throw new EvidenceError('DUPLICATE_JSON_KEY','Duplicate JSON member name');names.add(name);whitespace();index++;value(depth+1);whitespace();if(text[index++]==='}')return;}
+    }
+    if(c==='['){index++;whitespace();if(text[index]===']'){index++;return;}for(;;){value(depth+1);whitespace();if(text[index++]===']')return;}}
+    while(index<text.length&&!/[\s,}\]]/.test(text[index]!))index++;
+  };
+  value(0);
 }
 export function bundleTypedData(chainId:number,rootHash:Hex){
   return {domain:{name:'ECHOFRAME',version:'1',chainId},types:{Evidence:[{name:'rootHash',type:'bytes32'}]},primaryType:'Evidence',message:{rootHash}} as const;

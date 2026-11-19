@@ -1,5 +1,5 @@
 
-> echoframe-workspace@1.0.0 test:performance C:\Users\eshaa\OneDrive\Desktop\Hackathons\Prezenti Grant (Celo)
+> echoframe-workspace@1.1.0 test:performance C:\Users\eshaa\OneDrive\Desktop\Hackathons\Prezenti Grant (Celo)
 > node scripts/performance.mjs
 
-{ performance: 1, accessibility: 1, 'best-practices': 1, seo: 1 }
+{ performance: 0.84, accessibility: 1, 'best-practices': 1, seo: 1 }

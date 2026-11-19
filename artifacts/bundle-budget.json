@@ -1,7 +1,7 @@
 {
-  "javascriptGzipBytes": 220449,
-  "cssGzipBytes": 8067,
-  "totalAssetBytes": 902610,
+  "javascriptGzipBytes": 230021,
+  "cssGzipBytes": 8256,
+  "totalAssetBytes": 936667,
   "budgets": {
     "javascriptGzipBytes": 350000,
     "cssGzipBytes": 40000

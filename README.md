@@ -32,12 +32,12 @@ pnpm --filter @echoframe/example-express-x402 start
 pnpm --filter @echoframe/example-hono-mpp start
 ```
 
-The examples perform real local HTTP request handling and official SDK serialization against a **synthetic local facilitator**, never a chain or payment signer. Their credentials and references are deliberately synthetic. The Express example uses the official `HTTPFacilitatorClient` over loopback. Captured metadata is allowlisted before persistence. See [quickstart](docs/quickstart.md), [API reference](docs/api.md), [protocol matrix](docs/protocol-matrix.md).
+The examples perform real local HTTP request handling and official SDK serialization against a **synthetic local facilitator**, never a chain or payment signer. Their credentials and references are deliberately synthetic. The Express example uses the official `HTTPFacilitatorClient` over loopback. Captured metadata is allowlisted before persistence. The drop-in `PaymentRecorder` has real Express and Hono middleware, durable correlation, metadata-only defaults, opt-in outcome projections, intentional export and restart recovery. See [full developer integration](docs/integration.md), [quickstart](docs/quickstart.md), [API reference](docs/api.md), [protocol matrix](docs/protocol-matrix.md).
 
 ## Product workflow
 
-- **Trace Explorer:** file/drag-drop imports, protocol challenges, strict integrity checks, event links, provenance, real Celo transaction inspection and explicit multi-transfer selection.
-- **Failure Lab:** 16 seeded scenarios, vulnerable/safe policies, virtual timeline scrubbing, explicit policy controls, before/after invariants and runnable regression exports.
+- **Trace Explorer:** file/drag-drop imports, protocol challenges, strict integrity checks, event links, provenance, real Celo transaction inspection and explicit selection of every attributed Transfer log and trace-aware diagnostic findings.
+- **Failure Lab:** trace-derived diagnoses and regressions, 16 seeded scenarios, vulnerable/safe policies, virtual timeline scrubbing, explicit policy controls, before/after invariants and runnable regression exports.
 - **Outcome Studio:** visual policy builder and bounded JSON DSL; schema subset, presence, HTTP status, exact hashes, numeric/math bounds, freshness, supplied cross-checks and source signatures. Subjective checks remain `NOT_MACHINE_VERIFIABLE`.
 - **Journal and Vault:** SQLite SDK and IndexedDB browser journals; idempotency, restart recovery, conservative retry recommendations, local deletion, private/public export, authenticated encrypted files and contained HTML reports.
 - **Developer Console:** nine packages, read-only MCP, live endpoint checks, challenge parser and optional read-only Self/ERC-8004 registry views.
@@ -53,7 +53,7 @@ The examples perform real local HTTP request handling and official SDK serializa
 | Celo | mainnet 42220 and Sepolia 11142220; chain identity, receipt/block inclusion, ERC-20 event decoding, exact integer expectations and decimals |
 | Identity | optional official ERC-8004 mainnet and Self mainnet/Sepolia read interfaces; no passport data or registration |
 
-Imported RPC exports remain `APP_REPORTED`. Re-fetch the transaction to observe settlement independently. RPC agreement is a trust assumption, not a light-client proof. A bundle signature proves that a key signed a commitment; it does not prove identity or service quality. An unsigned bundle can be rewritten with new hashes: retain a trusted root externally. [Proof semantics](docs/proof-semantics.md).
+Imported RPC exports remain `APP_REPORTED`. Re-fetch with complete trusted chain, transaction, token, sender, recipient, amount and selected log expectations to observe intended-payment attribution. A successful receipt alone never establishes a purchase; unknown token semantics remain unverified. RPC agreement is a trust assumption, not a light-client proof. A bundle signature proves that a key signed a commitment; it does not prove identity or service quality. An unsigned bundle can be rewritten with new hashes: retain a trusted root externally. [Proof semantics](docs/proof-semantics.md).
 
 ## Verify the release
 
@@ -65,8 +65,9 @@ pnpm build
 pnpm test:consumer
 pnpm exec playwright install chromium
 pnpm test:e2e
-pnpm audit
+pnpm test:performance
 pnpm audit:licenses
+pnpm audit --audit-level moderate
 ```
 
 Tests include fixed-seed fast-check sequences, all 16 generated regression files, official x402 local HTTP transport, MPP, ERC-8183, actual SQLite reopen, MCP client calls and CLI/module verdict agreement. Playwright runs desktop 1440, tablet 768, phone 390 and narrow phone 360 with offline persistence, keyboard and reduced-motion checks. Automated accessibility audits complement manual judgment; they are not accessibility certification.
@@ -80,3 +81,5 @@ Exact observed results and limits are recorded in [completion report](docs/compl
 No npm package publishing, website publication, mainnet transaction, funding award, external feedback session or independent user adoption is implied by a local build. Mainnet activity and grant eligibility remain separately evidenced prerequisites.
 
 MIT. [Security](SECURITY.md) · [Contributing](CONTRIBUTING.md) · [Threat model](docs/threat-model.md).
+
+Release 1.1.0 keeps evidence schema/proof version 1.0.0 while extending verifier report version 1.1.0. See [upgrade findings and fixes](docs/security-review-1.1.md) and [distribution](docs/distribution.md). No npm registry publication is claimed; `pnpm test:consumer` produces and verifies all nine installable artifacts outside the workspace.

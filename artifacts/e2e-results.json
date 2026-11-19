@@ -259,12 +259,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 2089,
+                  "duration": 4509,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-11-19T05:04:07.280Z",
+                  "startTime": "2026-11-19T06:50:20.780Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -282,12 +282,12 @@
                   "workerIndex": 3,
                   "parallelIndex": 1,
                   "status": "passed",
-                  "duration": 3482,
+                  "duration": 4056,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-11-19T05:04:14.663Z",
+                  "startTime": "2026-11-19T06:50:34.626Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -303,14 +303,14 @@
               "results": [
                 {
                   "workerIndex": 5,
-                  "parallelIndex": 1,
+                  "parallelIndex": 2,
                   "status": "passed",
-                  "duration": 3758,
+                  "duration": 3783,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-11-19T05:04:29.084Z",
+                  "startTime": "2026-11-19T06:50:52.469Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -325,15 +325,15 @@
               "projectName": "narrow",
               "results": [
                 {
-                  "workerIndex": 7,
+                  "workerIndex": 8,
                   "parallelIndex": 1,
                   "status": "passed",
-                  "duration": 2638,
+                  "duration": 3881,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-11-19T05:04:40.713Z",
+                  "startTime": "2026-11-19T06:51:04.705Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -343,7 +343,7 @@
           ],
           "id": "2fa8ab87beca8e7f39ce-f7f6b366b8f43131c174",
           "file": "product.spec.ts",
-          "line": 7,
+          "line": 8,
           "column": 1
         },
         {
@@ -362,12 +362,115 @@
                   "workerIndex": 1,
                   "parallelIndex": 1,
                   "status": "passed",
-                  "duration": 1241,
+                  "duration": 1992,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-11-19T05:04:07.275Z",
+                  "startTime": "2026-11-19T06:50:20.787Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            },
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "tablet",
+              "projectName": "tablet",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 2,
+                  "status": "passed",
+                  "duration": 1854,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-19T06:50:39.538Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            },
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "phone",
+              "projectName": "phone",
+              "results": [
+                {
+                  "workerIndex": 6,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 1862,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-19T06:50:52.660Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            },
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "narrow",
+              "projectName": "narrow",
+              "results": [
+                {
+                  "workerIndex": 9,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1943,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-19T06:51:05.490Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "2fa8ab87beca8e7f39ce-6eafa25ca05ff6107825",
+          "file": "product.spec.ts",
+          "line": 17,
+          "column": 1
+        },
+        {
+          "title": "trace findings select relevant simulations and export an explicit complete regression",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 2,
+                  "status": "passed",
+                  "duration": 3003,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-19T06:50:20.780Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -385,12 +488,12 @@
                   "workerIndex": 3,
                   "parallelIndex": 1,
                   "status": "passed",
-                  "duration": 1963,
+                  "duration": 2401,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-11-19T05:04:18.315Z",
+                  "startTime": "2026-11-19T06:50:38.941Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -405,15 +508,15 @@
               "projectName": "phone",
               "results": [
                 {
-                  "workerIndex": 6,
+                  "workerIndex": 7,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 1939,
+                  "duration": 2317,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-11-19T05:04:29.093Z",
+                  "startTime": "2026-11-19T06:50:57.141Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -428,15 +531,15 @@
               "projectName": "narrow",
               "results": [
                 {
-                  "workerIndex": 8,
-                  "parallelIndex": 0,
+                  "workerIndex": 10,
+                  "parallelIndex": 2,
                   "status": "passed",
-                  "duration": 1480,
+                  "duration": 2425,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-11-19T05:04:40.945Z",
+                  "startTime": "2026-11-19T06:51:05.896Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -444,13 +547,13 @@
               "status": "expected"
             }
           ],
-          "id": "2fa8ab87beca8e7f39ce-6eafa25ca05ff6107825",
+          "id": "2fa8ab87beca8e7f39ce-74d78d82aef4c8452f93",
           "file": "product.spec.ts",
-          "line": 16,
+          "line": 23,
           "column": 1
         },
         {
-          "title": "same-seed policy patch reruns and exports a runnable regression",
+          "title": "a sole successful Transfer needs complete trusted context and explicit selection",
           "ok": true,
           "tags": [],
           "tests": [
@@ -462,15 +565,15 @@
               "projectName": "desktop",
               "results": [
                 {
-                  "workerIndex": 2,
-                  "parallelIndex": 2,
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
                   "status": "passed",
-                  "duration": 1052,
+                  "duration": 1747,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-11-19T05:04:07.275Z",
+                  "startTime": "2026-11-19T06:50:23.015Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -485,15 +588,15 @@
               "projectName": "tablet",
               "results": [
                 {
-                  "workerIndex": 4,
-                  "parallelIndex": 0,
+                  "workerIndex": 3,
+                  "parallelIndex": 1,
                   "status": "passed",
-                  "duration": 1094,
+                  "duration": 1640,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-11-19T05:04:20.814Z",
+                  "startTime": "2026-11-19T06:50:41.366Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -509,14 +612,14 @@
               "results": [
                 {
                   "workerIndex": 6,
-                  "parallelIndex": 0,
+                  "parallelIndex": 1,
                   "status": "passed",
-                  "duration": 2200,
+                  "duration": 1571,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-11-19T05:04:31.286Z",
+                  "startTime": "2026-11-19T06:50:54.783Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -532,14 +635,220 @@
               "results": [
                 {
                   "workerIndex": 9,
-                  "parallelIndex": 2,
+                  "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 1401,
+                  "duration": 1674,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-11-19T05:04:42.296Z",
+                  "startTime": "2026-11-19T06:51:07.694Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "2fa8ab87beca8e7f39ce-6e37de8286edde79810b",
+          "file": "product.spec.ts",
+          "line": 33,
+          "column": 1
+        },
+        {
+          "title": "editing policy inputs invalidates stale displayed proofs",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 2,
+                  "status": "passed",
+                  "duration": 1322,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-19T06:50:24.025Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            },
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "tablet",
+              "projectName": "tablet",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 2,
+                  "status": "passed",
+                  "duration": 1251,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-19T06:50:41.659Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            },
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "phone",
+              "projectName": "phone",
+              "results": [
+                {
+                  "workerIndex": 6,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 1235,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-19T06:50:56.392Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            },
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "narrow",
+              "projectName": "narrow",
+              "results": [
+                {
+                  "workerIndex": 10,
+                  "parallelIndex": 2,
+                  "status": "passed",
+                  "duration": 1307,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-19T06:51:08.597Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "2fa8ab87beca8e7f39ce-5787625013025a872294",
+          "file": "product.spec.ts",
+          "line": 39,
+          "column": 1
+        },
+        {
+          "title": "same-seed policy patch reruns and exports a runnable regression",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 1533,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-19T06:50:24.802Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            },
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "tablet",
+              "projectName": "tablet",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 2,
+                  "status": "passed",
+                  "duration": 1451,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-19T06:50:42.933Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            },
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "phone",
+              "projectName": "phone",
+              "results": [
+                {
+                  "workerIndex": 5,
+                  "parallelIndex": 2,
+                  "status": "passed",
+                  "duration": 1677,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-19T06:50:56.504Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            },
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "narrow",
+              "projectName": "narrow",
+              "results": [
+                {
+                  "workerIndex": 8,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 1637,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-19T06:51:08.822Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -549,7 +858,7 @@
           ],
           "id": "2fa8ab87beca8e7f39ce-b551df68cda4d2b3e2c7",
           "file": "product.spec.ts",
-          "line": 21,
+          "line": 42,
           "column": 1
         },
         {
@@ -568,12 +877,12 @@
                   "workerIndex": 2,
                   "parallelIndex": 2,
                   "status": "passed",
-                  "duration": 927,
+                  "duration": 1349,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-11-19T05:04:08.441Z",
+                  "startTime": "2026-11-19T06:50:25.374Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -591,115 +900,12 @@
                   "workerIndex": 3,
                   "parallelIndex": 1,
                   "status": "passed",
-                  "duration": 1116,
+                  "duration": 1324,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-11-19T05:04:20.311Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            },
-            {
-              "timeout": 45000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "phone",
-              "projectName": "phone",
-              "results": [
-                {
-                  "workerIndex": 5,
-                  "parallelIndex": 1,
-                  "status": "passed",
-                  "duration": 1954,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-11-19T05:04:33.163Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            },
-            {
-              "timeout": 45000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "narrow",
-              "projectName": "narrow",
-              "results": [
-                {
-                  "workerIndex": 8,
-                  "parallelIndex": 0,
-                  "status": "passed",
-                  "duration": 1190,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-11-19T05:04:42.580Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "2fa8ab87beca8e7f39ce-e18c2d2bc052d3c34cee",
-          "file": "product.spec.ts",
-          "line": 27,
-          "column": 1
-        },
-        {
-          "title": "import rejects tampering, safely renders hostile names and matches CLI-compatible verifier",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 45000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "desktop",
-              "projectName": "desktop",
-              "results": [
-                {
-                  "workerIndex": 1,
-                  "parallelIndex": 1,
-                  "status": "passed",
-                  "duration": 501,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-11-19T05:04:08.631Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            },
-            {
-              "timeout": 45000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "tablet",
-              "projectName": "tablet",
-              "results": [
-                {
-                  "workerIndex": 3,
-                  "parallelIndex": 1,
-                  "status": "passed",
-                  "duration": 763,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-11-19T05:04:21.455Z",
+                  "startTime": "2026-11-19T06:50:43.028Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -715,14 +921,14 @@
               "results": [
                 {
                   "workerIndex": 6,
-                  "parallelIndex": 0,
+                  "parallelIndex": 1,
                   "status": "passed",
-                  "duration": 1713,
+                  "duration": 1317,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-11-19T05:04:33.543Z",
+                  "startTime": "2026-11-19T06:50:57.650Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -737,15 +943,118 @@
               "projectName": "narrow",
               "results": [
                 {
-                  "workerIndex": 7,
-                  "parallelIndex": 1,
+                  "workerIndex": 9,
+                  "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 792,
+                  "duration": 1300,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-11-19T05:04:43.491Z",
+                  "startTime": "2026-11-19T06:51:09.407Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "2fa8ab87beca8e7f39ce-e18c2d2bc052d3c34cee",
+          "file": "product.spec.ts",
+          "line": 48,
+          "column": 1
+        },
+        {
+          "title": "import rejects tampering, safely renders hostile names and matches CLI-compatible verifier",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1185,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-19T06:50:25.534Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            },
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "tablet",
+              "projectName": "tablet",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 1041,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-19T06:50:44.370Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            },
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "phone",
+              "projectName": "phone",
+              "results": [
+                {
+                  "workerIndex": 5,
+                  "parallelIndex": 2,
+                  "status": "passed",
+                  "duration": 1031,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-19T06:50:58.213Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            },
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "narrow",
+              "projectName": "narrow",
+              "results": [
+                {
+                  "workerIndex": 10,
+                  "parallelIndex": 2,
+                  "status": "passed",
+                  "duration": 1082,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-19T06:51:09.928Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -755,7 +1064,7 @@
           ],
           "id": "2fa8ab87beca8e7f39ce-e021e81ac83236d1f4b1",
           "file": "product.spec.ts",
-          "line": 32,
+          "line": 53,
           "column": 1
         },
         {
@@ -774,12 +1083,12 @@
                   "workerIndex": 1,
                   "parallelIndex": 1,
                   "status": "passed",
-                  "duration": 2352,
+                  "duration": 2618,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-11-19T05:04:09.146Z",
+                  "startTime": "2026-11-19T06:50:26.372Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -795,14 +1104,14 @@
               "results": [
                 {
                   "workerIndex": 4,
-                  "parallelIndex": 0,
+                  "parallelIndex": 2,
                   "status": "passed",
-                  "duration": 2235,
+                  "duration": 2493,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-11-19T05:04:22.044Z",
+                  "startTime": "2026-11-19T06:50:44.410Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -817,15 +1126,15 @@
               "projectName": "phone",
               "results": [
                 {
-                  "workerIndex": 5,
+                  "workerIndex": 6,
                   "parallelIndex": 1,
                   "status": "passed",
-                  "duration": 2155,
+                  "duration": 2466,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-11-19T05:04:35.288Z",
+                  "startTime": "2026-11-19T06:50:58.994Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -841,14 +1150,14 @@
               "results": [
                 {
                   "workerIndex": 8,
-                  "parallelIndex": 0,
+                  "parallelIndex": 1,
                   "status": "passed",
-                  "duration": 2300,
+                  "duration": 2371,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-11-19T05:04:43.791Z",
+                  "startTime": "2026-11-19T06:51:10.480Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -858,7 +1167,7 @@
           ],
           "id": "2fa8ab87beca8e7f39ce-5a5e0bbe0d31046cdd51",
           "file": "product.spec.ts",
-          "line": 37,
+          "line": 58,
           "column": 1
         },
         {
@@ -877,12 +1186,12 @@
                   "workerIndex": 2,
                   "parallelIndex": 2,
                   "status": "passed",
-                  "duration": 1272,
+                  "duration": 1384,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-11-19T05:04:09.381Z",
+                  "startTime": "2026-11-19T06:50:26.749Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -900,12 +1209,12 @@
                   "workerIndex": 3,
                   "parallelIndex": 1,
                   "status": "passed",
-                  "duration": 1191,
+                  "duration": 1323,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-11-19T05:04:22.246Z",
+                  "startTime": "2026-11-19T06:50:45.439Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -920,15 +1229,15 @@
               "projectName": "phone",
               "results": [
                 {
-                  "workerIndex": 6,
-                  "parallelIndex": 0,
+                  "workerIndex": 5,
+                  "parallelIndex": 2,
                   "status": "passed",
-                  "duration": 1362,
+                  "duration": 1287,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-11-19T05:04:35.316Z",
+                  "startTime": "2026-11-19T06:50:59.269Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -944,14 +1253,14 @@
               "results": [
                 {
                   "workerIndex": 9,
-                  "parallelIndex": 2,
+                  "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 1141,
+                  "duration": 1348,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-11-19T05:04:43.885Z",
+                  "startTime": "2026-11-19T06:51:10.730Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -961,7 +1270,7 @@
           ],
           "id": "2fa8ab87beca8e7f39ce-bc6ff61c0e05ce781d5b",
           "file": "product.spec.ts",
-          "line": 43,
+          "line": 64,
           "column": 1
         },
         {
@@ -980,12 +1289,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 1168,
+                  "duration": 1001,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-11-19T05:04:09.484Z",
+                  "startTime": "2026-11-19T06:50:26.751Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -1003,12 +1312,12 @@
                   "workerIndex": 3,
                   "parallelIndex": 1,
                   "status": "passed",
-                  "duration": 892,
+                  "duration": 945,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-11-19T05:04:23.468Z",
+                  "startTime": "2026-11-19T06:50:46.782Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -1023,15 +1332,15 @@
               "projectName": "phone",
               "results": [
                 {
-                  "workerIndex": 6,
+                  "workerIndex": 7,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 762,
+                  "duration": 1088,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-11-19T05:04:36.709Z",
+                  "startTime": "2026-11-19T06:50:59.725Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -1046,15 +1355,15 @@
               "projectName": "narrow",
               "results": [
                 {
-                  "workerIndex": 7,
-                  "parallelIndex": 1,
+                  "workerIndex": 10,
+                  "parallelIndex": 2,
                   "status": "passed",
-                  "duration": 950,
+                  "duration": 1043,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-11-19T05:04:44.315Z",
+                  "startTime": "2026-11-19T06:51:11.034Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -1064,7 +1373,7 @@
           ],
           "id": "2fa8ab87beca8e7f39ce-8cda0efdd77acfdb8191",
           "file": "product.spec.ts",
-          "line": 46,
+          "line": 67,
           "column": 1
         },
         {
@@ -1080,15 +1389,15 @@
               "projectName": "desktop",
               "results": [
                 {
-                  "workerIndex": 2,
-                  "parallelIndex": 2,
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 29843,
+                  "duration": 25371,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-11-19T05:04:10.681Z",
+                  "startTime": "2026-11-19T06:50:27.775Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -1103,7 +1412,7 @@
                   "description": "Full automated audits run at desktop; all viewports receive interaction tests.",
                   "location": {
                     "file": "C:\\Users\\eshaa\\OneDrive\\Desktop\\Hackathons\\Prezenti Grant (Celo)\\test\\e2e\\product.spec.ts",
-                    "line": 52,
+                    "line": 73,
                     "column": 8
                   }
                 }
@@ -1114,21 +1423,21 @@
               "results": [
                 {
                   "workerIndex": 4,
-                  "parallelIndex": 0,
+                  "parallelIndex": 2,
                   "status": "skipped",
-                  "duration": 179,
+                  "duration": 190,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-11-19T05:04:24.305Z",
+                  "startTime": "2026-11-19T06:50:46.923Z",
                   "annotations": [
                     {
                       "type": "skip",
                       "description": "Full automated audits run at desktop; all viewports receive interaction tests.",
                       "location": {
                         "file": "C:\\Users\\eshaa\\OneDrive\\Desktop\\Hackathons\\Prezenti Grant (Celo)\\test\\e2e\\product.spec.ts",
-                        "line": 52,
+                        "line": 73,
                         "column": 8
                       }
                     }
@@ -1146,7 +1455,7 @@
                   "description": "Full automated audits run at desktop; all viewports receive interaction tests.",
                   "location": {
                     "file": "C:\\Users\\eshaa\\OneDrive\\Desktop\\Hackathons\\Prezenti Grant (Celo)\\test\\e2e\\product.spec.ts",
-                    "line": 52,
+                    "line": 73,
                     "column": 8
                   }
                 }
@@ -1157,21 +1466,21 @@
               "results": [
                 {
                   "workerIndex": 5,
-                  "parallelIndex": 1,
+                  "parallelIndex": 2,
                   "status": "skipped",
-                  "duration": 222,
+                  "duration": 187,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-11-19T05:04:37.482Z",
+                  "startTime": "2026-11-19T06:51:00.577Z",
                   "annotations": [
                     {
                       "type": "skip",
                       "description": "Full automated audits run at desktop; all viewports receive interaction tests.",
                       "location": {
                         "file": "C:\\Users\\eshaa\\OneDrive\\Desktop\\Hackathons\\Prezenti Grant (Celo)\\test\\e2e\\product.spec.ts",
-                        "line": 52,
+                        "line": 73,
                         "column": 8
                       }
                     }
@@ -1189,7 +1498,7 @@
                   "description": "Full automated audits run at desktop; all viewports receive interaction tests.",
                   "location": {
                     "file": "C:\\Users\\eshaa\\OneDrive\\Desktop\\Hackathons\\Prezenti Grant (Celo)\\test\\e2e\\product.spec.ts",
-                    "line": 52,
+                    "line": 73,
                     "column": 8
                   }
                 }
@@ -1199,22 +1508,22 @@
               "projectName": "narrow",
               "results": [
                 {
-                  "workerIndex": 9,
+                  "workerIndex": 10,
                   "parallelIndex": 2,
                   "status": "skipped",
-                  "duration": 147,
+                  "duration": 168,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-11-19T05:04:45.065Z",
+                  "startTime": "2026-11-19T06:51:12.098Z",
                   "annotations": [
                     {
                       "type": "skip",
                       "description": "Full automated audits run at desktop; all viewports receive interaction tests.",
                       "location": {
                         "file": "C:\\Users\\eshaa\\OneDrive\\Desktop\\Hackathons\\Prezenti Grant (Celo)\\test\\e2e\\product.spec.ts",
-                        "line": 52,
+                        "line": 73,
                         "column": 8
                       }
                     }
@@ -1227,7 +1536,7 @@
           ],
           "id": "2fa8ab87beca8e7f39ce-45966a6d2255fc57d31b",
           "file": "product.spec.ts",
-          "line": 51,
+          "line": 72,
           "column": 1
         },
         {
@@ -1243,15 +1552,15 @@
               "projectName": "desktop",
               "results": [
                 {
-                  "workerIndex": 0,
-                  "parallelIndex": 0,
+                  "workerIndex": 2,
+                  "parallelIndex": 2,
                   "status": "passed",
-                  "duration": 2368,
+                  "duration": 2045,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-11-19T05:04:10.685Z",
+                  "startTime": "2026-11-19T06:50:28.154Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -1266,15 +1575,15 @@
               "projectName": "tablet",
               "results": [
                 {
-                  "workerIndex": 3,
-                  "parallelIndex": 1,
+                  "workerIndex": 4,
+                  "parallelIndex": 2,
                   "status": "passed",
-                  "duration": 1848,
+                  "duration": 1912,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-11-19T05:04:24.387Z",
+                  "startTime": "2026-11-19T06:50:47.133Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -1289,15 +1598,15 @@
               "projectName": "phone",
               "results": [
                 {
-                  "workerIndex": 6,
-                  "parallelIndex": 0,
+                  "workerIndex": 5,
+                  "parallelIndex": 2,
                   "status": "passed",
-                  "duration": 1732,
+                  "duration": 1933,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-11-19T05:04:37.521Z",
+                  "startTime": "2026-11-19T06:51:00.784Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -1313,14 +1622,14 @@
               "results": [
                 {
                   "workerIndex": 9,
-                  "parallelIndex": 2,
+                  "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 1874,
+                  "duration": 1948,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-11-19T05:04:45.244Z",
+                  "startTime": "2026-11-19T06:51:12.103Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -1330,7 +1639,7 @@
           ],
           "id": "2fa8ab87beca8e7f39ce-ffb065e17ef59a4986f7",
           "file": "product.spec.ts",
-          "line": 60,
+          "line": 81,
           "column": 1
         },
         {
@@ -1349,12 +1658,12 @@
                   "workerIndex": 1,
                   "parallelIndex": 1,
                   "status": "passed",
-                  "duration": 1679,
+                  "duration": 1836,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-11-19T05:04:11.545Z",
+                  "startTime": "2026-11-19T06:50:29.013Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -1369,15 +1678,15 @@
               "projectName": "tablet",
               "results": [
                 {
-                  "workerIndex": 4,
-                  "parallelIndex": 0,
+                  "workerIndex": 3,
+                  "parallelIndex": 1,
                   "status": "passed",
-                  "duration": 1697,
+                  "duration": 1653,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-11-19T05:04:24.519Z",
+                  "startTime": "2026-11-19T06:50:47.745Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -1392,15 +1701,15 @@
               "projectName": "phone",
               "results": [
                 {
-                  "workerIndex": 5,
-                  "parallelIndex": 1,
+                  "workerIndex": 7,
+                  "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 1666,
+                  "duration": 1616,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-11-19T05:04:37.754Z",
+                  "startTime": "2026-11-19T06:51:00.840Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -1415,15 +1724,15 @@
               "projectName": "narrow",
               "results": [
                 {
-                  "workerIndex": 7,
-                  "parallelIndex": 1,
+                  "workerIndex": 10,
+                  "parallelIndex": 2,
                   "status": "passed",
-                  "duration": 1765,
+                  "duration": 1741,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-11-19T05:04:45.301Z",
+                  "startTime": "2026-11-19T06:51:12.288Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -1433,7 +1742,7 @@
           ],
           "id": "2fa8ab87beca8e7f39ce-6b5ae7a1325aa4aaf562",
           "file": "product.spec.ts",
-          "line": 66,
+          "line": 87,
           "column": 1
         },
         {
@@ -1449,15 +1758,15 @@
               "projectName": "desktop",
               "results": [
                 {
-                  "workerIndex": 0,
-                  "parallelIndex": 0,
+                  "workerIndex": 2,
+                  "parallelIndex": 2,
                   "status": "passed",
-                  "duration": 5955,
+                  "duration": 5453,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-11-19T05:04:13.101Z",
+                  "startTime": "2026-11-19T06:50:30.225Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -1472,7 +1781,7 @@
                   "description": "Scenario data tests and all viewport representative controls cover the other viewports.",
                   "location": {
                     "file": "C:\\Users\\eshaa\\OneDrive\\Desktop\\Hackathons\\Prezenti Grant (Celo)\\test\\e2e\\product.spec.ts",
-                    "line": 71,
+                    "line": 92,
                     "column": 8
                   }
                 }
@@ -1483,21 +1792,21 @@
               "results": [
                 {
                   "workerIndex": 4,
-                  "parallelIndex": 0,
+                  "parallelIndex": 2,
                   "status": "skipped",
-                  "duration": 210,
+                  "duration": 178,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-11-19T05:04:26.259Z",
+                  "startTime": "2026-11-19T06:50:49.064Z",
                   "annotations": [
                     {
                       "type": "skip",
                       "description": "Scenario data tests and all viewport representative controls cover the other viewports.",
                       "location": {
                         "file": "C:\\Users\\eshaa\\OneDrive\\Desktop\\Hackathons\\Prezenti Grant (Celo)\\test\\e2e\\product.spec.ts",
-                        "line": 71,
+                        "line": 92,
                         "column": 8
                       }
                     }
@@ -1515,7 +1824,7 @@
                   "description": "Scenario data tests and all viewport representative controls cover the other viewports.",
                   "location": {
                     "file": "C:\\Users\\eshaa\\OneDrive\\Desktop\\Hackathons\\Prezenti Grant (Celo)\\test\\e2e\\product.spec.ts",
-                    "line": 71,
+                    "line": 92,
                     "column": 8
                   }
                 }
@@ -1526,21 +1835,21 @@
               "results": [
                 {
                   "workerIndex": 6,
-                  "parallelIndex": 0,
+                  "parallelIndex": 1,
                   "status": "skipped",
-                  "duration": 140,
+                  "duration": 181,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-11-19T05:04:39.295Z",
+                  "startTime": "2026-11-19T06:51:01.481Z",
                   "annotations": [
                     {
                       "type": "skip",
                       "description": "Scenario data tests and all viewport representative controls cover the other viewports.",
                       "location": {
                         "file": "C:\\Users\\eshaa\\OneDrive\\Desktop\\Hackathons\\Prezenti Grant (Celo)\\test\\e2e\\product.spec.ts",
-                        "line": 71,
+                        "line": 92,
                         "column": 8
                       }
                     }
@@ -1558,7 +1867,7 @@
                   "description": "Scenario data tests and all viewport representative controls cover the other viewports.",
                   "location": {
                     "file": "C:\\Users\\eshaa\\OneDrive\\Desktop\\Hackathons\\Prezenti Grant (Celo)\\test\\e2e\\product.spec.ts",
-                    "line": 71,
+                    "line": 92,
                     "column": 8
                   }
                 }
@@ -1569,21 +1878,21 @@
               "results": [
                 {
                   "workerIndex": 8,
-                  "parallelIndex": 0,
+                  "parallelIndex": 1,
                   "status": "skipped",
-                  "duration": 194,
+                  "duration": 170,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-11-19T05:04:46.120Z",
+                  "startTime": "2026-11-19T06:51:12.871Z",
                   "annotations": [
                     {
                       "type": "skip",
                       "description": "Scenario data tests and all viewport representative controls cover the other viewports.",
                       "location": {
                         "file": "C:\\Users\\eshaa\\OneDrive\\Desktop\\Hackathons\\Prezenti Grant (Celo)\\test\\e2e\\product.spec.ts",
-                        "line": 71,
+                        "line": 92,
                         "column": 8
                       }
                     }
@@ -1596,7 +1905,7 @@
           ],
           "id": "2fa8ab87beca8e7f39ce-0593812a7f7ebffe0dc3",
           "file": "product.spec.ts",
-          "line": 70,
+          "line": 91,
           "column": 1
         }
       ]
@@ -1604,9 +1913,9 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2026-11-19T05:04:05.996Z",
-    "duration": 41459.62899999999,
-    "expected": 42,
+    "startTime": "2026-11-19T06:50:13.568Z",
+    "duration": 61152.087999999996,
+    "expected": 54,
     "skipped": 6,
     "unexpected": 0,
     "flaky": 0

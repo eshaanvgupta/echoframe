@@ -1,11 +1,13 @@
 {
   "name": "echoframe-workspace",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "private": true,
   "type": "module",
   "license": "MIT",
   "packageManager": "pnpm@10.34.9",
-  "engines": {"node": ">=24.0.0 <27"},
+  "engines": {
+    "node": ">=24.0.0 <27"
+  },
   "scripts": {
     "dev": "node scripts/build.mjs && corepack pnpm --filter @echoframe/web dev",
     "build:packages": "node scripts/build.mjs",
@@ -20,7 +22,8 @@
     "cli": "node packages/cli/dist/index.js",
     "fixtures": "tsx scripts/fixtures.ts",
     "release:check": "node scripts/release-check.mjs",
-    "quality": "corepack pnpm typecheck && corepack pnpm lint && corepack pnpm test && corepack pnpm build && corepack pnpm test:consumer && corepack pnpm test:e2e"
+    "quality": "corepack pnpm typecheck && corepack pnpm lint && corepack pnpm test && corepack pnpm build && corepack pnpm test:consumer && corepack pnpm test:e2e",
+    "release:assets": "node scripts/package-release.mjs"
   },
   "devDependencies": {
     "@axe-core/playwright": "4.14.0",
@@ -42,6 +45,8 @@
     "tsx": "4.23.15",
     "typescript": "5.9.3",
     "typescript-eslint": "8.73.0",
-    "vitest": "5.1.1"
+    "vitest": "5.1.1",
+    "express": "5.3.0",
+    "hono": "4.13.19"
   }
 }
