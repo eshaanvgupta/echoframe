@@ -1,7 +1,9 @@
 {
-  "scope": "Tracked delivery paths; two supplied source documents preserved",
+  "scope": "Complete tracked delivery paths; two supplied documents preserved",
+  "count": 213,
   "files": [
     ".env.example",
+    ".gitattributes",
     ".github/workflows/ci.yml",
     ".gitignore",
     ".npmrc",
@@ -59,6 +61,7 @@
     "docs/competitor-differentiation.md",
     "docs/completion-report.md",
     "docs/deployment.md",
+    "docs/file-manifest.json",
     "docs/grant-evidence.json",
     "docs/live-rpc-observations.json",
     "docs/methodology.md",

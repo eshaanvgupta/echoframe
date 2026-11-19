@@ -150,7 +150,13 @@
   "publication": {
     "website": "not_published",
     "npm": "not_published",
-    "remoteGithubCi": "not_yet_observed"
+    "remoteGithubCi": "in_progress_at_recording",
+    "github": {
+      "status": "published",
+      "sourceCodeCommit": "190898de966ed79281e7ca6170cb3b2116544fbb",
+      "verifiedRemote": "refs/heads/main",
+      "workflowUrl": "https://github.com/eshaanvgupta/echoframe/actions/runs/44463047391"
+    }
   },
   "limitations": [
     "No cryptographic light client; RPC trust assumptions are explicit",
